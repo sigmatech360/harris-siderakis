@@ -21,6 +21,14 @@ import viewdownloadicon from "../../assets/view-download-icon.png";
 import runsearchicon from "../../assets/run-search-icon.png";
 import datingappicon from "../../assets/dating-app-icon.png";
 import enterdetailsicon from "../../assets/enter-details-icon.png";
+
+import makedifferent from "../../assets/make-different.png";
+
+import instantresulticon from "../../assets/instant-result-icon.png";
+import apppoweredicon from "../../assets/app-powered-icon.png";
+import securityprivateicon from "../../assets/security-private-icon.png";
+import userfriendlyicon from "../../assets/user-friendly-icon.png";
+
 import VirtualPIWorkBox from "../../components/VirtualPIWorkBox";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,7 +36,9 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+
+import Accordion from "react-bootstrap/Accordion";
 
 const virtualPiBoxesContent = [
   {
@@ -110,6 +120,33 @@ const whyChooseData = [
     description:
       "Our AI-driven platform doesn’t just present data; it analyzes it, helping you pinpoint relevant information quickly.",
     icon: runsearchicon,
+  },
+];
+
+const makeDifferentICon = [
+  {
+    id: 1,
+    icon: apppoweredicon,
+    name: "AI-Powered Accuracy",
+    description: "Get precise data without searching manually.",
+  },
+  {
+    id: 2,
+    icon: securityprivateicon,
+    name: "Secure & Private",
+    description: "Your searches remain confidential.",
+  },
+  {
+    id: 3,
+    icon: userfriendlyicon,
+    name: "User-Friendly Experience",
+    description: "No complex reports—just clear insights.",
+  },
+  {
+    id: 4,
+    icon: instantresulticon,
+    name: "Instant Results",
+    description: "No waiting—get data in seconds.",
   },
 ];
 
@@ -231,20 +268,29 @@ const Home = () => {
         </div>
       </section>
 
-      {/* <div className="why-choose-section">
+      <section className="why-choose-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <h2 className="text-center">
-                Why Choose My <strong>Virtual PI?</strong>
-              </h2>
-            </div>
-            <div className="col-lg-12">
               <div className="swiper-container">
+                <div className="sec-head">
+                  <h2>
+                    Why Choose My <span className="fw-bold">Virtual PI?</span>
+                  </h2>
+                  <div className="why-choose-slide-btns">
+                    <div className="swiper-button-prev">
+                      <GoArrowLeft />
+                    </div>
+                    <div className="swiper-button-next">
+                      <GoArrowRight />
+                    </div>
+                  </div>
+                </div>
                 <Swiper
                   modules={[Navigation, Pagination]}
                   spaceBetween={20}
                   slidesPerView={1}
+                  loop={true} // Enables infinite sliding
                   breakpoints={{
                     768: { slidesPerView: 2 },
                     1024: { slidesPerView: 3 },
@@ -257,25 +303,125 @@ const Home = () => {
                 >
                   {whyChooseData.map((item, index) => (
                     <SwiperSlide key={index}>
-                      <div className="feature-card">
-                        <img src={item.icon} alt="" />
-                        <h4>{item.title}</h4>
+                      <div className="why-choose-card">
+                        <div className="why-choose-card-head">
+                          <div className="why-choose-card-head-img">
+                            <img src={item.icon} alt="" />
+                          </div>
+                          <h4>{item.title}</h4>
+                        </div>
                         <p>{item.description}</p>
                       </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <div className="swiper-button-prev">
-                  <FaArrowLeft />
-                </div>
-                <div className="swiper-button-next">
-                  <FaArrowRight />
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </div> */}
+      </section>
+
+      <section className="makes-different-sec">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="sec-head">
+                <h2>
+                  What Makes <br />{" "}
+                  <span className="colorBlue fw-medium">My Virtual PI</span>{" "}
+                  Different?
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section className="make-different-content-sec">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="make-different-content-img-div">
+                <img
+                  src={makedifferent}
+                  className="make-different-content-img"
+                  alt="Mobile Image"
+                />
+                {makeDifferentICon.map((item, index) => (
+                  <div
+                    className={`make-different-content-box make-different-content-box${
+                      index + 1
+                    }`}
+                    key={index}
+                  >
+                    <div className="make-different-content-box-img">
+                      <img src={item.icon} alt="" />
+                    </div>
+                    <div className="make-different-content-box-text">
+                      <h4>{item.name}</h4>
+                      <p>{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+                {/* <div className="make-different-content-boxes">
+                  </div> */}
+              </div>
+              {/* <div className="make-different-content">
+              </div> */}
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section className="faqs-sec">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="faqs-content">
+                <h2>
+                  Got Questions? We’ve Got{" "}
+                  <span className="fw-bold">Answers!</span>
+                </h2>
+                <p>
+                  At My Virtual PI, we empower individuals and businesses to
+                  access detailed background information effortlessly. Our
+                  AI-driven tools ensure accuracy and efficiency, giving you the
+                  confidence to make informed decisions.
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="faqs-items">
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>Accordion Item #1</Accordion.Header>
+                    <Accordion.Body>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>Accordion Item #2</Accordion.Header>
+                    <Accordion.Body>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="your-privacy-sec">
         <div className="container">
