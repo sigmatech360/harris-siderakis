@@ -57,7 +57,8 @@ p {
 }
 
 .main-banner {
-  background-image: url(assets/main-banner-bg.png);
+  /* background-image: url(assets/main-banner-bg.png); */
+  position: relative;
   color: #fff;
   padding: 60px 0;
   background-position: center center;
@@ -65,6 +66,16 @@ p {
   height: 100vh;
   display: flex;
   align-items: center;
+}
+.main-banner video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50.1%, -50%);
+  z-index: -1;
 }
 .main-banner-content {
   text-align: center;
@@ -352,6 +363,10 @@ p {
   font-weight: 400;
   color: #cbcbcb;
   min-height: 63px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .why-choose-section .sec-head {
@@ -515,8 +530,6 @@ p {
   opacity: 80%;
 }
 
-
-
 .faqs-items .accordion-button {
   padding: 0;
   background: transparent;
@@ -534,12 +547,179 @@ p {
 }
 .faqs-items .accordion-body {
   padding: 10px 0 0;
+  color: #aaaaaa;
+  font-size: 15px;
+}
+.faqs-items .accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .faqs-items .accordion-button:not(.collapsed) {
   background: transparent;
   box-shadow: unset;
   color: #fff;
 }
+.faqs-items .accordion-button::after {
+  filter: invert(1) brightness(1000%);
+}
+
+/* Plans Sec */
+.plans-sec {
+  margin: 60px 0;
+}
+
+.plans-sec .sec-head h2 {
+  font-size: 46px;
+  text-align: center;
+}
+
+.plans-sec .sec-head {
+  max-width: 450px;
+  margin: 0 auto 30px;
+}
+.plan-card {
+  background-image: url(/src/assets//plan-card-bg.png);
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-size: cover;
+  background-position: top right;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.plan-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.plan-card-title {
+  display: flex;
+  align-items: end;
+  gap: 5px;
+}
+.plan-card-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-card-list-item::marker {
+  color: #44c454;
+}
+.plan-card-title p,
+.plan-card-list-item {
+  color: #9e9e9e;
+  font-size: 15px;
+}
+.plan-card-title h3 {
+  font-size: 20px;
+}
+.plan-card-price {
+  font-size: 30px;
+}
+/* Plans Sec */
+
+/* Testimonial Sec */
+.testimonial-sec {
+  margin: 60px 0;
+}
+
+.testimonial-sec .sec-head {
+  text-align: center;
+  max-width: 570px;
+  margin: -110px auto 30px;
+}
+.testimonial-sec .sec-head h2 {
+  font-size: 44px;
+}
+
+.testimonial-sec .sec-head p {
+  font-size: 20px;
+  border-bottom: 1px solid;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.testimonial-card {
+  background-color: #0252c9;
+  color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.testimonial-card-flex-row {
+  flex-direction: row-reverse;
+}
+.testimonial-card.lightGray {
+  background-color: #ebefef;
+  color: #0252c9;
+}
+
+.testimonial-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.testimonial-rating-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.testimonial-card-content h4 {
+  font-size: 26px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.testimonial-rating-stars {
+  max-width: 90px;
+}
+.testimonial-rating-stars img {
+  width: 100%;
+}
+.testimonial-rating p {
+  font-size: 14px;
+  color: #9e9e9e;
+}
+.testimonial-user h5 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.testimonial-user {
+  text-align: right;
+}
+.testimonial-user p {
+  font-size: 14px;
+}
+.testimonial-card-img img {
+  width: 100%;
+}
+
+.testimonial-card-flex-row .testimonial-card-img {
+  width: 100%;
+}
+.testimonial-card-flex-row .testimonial-card-img img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.testimonial-card-flex-row .testimonial-card-content {
+  flex-grow: 1;
+}
+/* Testimonial Sec */
+
 /* Footer */
 .main-footer {
   background-image: url(/src/assets/footer-bg.png);
@@ -607,3 +787,29 @@ p {
   margin-bottom: 16px;
 }
 /* Footer */
+
+/* Media Quries */
+@media (max-width: 1399px) {
+  .search-smarter-box-content h4 {
+    font-size: 23px;
+  }
+  .v_pi_work_box_head h5 {
+    font-size: 17px;
+  }
+  .v_pi_work_box p {
+    font-size: 14px;
+    color: #cbcbcb;
+  }
+  .testimonial-card-content h4 {
+    font-size: 22px;
+  }
+  .testimonial-rating-stars {
+    max-width: 80px;
+}
+.testimonial-user h5 {
+  font-size: 16px;
+}
+.faqs-content h2 {
+  font-size: 52px;
+}
+}

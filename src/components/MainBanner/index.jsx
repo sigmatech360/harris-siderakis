@@ -1,8 +1,13 @@
 import React from "react";
+import videoBg from "../../assets/banner-bg-video.mp4";
 
 const MainBanner = () => {
   return (
     <section className="main-banner">
+      <video autoPlay loop muted playsInline>
+        <source src={videoBg} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">

@@ -4,15 +4,6 @@ import MainBanner from "../../components/MainBanner";
 
 import { RiSecurePaymentFill } from "react-icons/ri";
 
-import searchbyname from "../../assets/search-by-name.png";
-import searchbyemail from "../../assets/search-by-email.png";
-import searchbyphone from "../../assets/search-by-phone.png";
-import searchbyaddress from "../../assets/search-by-address.png";
-
-import searchSmarterImg1 from "../../assets/01-img.png";
-import searchSmarterImg2 from "../../assets/02-img.png";
-import searchSmarterImg3 from "../../assets/01-img.png";
-
 import howv_pi_work_img1 from "../../assets/how-v-pi-work-img1.png";
 import howv_pi_work_img2 from "../../assets/how-v-pi-work-img2.png";
 import howv_pi_work_img4 from "../../assets/how-v-pi-work-img4.png";
@@ -24,10 +15,13 @@ import enterdetailsicon from "../../assets/enter-details-icon.png";
 
 import makedifferent from "../../assets/make-different.png";
 
-import instantresulticon from "../../assets/instant-result-icon.png";
-import apppoweredicon from "../../assets/app-powered-icon.png";
-import securityprivateicon from "../../assets/security-private-icon.png";
-import userfriendlyicon from "../../assets/user-friendly-icon.png";
+import sara_b from "../../assets/sara-b.png";
+import david_l from "../../assets/david-l.png";
+import david_m from "../../assets/david-m.png";
+import jessica_m from "../../assets/jessica-m.png";
+import jessica_r from "../../assets/jessica-r.png";
+import sammantha_r from "../../assets/sammantha-r.png";
+import ratingimg from "../../assets/rating-img.png";
 
 import VirtualPIWorkBox from "../../components/VirtualPIWorkBox";
 
@@ -36,119 +30,21 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 
 import Accordion from "react-bootstrap/Accordion";
 
-const virtualPiBoxesContent = [
-  {
-    id: 1,
-    image: searchbyname,
-    name: "Search by Name",
-  },
-  {
-    id: 2,
-    image: searchbyemail,
-    name: "Search by Email",
-  },
-  {
-    id: 3,
-    image: searchbyphone,
-    name: "Search by Phone",
-  },
-  {
-    id: 4,
-    image: searchbyaddress,
-    name: "Search by Address",
-  },
-];
-
-const searchSmarterBoxContent = [
-  {
-    id: 1,
-    number: "01",
-    title: "Enter a Name, Phone, or Address",
-    description: "Our AI-enhanced search tool scans public records instantly.",
-    image: searchSmarterImg1,
-    className: "first-box",
-  },
-  {
-    id: 2,
-    number: "02",
-    title: "Review Instant Results",
-    description: "Get quick insights on people, addresses, and backgrounds.",
-    image: searchSmarterImg2,
-    className: "second-box",
-  },
-  {
-    id: 3,
-    number: "03",
-    title: "Access Full Reports",
-    description: "Unlock deeper data with a one-time report or subscription",
-    image: searchSmarterImg3,
-    className: "third-box",
-  },
-];
-
-const whyChooseData = [
-  {
-    title: "Empower Yourself to Investigate",
-    description:
-      "With My Virtual PI, you're in control. No need to rely on third-party investigators; our intuitive platform equips you to perform comprehensive searches.",
-    icon: runsearchicon,
-  },
-  {
-    title: "Access Detailed, Trusted Information",
-    description:
-      "Gain access to in-depth reports covering employment and education history, public records, and safety checks.",
-    icon: runsearchicon,
-  },
-  {
-    title: "Enhanced Accuracy with AI Assistance",
-    description:
-      "Our AI-driven platform doesn’t just present data; it analyzes it, helping you pinpoint relevant information quickly.",
-    icon: runsearchicon,
-  },
-  {
-    title: "Enhanced Accuracy with AI Assistance",
-    description:
-      "Our AI-driven platform doesn’t just present data; it analyzes it, helping you pinpoint relevant information quickly.",
-    icon: runsearchicon,
-  },
-  {
-    title: "Enhanced Accuracy with AI Assistance",
-    description:
-      "Our AI-driven platform doesn’t just present data; it analyzes it, helping you pinpoint relevant information quickly.",
-    icon: runsearchicon,
-  },
-];
-
-const makeDifferentICon = [
-  {
-    id: 1,
-    icon: apppoweredicon,
-    name: "AI-Powered Accuracy",
-    description: "Get precise data without searching manually.",
-  },
-  {
-    id: 2,
-    icon: securityprivateicon,
-    name: "Secure & Private",
-    description: "Your searches remain confidential.",
-  },
-  {
-    id: 3,
-    icon: userfriendlyicon,
-    name: "User-Friendly Experience",
-    description: "No complex reports—just clear insights.",
-  },
-  {
-    id: 4,
-    icon: instantresulticon,
-    name: "Instant Results",
-    description: "No waiting—get data in seconds.",
-  },
-];
+import {
+  virtualPiBoxesContent,
+  searchSmarterBoxContent,
+  makeDifferentICon,
+  whyChooseData,
+  faqsData,
+  plansData,
+} from "../../data";
+import PlanCard from "../../components/PlanCard";
+import TestimonialCard from "../../components/TestimonialCard";
 
 const Home = () => {
   return (
@@ -360,19 +256,106 @@ const Home = () => {
                     </div>
                   </div>
                 ))}
-                {/* <div className="make-different-content-boxes">
-                  </div> */}
               </div>
-              {/* <div className="make-different-content">
-              </div> */}
             </div>
           </div>
         </section>
       </section>
 
+      <section className="testimonial-sec">
+        <div className="container">
+          <div className="row justify-content-between">
+            <div className="col-lg-3">
+              <TestimonialCard
+                title={
+                  "Saved me from a scam call—Reverse Phone Lookup workedperfectly!"
+                }
+                ratingNumber="5/5"
+                name="Sarah B"
+                state="Florida"
+                userImg={sara_b}
+              />
+            </div>
+            <div className="col-lg-5">
+              <TestimonialCard
+                flexVariant="row"
+                bgColor="lightGray"
+                title={
+                  "I found my lost childhood friend in minutes! It was life-changing."
+                }
+                ratingNumber="5/5"
+                name="Jessica R."
+                state="Texas"
+                userImg={jessica_r}
+              />
+            </div>
+            <div className="col-lg-3">
+              <TestimonialCard
+                title={
+                  "Helped me verify a tenant’s background before renting. Super easy!"
+                }
+                ratingNumber="5/5"
+                name="David M"
+                state="California"
+                userImg={david_m}
+              />
+            </div>
+
+            <div className="col-md-12">
+              <div className="sec-head">
+                <p>Testimonials</p>
+                <h2>
+                  Life-Changing{" "}
+                  <span className="colorBlue fw-bold">Results</span> Pure{" "}
+                  <span className="colorBlue fw-bold">Perfection!</span>
+                </h2>
+              </div>
+            </div>
+
+            <div className="col-lg-4">
+              <TestimonialCard
+                flexVariant="row"
+                bgColor="lightGray"
+                title={
+                  "Found my childhood best friend in minutes after searching for years!"
+                }
+                ratingNumber="5/5"
+                name="JSamantha R."
+                state="New York"
+                userImg={sammantha_r}
+              />
+            </div>
+            <div className="col-lg-3">
+              <TestimonialCard
+                title={
+                  "Used public records to find my biological siblings. Life-changing!"
+                }
+                ratingNumber="5/5"
+                name="Jessica M."
+                state="California"
+                userImg={jessica_m}
+              />
+            </div>
+            <div className="col-lg-4">
+              <TestimonialCard
+                flexVariant="row"
+                bgColor="lightGray"
+                title={
+                  "Ran a quick check turns out the ‘company’ was fake. Crisis avoided!"
+                }
+                ratingNumber="5/5"
+                name="David L."
+                state="Texas"
+                userImg={david_l}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="faqs-sec">
         <div className="container">
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="faqs-content">
                 <h2>
@@ -390,35 +373,41 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="faqs-items">
                 <Accordion defaultActiveKey="0">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>Accordion Item #1</Accordion.Header>
-                    <Accordion.Body>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="1">
-                    <Accordion.Header>Accordion Item #2</Accordion.Header>
-                    <Accordion.Body>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </Accordion.Body>
-                  </Accordion.Item>
+                  {faqsData.map((item, index) => (
+                    <Accordion.Item eventKey={index.toString()} key={index}>
+                      <Accordion.Header>{item.titla}</Accordion.Header>
+                      <Accordion.Body>{item.description}</Accordion.Body>
+                    </Accordion.Item>
+                  ))}
                 </Accordion>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="plans-sec">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="sec-head">
+                <h2>
+                  Flexible <span className="fw-bold colorBlue">Plans</span> for
+                  Every Need
+                </h2>
+              </div>
+            </div>
+
+            {plansData.map((plan, index) => (
+              <div className="col-lg-4" key={index}>
+                <PlanCard
+                  name={plan.name}
+                  duration={plan.duration}
+                  price={plan.price}
+                  list={plan.list}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
