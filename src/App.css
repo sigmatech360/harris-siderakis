@@ -25,11 +25,19 @@ p {
   font-weight: 600 !important;
 }
 
+.sec-tag {
+  font-size: 20px;
+  border-bottom: 1px solid;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
 .main-navbar {
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
+  z-index: 999;
 }
 
 .main-navbar .navbar-brand {
@@ -132,12 +140,7 @@ p {
   text-align: center;
   margin-bottom: -30px;
 }
-.search-smarter-sec .sec-head p {
-  font-size: 20px;
-  border-bottom: 1px solid;
-  display: inline-block;
-  margin-bottom: 16px;
-}
+
 .search-smarter-sec .sec-head h3 {
   font-size: 44px;
 }
@@ -640,13 +643,6 @@ p {
   font-size: 44px;
 }
 
-.testimonial-sec .sec-head p {
-  font-size: 20px;
-  border-bottom: 1px solid;
-  display: inline-block;
-  margin-bottom: 16px;
-}
-
 .testimonial-card {
   background-color: #0252c9;
   color: #fff;
@@ -788,6 +784,308 @@ p {
 }
 /* Footer */
 
+/* Inner Pages Start */
+.innerBanner {
+  padding: 200px 0 60px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+.innerBanner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+}
+.innerBanner-content h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+.innerBanner-content p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #aaaaaa;
+}
+
+.innerBanner-button {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 12px 20px;
+  line-height: 1;
+  border-radius: 30px;
+}
+
+.our-mission-sec {
+  margin: 60px 0;
+}
+.our-mission-sec .sec-head {
+  text-align: center;
+}
+.our-mission-sec .sec-head h2 {
+  font-size: 60px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.our-mission-sec .sec-head .sec-head-p {
+  color: #262626;
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.btn {
+  border: 1px solid;
+  color: #262626;
+  padding: 12px 20px;
+  line-height: 1;
+  border-radius: 30px;
+}
+.btn:hover {
+  border: 1px solid;
+}
+
+.why-choose-services {
+  background-image: url(assets/make-different-content-bg.png);
+  color: #fff;
+  padding: 60px 0 0;
+  background-size: cover;
+  background-position: bottom left;
+}
+
+.why-choose-services-content h2 {
+  font-size: 59px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.why-choose-services-content-lable {
+  color: #fff;
+  padding: 18px 30px;
+  line-height: 1;
+  border-radius: 30px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff6b;
+  font-size: 18px;
+}
+.why-choose-services-content-lables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 736px;
+}
+
+.secured-data-sec {
+  background-image: url(assets/secured-data-bg.png);
+  padding: 60px 0;
+  background-size: cover;
+  background-position: right center;
+  color: #fff;
+}
+
+.secured-data-box {
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff6b;
+  padding: 30px 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+.secured-data-box-icon {
+  width: 45px;
+  height: 45px;
+  background: #0252c9;
+  padding: 7px 7px;
+  border-radius: 7px;
+}
+
+.secured-data-box-icon img {
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.secured-data-box h4 {
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.secured-data-box p {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #aaaaaa;
+}
+
+.secured-data-sec .sec-head {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+.secured-data-sec .sec-head h2 {
+  font-size: 50px;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.secured-data-sec .sec-head p {
+  font-size: 16px;
+  color: #aaaaaa;
+}
+
+.contactForm {
+  margin: 60px 0;
+}
+
+.contactFormContent h2 {
+  font-size: 60px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #262626;
+  margin-bottom: 16px;
+}
+.contactFormContent p {
+  color: #7b7b7b;
+  font-size: 16px;
+}
+.contactForm-icons-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contactForm-icon {
+  width: 45px;
+  height: 45px;
+  background: #262626;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+.contactForm-icon img {
+  width: 100%;
+}
+.contactForm-details {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 20px;
+}
+.contactForm-icons-text p {
+  color: #262626;
+  font-size: 16px;
+}
+
+.contactForm-form-input-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contactForm-form {
+  background-color: #ebefef;
+  padding: 50px 30px;
+  border-radius: 12px;
+}
+.contactForm-form h3 {
+  color: #262626;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contactForm-form-input-fields .form-control,
+.contactForm-form-input-fields .form-select {
+  border: 1px solid #9e9e9e;
+  background-color: transparent;
+  padding: 12px 16px;
+  border-radius: 25px;
+  color: #9e9e9e;
+}
+.contactForm-form-input-fields .form-control:hover,
+.contactForm-form-input-fields .form-select:hover,
+.contactForm-form-input-fields .form-control:focus,
+.contactForm-form-input-fields .form-select:focus {
+  box-shadow: unset;
+}
+label.form-check-label {
+  user-select: none;
+}
+.form-check-input:focus {
+  box-shadow: unset;
+}
+
+.pricing-plan-card {
+  background-image: url(assets/pricing-plan-card-bg.png);
+  background-size: cover;
+  background-position: right top;
+  padding: 30px 16px 50px;
+  color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-plan-card-head h4 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.pricing-plan-card-head p {
+  font-size: 15px;
+  color: #9e9e9e;
+}
+.pricing-plan-card-price {
+  font-size: 35px;
+  font-weight: 700;
+}
+.pricing-plan-card-btn {
+  background-color: #0252c9;
+  color: #fff;
+  border: unset;
+  padding: 14px 10px;
+  line-height: 1;
+  border-radius: 30px;
+}
+
+.pricing-plan-card-list {
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+/* .pricing-plan-card-list li::marker {
+  color: #44c454;
+  line-height: 1;
+  height: unset;
+} */
+.pricing-plan-card-list li {
+  position: relative;
+}
+
+.pricing-plan-card-list li:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  background: #44c454;
+  left: -15px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+}
+/* Inner Pages  End*/
+
 /* Media Quries */
 @media (max-width: 1399px) {
   .search-smarter-box-content h4 {
@@ -805,11 +1103,27 @@ p {
   }
   .testimonial-rating-stars {
     max-width: 80px;
-}
-.testimonial-user h5 {
-  font-size: 16px;
-}
-.faqs-content h2 {
-  font-size: 52px;
-}
+  }
+  .testimonial-user h5 {
+    font-size: 16px;
+  }
+  .faqs-content h2 {
+    font-size: 52px;
+  }
+  /* .innerBanner-content h1 {
+    font-size: 52px;
+    font-weight: 400;
+  } */
+  .our-mission-sec .sec-head h2 {
+    font-size: 53px;
+  }
+  .why-choose-services-content h2 {
+    font-size: 47px;
+  }
+  .secured-data-box h4 {
+    font-size: 21px;
+  }
+  .secured-data-box p {
+    font-size: 15px;
+  }
 }

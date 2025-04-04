@@ -9,13 +9,15 @@ import searchSmarterImg1 from "../src/assets/01-img.png";
 import searchSmarterImg2 from "../src/assets/02-img.png";
 import searchSmarterImg3 from "../src/assets/01-img.png";
 
-
 import instantresulticon from "../src/assets/instant-result-icon.png";
 import apppoweredicon from "../src/assets/app-powered-icon.png";
 import securityprivateicon from "../src/assets/security-private-icon.png";
 import userfriendlyicon from "../src/assets/user-friendly-icon.png";
 
-
+import searchhistoryicon from "../src/assets/search-history-icon.png";
+import notrackingicon from "../src/assets/no-tracking-icon.png";
+import encryptionicon from "../src/assets/encryption-icon.png";
+import nodatashareicon from "../src/assets/no-data-share-icon.png";
 
 export const virtualPiBoxesContent = [
   {
@@ -66,12 +68,6 @@ export const searchSmarterBoxContent = [
     className: "third-box",
   },
 ];
-
-
-
-
-
-
 
 export const makeDifferentICon = [
   {
@@ -173,36 +169,63 @@ export const faqsData = [
 ];
 
 export const plansData = [
-    {
-      name: "Premium",
-      duration: "3 months",
-      price: "260",
-      list: [
-        "300 searches/3 month.",
-        "Priority email support.",
-        "Access to advanced filters and customization options.",
-      ],
-    },
-    {
-      name: "Basic",
-      duration: "Per month",
-      price: "100",
-      list: [
-        "100 searches/month.",
-        "Access to detailed personal reports.",
-        "Email delivery of reports.",
-      ],
-    },
-    {
-      name: "Enterprise",
-      duration: "Yearly",
-      price: "320",
-      list: [
-        "1500 searches/year.",
-        "Dedicated account manager.",
-        "Priority customer support.",
-        "Custom reports.",
-      ],
-    },
-  ];
-  
+  {
+    name: "Premium",
+    duration: "3 months",
+    price: "260",
+    list: [
+      "300 searches/3 month.",
+      "Priority email support.",
+      "Access to advanced filters and customization options.",
+    ],
+  },
+  {
+    name: "Basic",
+    duration: "Per month",
+    price: "100",
+    list: [
+      "100 searches/month.",
+      "Access to detailed personal reports.",
+      "Email delivery of reports.",
+    ],
+  },
+  {
+    name: "Enterprise",
+    duration: "Yearly",
+    price: "320",
+    list: [
+      "1500 searches/year.",
+      "Dedicated account manager.",
+      "Priority customer support.",
+      "Custom reports.",
+    ],
+  },
+];
+
+export const securedDataIconsContent = [
+  {
+    id: 1,
+    icon: searchhistoryicon,
+    title: "We Do NOT Store Search Histories",
+    description: "Once your search is complete, it’s erased from our system.",
+  },
+  {
+    id: 2,
+    icon: notrackingicon,
+    title: "No Tracking or Logging of Users",
+    description: "Unlike some services, we never track your personal searches.",
+  },
+  {
+    id: 3,
+    icon: encryptionicon,
+    title: "End-to-End Encryption",
+    description:
+      "All searches and transactions are encrypted with 256-bit SSL protection.",
+  },
+  {
+    id: 4,
+    icon: nodatashareicon,
+    title: "No Data Sharing with Third Parties",
+    description: "We do NOT sell your search data to advertisers or data",
+  },
+];

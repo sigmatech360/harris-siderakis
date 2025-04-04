@@ -15,14 +15,6 @@ import enterdetailsicon from "../../assets/enter-details-icon.png";
 
 import makedifferent from "../../assets/make-different.png";
 
-import sara_b from "../../assets/sara-b.png";
-import david_l from "../../assets/david-l.png";
-import david_m from "../../assets/david-m.png";
-import jessica_m from "../../assets/jessica-m.png";
-import jessica_r from "../../assets/jessica-r.png";
-import sammantha_r from "../../assets/sammantha-r.png";
-import ratingimg from "../../assets/rating-img.png";
-
 import VirtualPIWorkBox from "../../components/VirtualPIWorkBox";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,18 +25,17 @@ import "swiper/css/pagination";
 
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 
-import Accordion from "react-bootstrap/Accordion";
-
 import {
   virtualPiBoxesContent,
   searchSmarterBoxContent,
   makeDifferentICon,
   whyChooseData,
-  faqsData,
   plansData,
 } from "../../data";
+
 import PlanCard from "../../components/PlanCard";
-import TestimonialCard from "../../components/TestimonialCard";
+import TestimonialSec from "../../components/TestimonialSec";
+import FaqSec from "../../components/FaqSec";
 
 const Home = () => {
   return (
@@ -83,7 +74,7 @@ const Home = () => {
           <div className="row justify-content-center">
             <div className="col-xl-4">
               <div className="sec-head">
-                <p>How It Works</p>
+                <p className="sec-tag">How It Works</p>
                 <h3>
                   Search <span className="fw-bold colorBlue">Smarter</span>, Not
                   Harder
@@ -262,129 +253,9 @@ const Home = () => {
         </section>
       </section>
 
-      <section className="testimonial-sec">
-        <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-lg-3">
-              <TestimonialCard
-                title={
-                  "Saved me from a scam call—Reverse Phone Lookup workedperfectly!"
-                }
-                ratingNumber="5/5"
-                name="Sarah B"
-                state="Florida"
-                userImg={sara_b}
-              />
-            </div>
-            <div className="col-lg-5">
-              <TestimonialCard
-                flexVariant="row"
-                bgColor="lightGray"
-                title={
-                  "I found my lost childhood friend in minutes! It was life-changing."
-                }
-                ratingNumber="5/5"
-                name="Jessica R."
-                state="Texas"
-                userImg={jessica_r}
-              />
-            </div>
-            <div className="col-lg-3">
-              <TestimonialCard
-                title={
-                  "Helped me verify a tenant’s background before renting. Super easy!"
-                }
-                ratingNumber="5/5"
-                name="David M"
-                state="California"
-                userImg={david_m}
-              />
-            </div>
+      <TestimonialSec />
 
-            <div className="col-md-12">
-              <div className="sec-head">
-                <p>Testimonials</p>
-                <h2>
-                  Life-Changing{" "}
-                  <span className="colorBlue fw-bold">Results</span> Pure{" "}
-                  <span className="colorBlue fw-bold">Perfection!</span>
-                </h2>
-              </div>
-            </div>
-
-            <div className="col-lg-4">
-              <TestimonialCard
-                flexVariant="row"
-                bgColor="lightGray"
-                title={
-                  "Found my childhood best friend in minutes after searching for years!"
-                }
-                ratingNumber="5/5"
-                name="JSamantha R."
-                state="New York"
-                userImg={sammantha_r}
-              />
-            </div>
-            <div className="col-lg-3">
-              <TestimonialCard
-                title={
-                  "Used public records to find my biological siblings. Life-changing!"
-                }
-                ratingNumber="5/5"
-                name="Jessica M."
-                state="California"
-                userImg={jessica_m}
-              />
-            </div>
-            <div className="col-lg-4">
-              <TestimonialCard
-                flexVariant="row"
-                bgColor="lightGray"
-                title={
-                  "Ran a quick check turns out the ‘company’ was fake. Crisis avoided!"
-                }
-                ratingNumber="5/5"
-                name="David L."
-                state="Texas"
-                userImg={david_l}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="faqs-sec">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="faqs-content">
-                <h2>
-                  Got Questions? We’ve Got{" "}
-                  <span className="fw-bold">Answers!</span>
-                </h2>
-                <p>
-                  At My Virtual PI, we empower individuals and businesses to
-                  access detailed background information effortlessly. Our
-                  AI-driven tools ensure accuracy and efficiency, giving you the
-                  confidence to make informed decisions.
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="faqs-items">
-                <Accordion defaultActiveKey="0">
-                  {faqsData.map((item, index) => (
-                    <Accordion.Item eventKey={index.toString()} key={index}>
-                      <Accordion.Header>{item.titla}</Accordion.Header>
-                      <Accordion.Body>{item.description}</Accordion.Body>
-                    </Accordion.Item>
-                  ))}
-                </Accordion>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FaqSec />
 
       <section className="plans-sec">
         <div className="container">

@@ -17,10 +17,10 @@ const Header = () => {
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/about-my-virtual-PI">
               About My Virtual PI
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/pricing">
               Pricing
             </Nav.Link>
             <Nav.Link as={Link} to="/">
