@@ -229,3 +229,96 @@ export const securedDataIconsContent = [
     description: "We do NOT sell your search data to advertisers or data",
   },
 ];
+
+export const pricingPlans = [
+  {
+    title: "Basic Plan",
+    duration: "Per month",
+    price: "$100",
+    features: [
+      "Unlimited People Searches",
+      "Reverse Phone Lookups",
+      "Address & Email Searches",
+      "Basic Background Reports",
+    ],
+  },
+  {
+    title: "Premium",
+    duration: "3 month",
+    price: "$260",
+    features: [
+      "Everything in Basic Plan +",
+      "Criminal & Traffic Records",
+      "Social Media Profile Search",
+      "Employment & Education History",
+      "Instant Data Alerts",
+    ],
+  },
+  {
+    title: "Enterprise",
+    duration: "Yearly",
+    price: "$260",
+    features: [
+      "Everything in Standard Plan +",
+      "Deep Criminal Records & Court Cases",
+      "Advanced AI-Driven Search Tools",
+      "Real-Time Address & Phone Updates",
+      "Priority Customer Support",
+    ],
+  },
+];
+
+export const reportPlans = [
+  {
+    title: "Basic Report",
+    duration: "One-Time",
+    price: "$4.99",
+    features: ["Full Name, Aliases & Contact Info", "Current & Past Addresses"],
+  },
+  {
+    title: "Advance Report",
+    duration: "One-Time",
+    price: "$9.99",
+    features: [
+      "Everything in Basic Report +",
+      "Employment & Education History",
+      "Criminal & Traffic Records",
+    ],
+  },
+  {
+    title: "Comprehensive Report",
+    duration: "One-Time",
+    price: "$19.99",
+    features: [
+      "Everything in Advanced Report +",
+      "Deep Public Records & Financial History",
+      "Social Media & Digital Presence",
+    ],
+  },
+];
+
+export const comparisonData = {
+  headings: ["My Virtual PI", "TruthFinder", "BeenVerified", "Spokeo"],
+  rows: [
+    {
+      feature: "AI-Powered Smart Search",
+      values: ["Yes", "No", "No", "No"],
+    },
+    {
+      feature: "Search Anonymously",
+      values: ["Yes", "Yes", "Yes", "Yes"],
+    },
+    {
+      feature: "Military-Grade Encryption",
+      values: ["Yes", "No", "Yes", "No"],
+    },
+    {
+      feature: "Pricing Transparency",
+      values: ["Clear", "Hidden Fees", "Hidden Fees", "Hidden Fees"],
+    },
+    {
+      feature: "Opt-Out Option for Data",
+      values: ["Yes", "No", "Yes", "Yes"],
+    },
+  ],
+};

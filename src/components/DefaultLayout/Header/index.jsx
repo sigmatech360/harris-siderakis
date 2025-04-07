@@ -23,10 +23,10 @@ const Header = () => {
             <Nav.Link as={Link} to="/pricing">
               Pricing
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/is-my-virtual-pi-legit">
               Is My Virtual PI Legit?
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/reviews">
               Reviews
             </Nav.Link>
           </Nav>
