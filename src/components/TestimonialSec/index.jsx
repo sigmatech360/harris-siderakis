@@ -12,7 +12,7 @@ const TestimonialSec = () => {
     <section className="testimonial-sec">
         <div className="container">
           <div className="row justify-content-between">
-            <div className="col-lg-3">
+            <div className="col-xl-3 col-lg-4">
               <TestimonialCard
                 title={
                   "Saved me from a scam call—Reverse Phone Lookup workedperfectly!"
@@ -23,7 +23,7 @@ const TestimonialSec = () => {
                 userImg={sara_b}
               />
             </div>
-            <div className="col-lg-5">
+            <div className="col-xl-5 col-lg-4">
               <TestimonialCard
                 flexVariant="row"
                 bgColor="lightGray"
@@ -36,7 +36,7 @@ const TestimonialSec = () => {
                 userImg={jessica_r}
               />
             </div>
-            <div className="col-lg-3">
+            <div className="col-xl-3 col-lg-4">
               <TestimonialCard
                 title={
                   "Helped me verify a tenant’s background before renting. Super easy!"
@@ -48,7 +48,7 @@ const TestimonialSec = () => {
               />
             </div>
 
-            <div className="col-md-12">
+            <div className="col-md-12 testimonial-sec-head-col">
               <div className="sec-head">
                 <p className="sec-tag">Testimonials</p>
                 <h2>
@@ -67,12 +67,12 @@ const TestimonialSec = () => {
                   "Found my childhood best friend in minutes after searching for years!"
                 }
                 ratingNumber="5/5"
-                name="JSamantha R."
+                name="Samantha R."
                 state="New York"
                 userImg={sammantha_r}
               />
             </div>
-            <div className="col-lg-3">
+            <div className="col-xl-3 col-lg-4">
               <TestimonialCard
                 title={
                   "Used public records to find my biological siblings. Life-changing!"
@@ -83,7 +83,7 @@ const TestimonialSec = () => {
                 userImg={jessica_m}
               />
             </div>
-            <div className="col-lg-4">
+            <div className="col-xl-3 col-lg-4">
               <TestimonialCard
                 flexVariant="row"
                 bgColor="lightGray"

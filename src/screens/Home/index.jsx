@@ -6,6 +6,7 @@ import { RiSecurePaymentFill } from "react-icons/ri";
 
 import howv_pi_work_img1 from "../../assets/how-v-pi-work-img1.png";
 import howv_pi_work_img2 from "../../assets/how-v-pi-work-img2.png";
+import howv_pi_work_img3 from "../../assets/how-v-pi-work-img3.png";
 import howv_pi_work_img4 from "../../assets/how-v-pi-work-img4.png";
 
 import viewdownloadicon from "../../assets/view-download-icon.png";
@@ -72,7 +73,7 @@ const Home = () => {
       <section className="search-smarter-sec">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-xl-4">
+            <div className="col-lg-4">
               <div className="sec-head">
                 <p className="sec-tag">How It Works</p>
                 <h3>
@@ -84,7 +85,10 @@ const Home = () => {
             <div className="col-md-12">
               <div className="row">
                 {searchSmarterBoxContent.map((item, index) => (
-                  <div className={`col-md-4 ${item.className}`} key={index}>
+                  <div
+                    className={`col-lg-4 mb-lg-0 mb-4 ${item.className}`}
+                    key={index}
+                  >
                     <div className="search-smarter-box">
                       <div className="search-smarter-box-content">
                         <div className="search-smarter-box-number">
@@ -107,8 +111,8 @@ const Home = () => {
 
       <section className="virtual-pi-work">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-4">
+          <div className="row justify-content-center">
+            <div className="col-lg-4 order-lg-1">
               <div className="virtual_boxes">
                 <VirtualPIWorkBox
                   bgImage={howv_pi_work_img1}
@@ -127,7 +131,7 @@ const Home = () => {
                 />
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-6 order-lg-2 order-1">
               <div className="v_pi_work_middle_box">
                 <p>Easy 4 Steps</p>
                 <h3>
@@ -135,10 +139,10 @@ const Home = () => {
                 </h3>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 order-lg-3">
               <div className="virtual_boxes">
                 <VirtualPIWorkBox
-                  bgImage={howv_pi_work_img4}
+                  bgImage={howv_pi_work_img3}
                   icon={enterdetailsicon}
                   title="Enter the Details"
                   description="Gain peace of mind in your personal or professional life by staying organized, informed, and in control, knowing that you have the resources and support you need to navigate any situation with confidence and ease."
