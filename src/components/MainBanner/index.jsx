@@ -12,10 +12,18 @@ const MainBanner = () => {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="main-banner-content">
-              <h1>
+              <h1
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+              >
                 Personal investigations made easy with AI at your fingertips
               </h1>
-              <p>
+              <p
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 Search Anything, Anytime From Background Checks to Criminal
                 Records—All at Your Fingertips.
               </p>

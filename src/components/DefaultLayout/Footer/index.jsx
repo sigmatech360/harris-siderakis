@@ -54,14 +54,23 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-lg-4">
               <div className="sec-head">
-                <h4>
+                <h4
+                  data-aos="fade-right"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
                   Tap to <span className="fw-bold">Download</span> Investigate
                   your Self!
                 </h4>
               </div>
             </div>
             <div className="col-lg-8">
-              <div className="apple-playstore-imgs">
+              <div
+                className="apple-playstore-imgs"
+                data-aos="fade-left"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <div className="apple-playstore-img apple-store">
                   <img src={appstoreimg} alt="Apple Store Image" />
                 </div>
@@ -79,7 +88,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-lg-9">
               <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 mb-lg-0 mb-3">
                   <div className="footer-links-div">
                     <h3>Quick Search</h3>
                     <div className="main-footer-links">
@@ -91,7 +100,7 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 mb-lg-0 mb-3">
                   <div className="footer-links-div">
                     <h3>Company</h3>
                     <div className="main-footer-links">
@@ -103,7 +112,7 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 mb-lg-0 mb-3">
                   <div className="footer-links-div">
                     <h3>Support</h3>
                     <div className="main-footer-links">
@@ -115,7 +124,7 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 mb-lg-0 mb-3">
                   <div className="footer-links-div">
                     <h3>Legal & Privacy</h3>
                     <div className="main-footer-links">
@@ -147,7 +156,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className="my-5" />
+        <hr className="my-lg-5 my-4" />
         <div className="container">
           <div className="main-footer-copyright-sec">
             <div className="row">

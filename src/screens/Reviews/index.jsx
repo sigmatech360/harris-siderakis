@@ -104,7 +104,12 @@ const Reviews = () => {
         title2="– See What Our Users Say!"
         description="Real reviews from real people. Discover how My Virtual PI has helped users reconnect, verify, and protect themselves."
       >
-        <div className="virtualPILegit-images">
+        <div
+          className="virtualPILegit-images"
+          data-aos="fade-right"
+          data-aos-duration="3000"
+          data-aos-offset="0"
+        >
           <div className="virtualPILegit-image">
             <img src={bbbimg} alt="" />
           </div>
@@ -119,7 +124,11 @@ const Reviews = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="sec-head">
-                <h2>
+                <h2
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
                   My Virtual PI has{" "}
                   <span className="colorBlue fw-bold">helped</span> users
                   reconnect
@@ -127,7 +136,13 @@ const Reviews = () => {
               </div>
             </div>
             <div className="col-md-12">
-              <Tabs defaultActiveKey="peopleSearch" className="reviews-tabs">
+              <Tabs
+                defaultActiveKey="peopleSearch"
+                className="reviews-tabs"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+                data-aos-offset="0"
+              >
                 <Tab eventKey="peopleSearch" title="People Search">
                   <Swiper
                     modules={[Pagination]}
@@ -136,7 +151,7 @@ const Reviews = () => {
                     loop={true}
                     breakpoints={{
                       768: { slidesPerView: 2 },
-                      1024: { slidesPerView: 3 },
+                      1200: { slidesPerView: 3 },
                     }}
                     pagination={{ clickable: true }}
                   >
@@ -175,7 +190,11 @@ const Reviews = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="sec-head">
-                <h2>
+                <h2
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
                   Verified & Unbiased{" "}
                   <span className="fw-bold">Reviews 100%</span> Transparency
                 </h2>
@@ -183,7 +202,12 @@ const Reviews = () => {
             </div>
 
             <div className="col-md-12">
-              <div className="transparent-reviews-boxes">
+              <div
+                className="transparent-reviews-boxes"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+                data-aos-offset="0"
+              >
                 {transparencyCards.map((card, index) => (
                   <div key={index} className="transparent-reviews-box">
                     <h4>{card.title}</h4>

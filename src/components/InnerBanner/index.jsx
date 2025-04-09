@@ -51,23 +51,43 @@ const InnerBanner = (props) => {
         <div className="row">
           <div className="col-lg-6">
             <div className="innerBanner-content">
-              <h1>
+              <h1
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+              >
                 {props.title1}{" "}
                 {props.titleBold && (
                   <span className="fw-bold">{props.titleBold}</span>
                 )}{" "}
                 {props.title2 && props.title2}
               </h1>
-              <p>{props.description}</p>
+              <p
+                data-aos="fade-right"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
+                {props.description}
+              </p>
               {props.children}
             </div>
           </div>
           <div className="col-lg-6">
             {props.reviewsRightContent && (
               <>
-                <div className="reviewRightContent">
+                <div
+                  className="reviewRightContent"
+                  data-aos="fade-right"
+                  data-aos-duration="3000"
+                  data-aos-offset="0"
+                >
                   {bannerIconImgDta.map((item, index) => (
-                    <div className={`reviewContentBox reviewContentBox-${index + 1}`} key={index}>
+                    <div
+                      className={`reviewContentBox reviewContentBox-${
+                        index + 1
+                      }`}
+                      key={index}
+                    >
                       <img src={item.image} alt="" />
                       <p>{item.name}</p>
                     </div>

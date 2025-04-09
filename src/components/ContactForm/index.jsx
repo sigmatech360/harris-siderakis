@@ -26,20 +26,33 @@ const ContactForm = () => {
   return (
     <section className="contactForm">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="row align-items-center gap-lg-0 gap-4">
           <div className="col-lg-6">
             <div className="contactFormContent">
-              <h2>
+              <h2
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+              >
                 Need <span className="fw-bold colorBlue">Help?</span> We’re Here
                 for You!
               </h2>
-              <p>
+              <p
+                data-aos="fade-right"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 Have questions about our services, billing, or privacy? Contact
                 us for quick assistance.
               </p>
-              <div className="contactForm-details">
+              <div
+                className="contactForm-details"
+                data-aos="fade-right"
+                data-aos-duration="3000"
+                data-aos-offset="0"
+              >
                 {iconTextContent.map((item, index) => (
-                  <div className="contactForm-icons-text">
+                  <div className="contactForm-icons-text" key={index}>
                     <div className="contactForm-icon">
                       <img src={item.icon} alt="" />
                     </div>
@@ -50,42 +63,50 @@ const ContactForm = () => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="contactForm-form">
+            <div
+              className="contactForm-form"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+              data-aos-offset="0"
+            >
               <h3>Send Us a Message</h3>
               <form>
                 <div className="contactForm-form-input-fields">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Full Name*"
                   />
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Email Address*"
                   />
-                  <select class="form-select">
+                  <select className="form-select">
                     <option selected>Reason for Contact</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     placeholder="Write your message...….."
                     rows="4"
                     style={{ resize: "none" }}
                   ></textarea>
-                  <div className="d-flex justify-content-between">
+                  <div className="contactForm-btn-div d-flex justify-content-between align-items-center">
                     <button className="btn">Submit Request</button>
-                    <div class="form-check">
+                    <div className="form-check">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="checkbox"
                         value=""
                         id="terms_conditions"
                       />
-                      <label class="form-check-label" for="terms_conditions">
+                      <label
+                        className="form-check-label"
+                        htmlFor="terms_conditions"
+                      >
                         I agree to the Terms & Privacy Policy.
                       </label>
                     </div>

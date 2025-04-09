@@ -48,14 +48,23 @@ const Home = () => {
           <div className="row align-items-center">
             <div className="col-lg-3">
               <div className="sec-head">
-                <h4>
+                <h4
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
                   <span className="fw-bold colorBlue">Virtual PI</span> Searched
                   by:
                 </h4>
               </div>
             </div>
             <div className="col-lg-9">
-              <div className="virtual-pi-boxes">
+              <div
+                className="virtual-pi-boxes"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 {virtualPiBoxesContent.map((item, index) => (
                   <div className="virtual-pi-box">
                     <div className="virtual-pi-box-icon">
@@ -74,7 +83,12 @@ const Home = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-4">
-              <div className="sec-head">
+              <div
+                className="sec-head"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+              >
                 <p className="sec-tag">How It Works</p>
                 <h3>
                   Search <span className="fw-bold colorBlue">Smarter</span>, Not
@@ -89,7 +103,12 @@ const Home = () => {
                     className={`col-lg-4 mb-lg-0 mb-4 ${item.className}`}
                     key={index}
                   >
-                    <div className="search-smarter-box">
+                    <div
+                      className="search-smarter-box"
+                      data-aos="fade-up"
+                      data-aos-duration="2000"
+                      data-aos-offset="0"
+                    >
                       <div className="search-smarter-box-content">
                         <div className="search-smarter-box-number">
                           {item.number}
@@ -113,7 +132,12 @@ const Home = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-4 order-lg-1">
-              <div className="virtual_boxes">
+              <div
+                className="virtual_boxes"
+                data-aos="fade-right"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <VirtualPIWorkBox
                   bgImage={howv_pi_work_img1}
                   icon={datingappicon}
@@ -132,7 +156,12 @@ const Home = () => {
               </div>
             </div>
             <div className="col-lg-4 col-md-6 order-lg-2 order-1">
-              <div className="v_pi_work_middle_box">
+              <div
+                className="v_pi_work_middle_box"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+                data-aos-offset="0"
+              >
                 <p>Easy 4 Steps</p>
                 <h3>
                   How My <span className="fw-bold">Virtual PI</span> Works
@@ -140,7 +169,12 @@ const Home = () => {
               </div>
             </div>
             <div className="col-lg-4 order-lg-3">
-              <div className="virtual_boxes">
+              <div
+                className="virtual_boxes"
+                data-aos="fade-left"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <VirtualPIWorkBox
                   bgImage={howv_pi_work_img3}
                   icon={enterdetailsicon}
@@ -165,7 +199,11 @@ const Home = () => {
             <div className="col-lg-12">
               <div className="swiper-container">
                 <div className="sec-head">
-                  <h2>
+                  <h2
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-offset="0"
+                  >
                     Why Choose My <span className="fw-bold">Virtual PI?</span>
                   </h2>
                   <div className="why-choose-slide-btns">
@@ -217,7 +255,11 @@ const Home = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="sec-head">
-                <h2>
+                <h2
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
                   What Makes <br />{" "}
                   <span className="colorBlue fw-medium">My Virtual PI</span>{" "}
                   Different?
@@ -234,6 +276,9 @@ const Home = () => {
                   src={makedifferent}
                   className="make-different-content-img"
                   alt="Mobile Image"
+                  data-aos="fade-up"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
                 />
                 {makeDifferentICon.map((item, index) => (
                   <div
@@ -241,6 +286,9 @@ const Home = () => {
                       index + 1
                     }`}
                     key={index}
+                    data-aos="fade-up"
+                    data-aos-duration="3000"
+                    data-aos-offset="0"
                   >
                     <div className="make-different-content-box-img">
                       <img src={item.icon} alt="" />
@@ -263,10 +311,14 @@ const Home = () => {
 
       <section className="plans-sec">
         <div className="container">
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-md-12">
               <div className="sec-head">
-                <h2>
+                <h2
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
                   Flexible <span className="fw-bold colorBlue">Plans</span> for
                   Every Need
                 </h2>
@@ -274,7 +326,13 @@ const Home = () => {
             </div>
 
             {plansData.map((plan, index) => (
-              <div className="col-lg-4" key={index}>
+              <div
+                className="col-lg-4 col-md-6 mb-lg-0 mb-3"
+                key={index}
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <PlanCard
                   name={plan.name}
                   duration={plan.duration}
@@ -289,32 +347,51 @@ const Home = () => {
 
       <section className="your-privacy-sec">
         <div className="container">
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-md-12">
               <div className="sec-head">
-                <h2>
+                <h2
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
                   Your <span className="fw-bold">Privacy</span>, Our Priority
                 </h2>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="privacy-box">
+            <div className="col-lg-4 col-md-6 mb-lg-0 mb-3">
+              <div
+                className="privacy-box"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+              >
                 <div className="privacy-box-img">
                   <RiSecurePaymentFill />
                 </div>
                 <h4>100% Secure Searches</h4>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="privacy-box">
+            <div className="col-lg-4 col-md-6 mb-lg-0 mb-3">
+              <div
+                className="privacy-box"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <div className="privacy-box-img">
                   <RiSecurePaymentFill />
                 </div>
                 <h4>Industry-Leading Encryption</h4>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="privacy-box">
+            <div className="col-lg-4 col-md-6 mb-lg-0 mb-3">
+              <div
+                className="privacy-box"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+                data-aos-offset="0"
+              >
                 <div className="privacy-box-img">
                   <RiSecurePaymentFill />
                 </div>
