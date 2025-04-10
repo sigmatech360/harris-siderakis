@@ -66,7 +66,7 @@ const Header = () => {
             </Nav.Link>
           </Nav>
 
-          <Link to={""} className="btn-login-signup">
+          <Link to={"/login"} className="btn-login-signup">
             <RiUserLine className="me-2" /> Login/Sign Up
           </Link>
         </Navbar.Collapse>

@@ -5,8 +5,8 @@ import About from "../screens/About";
 import Pricing from "../screens/Pricing";
 import VirtualPILegit from "../screens/VirtualPILegit";
 import Reviews from "../screens/Reviews";
-
-// Import your components/pages
+import Register from "../screens/Register";
+import Login from "../screens/Login";
 
 const AppRouter = () => {
   return (
@@ -17,6 +17,8 @@ const AppRouter = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/is-my-virtual-pi-legit" element={<VirtualPILegit />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

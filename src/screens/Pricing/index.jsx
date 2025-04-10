@@ -29,7 +29,7 @@ const Pricing = () => {
                 <p className="sec-tag">Pricing Plan</p>
                 <h2
                   data-aos="fade-up"
-                  data-aos-duration="2000"
+                  data-aos-duration={`2000`}
                   data-aos-offset="0"
                 >
                   Get Unlimited{" "}
@@ -44,7 +44,7 @@ const Pricing = () => {
                 className="col-lg-4 col-md-6 col-sm-9 mb-lg-0 mb-md-4 mb-3"
                 key={index}
                 data-aos="fade-up"
-                data-aos-duration="3000"
+                data-aos-duration={`${index + 1}000`}
                 data-aos-offset="0"
               >
                 <PricingPlanCard
@@ -79,7 +79,7 @@ const Pricing = () => {
                 className="col-lg-4 col-md-6 col-sm-8 mb-lg-0 mb-md-4 mb-3"
                 key={index}
                 data-aos="fade-up"
-                data-aos-duration="3000"
+                data-aos-duration={`${index + 1}000`}
                 data-aos-offset="0"
               >
                 <OneReportCard

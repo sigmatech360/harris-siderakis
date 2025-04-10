@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 
 import pricingbgimage from "../../assets/pricing-bg-image.png";
@@ -12,7 +12,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -33,8 +33,6 @@ const reviewsData = [
     name: "Robert T.",
     state: "California",
     userImg: sammantha_r,
-    flexVariant: "row",
-    bgColor: "lightGray",
   },
   {
     title:
@@ -43,8 +41,6 @@ const reviewsData = [
     name: "Jessica M.",
     state: "New York",
     userImg: sara_b,
-    flexVariant: undefined,
-    bgColor: undefined,
   },
   {
     title:
@@ -53,8 +49,6 @@ const reviewsData = [
     name: "David L.",
     state: "Texas",
     userImg: jessica_r,
-    flexVariant: "row",
-    bgColor: "lightGray",
   },
   {
     title:
@@ -63,8 +57,6 @@ const reviewsData = [
     name: "Jessica M.",
     state: "New York",
     userImg: sara_b,
-    flexVariant: undefined,
-    bgColor: undefined,
   },
 ];
 
@@ -90,9 +82,32 @@ const transparencyCards = [
       "This ensures you're reading real experiences, not fake marketing gimmicks.",
     ],
   },
+  {
+    title: "Every opinion matters, but honesty comes first.",
+    points: [
+      "We do not edit or alter reviews, except for removing offensive language.",
+      "Users can report suspicious or false reviews, and we act immediately.",
+    ],
+  },
+  {
+    title: "Your trust is our priority we take action fast!",
+    points: [
+      "If you spot a suspicious review, click the ‘Report’ button.",
+      "Our moderation team investigates within 24 hours.",
+    ],
+  },
+  {
+    title: "Know which reviews you can trust at a glance.",
+    points: [
+      "Users who have completed a real search or purchase get this badge.",
+      "This ensures you're reading real experiences, not fake marketing gimmicks.",
+    ],
+  },
 ];
 
 const Reviews = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <DefaultLayout>
       <InnerBanner
@@ -144,31 +159,46 @@ const Reviews = () => {
                 data-aos-offset="0"
               >
                 <Tab eventKey="peopleSearch" title="People Search">
-                  <Swiper
-                    modules={[Pagination]}
-                    spaceBetween={20}
-                    slidesPerView={1}
-                    loop={true}
-                    breakpoints={{
-                      768: { slidesPerView: 2 },
-                      1200: { slidesPerView: 3 },
-                    }}
-                    pagination={{ clickable: true }}
-                  >
-                    {reviewsData.map((item, index) => (
-                      <SwiperSlide key={index}>
-                        <TestimonialCard
-                          flexVariant={item.flexVariant}
-                          bgColor={item.bgColor}
-                          title={item.title}
-                          ratingNumber={item.ratingNumber}
-                          name={item.name}
-                          state={item.state}
-                          userImg={item.userImg}
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+                  <div className="reviews-sec-slider-content">
+                    <Swiper
+                      modules={[Pagination, Autoplay]}
+                      spaceBetween={20}
+                      slidesPerView={1}
+                      loop={true}
+                      centeredSlides={true}
+                      speed={1000}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                      }}
+                      onSlideChange={(swiper) =>
+                        setActiveIndex(swiper.realIndex)
+                      }
+                      breakpoints={{
+                        // 768: { slidesPerView: 2 },
+                        992: { slidesPerView: 3 },
+                      }}
+                      pagination={{ clickable: true }}
+                    >
+                      {reviewsData.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <TestimonialCard
+                            // flexVariant={item.flexVariant}
+                            // bgColor={item.bgColor}
+                            {...(index !== activeIndex && {
+                              flexVariant: "row",
+                              bgColor: "lightGray",
+                            })}
+                            title={item.title}
+                            ratingNumber={item.ratingNumber}
+                            name={item.name}
+                            state={item.state}
+                            userImg={item.userImg}
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
                 </Tab>
                 <Tab eventKey="backgroundCheck" title="Background Check">
                   Background Check
@@ -202,22 +232,35 @@ const Reviews = () => {
             </div>
 
             <div className="col-md-12">
-              <div
-                className="transparent-reviews-boxes"
-                data-aos="fade-up"
-                data-aos-duration="3000"
-                data-aos-offset="0"
-              >
-                {transparencyCards.map((card, index) => (
-                  <div key={index} className="transparent-reviews-box">
-                    <h4>{card.title}</h4>
-                    <ul>
-                      {card.points.map((point, i) => (
-                        <li key={i}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className="transparent-reviews-boxes">
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  loop={true}
+                  centeredSlides={true}
+                  speed={1000}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }}
+                  breakpoints={{
+                    768: { slidesPerView: 3 },
+                  }}
+                >
+                  {transparencyCards.map((card, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="transparent-reviews-box">
+                        <h4>{card.title}</h4>
+                        <ul>
+                          {card.points.map((point, i) => (
+                            <li key={i}>{point}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
           </div>

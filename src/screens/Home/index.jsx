@@ -50,7 +50,7 @@ const Home = () => {
               <div className="sec-head">
                 <h4
                   data-aos="fade-right"
-                  data-aos-duration="1000"
+                  data-aos-duration="3000"
                   data-aos-offset="0"
                 >
                   <span className="fw-bold colorBlue">Virtual PI</span> Searched
@@ -62,7 +62,7 @@ const Home = () => {
               <div
                 className="virtual-pi-boxes"
                 data-aos="fade-up"
-                data-aos-duration="2000"
+                data-aos-duration="3000"
                 data-aos-offset="0"
               >
                 {virtualPiBoxesContent.map((item, index) => (
@@ -86,7 +86,7 @@ const Home = () => {
               <div
                 className="sec-head"
                 data-aos="fade-up"
-                data-aos-duration="1000"
+                data-aos-duration="2000"
                 data-aos-offset="0"
               >
                 <p className="sec-tag">How It Works</p>
@@ -106,7 +106,7 @@ const Home = () => {
                     <div
                       className="search-smarter-box"
                       data-aos="fade-up"
-                      data-aos-duration="2000"
+                      data-aos-duration="3000"
                       data-aos-offset="0"
                     >
                       <div className="search-smarter-box-content">
@@ -132,27 +132,34 @@ const Home = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-4 order-lg-1">
-              <div
-                className="virtual_boxes"
-                data-aos="fade-right"
-                data-aos-duration="2000"
-                data-aos-offset="0"
-              >
-                <VirtualPIWorkBox
-                  bgImage={howv_pi_work_img1}
-                  icon={datingappicon}
-                  title="Dating App Users"
-                  description="Feel confident about who you’re meeting, knowing that you’ll
-                    have all the relevant details and insights at your fingertips
-                    to build meaningful connections and engage in productive
-                    conversations."
-                />
-                <VirtualPIWorkBox
-                  bgImage={howv_pi_work_img2}
-                  icon={runsearchicon}
-                  title="Run the Search"
-                  description="Know who you’re sharing your space with, ensuring a comfortable and secure environment by having all the necessary information about those around you for a more harmonious and informed experience."
-                />
+              <div className="virtual_boxes">
+                <div
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
+                  <VirtualPIWorkBox
+                    bgImage={howv_pi_work_img1}
+                    icon={datingappicon}
+                    title="Dating App Users"
+                    description="Feel confident about who you’re meeting, knowing that you’ll
+                      have all the relevant details and insights at your fingertips
+                      to build meaningful connections and engage in productive
+                      conversations."
+                  />
+                </div>
+                <div
+                  data-aos="fade-right"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
+                  <VirtualPIWorkBox
+                    bgImage={howv_pi_work_img2}
+                    icon={runsearchicon}
+                    title="Run the Search"
+                    description="Know who you’re sharing your space with, ensuring a comfortable and secure environment by having all the necessary information about those around you for a more harmonious and informed experience."
+                  />
+                </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6 order-lg-2 order-1">
@@ -169,24 +176,31 @@ const Home = () => {
               </div>
             </div>
             <div className="col-lg-4 order-lg-3">
-              <div
-                className="virtual_boxes"
-                data-aos="fade-left"
-                data-aos-duration="2000"
-                data-aos-offset="0"
-              >
-                <VirtualPIWorkBox
-                  bgImage={howv_pi_work_img3}
-                  icon={enterdetailsicon}
-                  title="Enter the Details"
-                  description="Gain peace of mind in your personal or professional life by staying organized, informed, and in control, knowing that you have the resources and support you need to navigate any situation with confidence and ease."
-                />
-                <VirtualPIWorkBox
-                  bgImage={howv_pi_work_img4}
-                  icon={viewdownloadicon}
-                  title="View and Download Your Report"
-                  description="Ensure your team’s integrity with reliable employment history checks, providing you with accurate and thorough background information to make confident hiring decisions and maintain a trustworthy and dependable workforce."
-                />
+              <div className="virtual_boxes">
+                <div
+                  data-aos="fade-left"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
+                  <VirtualPIWorkBox
+                    bgImage={howv_pi_work_img3}
+                    icon={enterdetailsicon}
+                    title="Enter the Details"
+                    description="Gain peace of mind in your personal or professional life by staying organized, informed, and in control, knowing that you have the resources and support you need to navigate any situation with confidence and ease."
+                  />
+                </div>
+                <div
+                  data-aos="fade-left"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
+                  <VirtualPIWorkBox
+                    bgImage={howv_pi_work_img4}
+                    icon={viewdownloadicon}
+                    title="View and Download Your Report"
+                    description="Ensure your team’s integrity with reliable employment history checks, providing you with accurate and thorough background information to make confident hiring decisions and maintain a trustworthy and dependable workforce."
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -219,7 +233,8 @@ const Home = () => {
                   modules={[Navigation, Pagination]}
                   spaceBetween={20}
                   slidesPerView={1}
-                  loop={true} // Enables infinite sliding
+                  loop={true}
+                  speed={1000}
                   breakpoints={{
                     768: { slidesPerView: 2 },
                     1024: { slidesPerView: 3 },
@@ -330,7 +345,7 @@ const Home = () => {
                 className="col-lg-4 col-md-6 mb-lg-0 mb-3"
                 key={index}
                 data-aos="fade-up"
-                data-aos-duration="2000"
+                data-aos-duration={`${index + 1}000`}
                 data-aos-offset="0"
               >
                 <PlanCard

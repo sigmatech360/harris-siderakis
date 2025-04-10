@@ -11,7 +11,7 @@ const FaqSec = () => {
             <div className="faqs-content">
               <h2
                 data-aos="fade-right"
-                data-aos-duration="1000"
+                data-aos-duration="2000"
                 data-aos-offset="0"
               >
                 Got Questions? We’ve Got{" "}
@@ -19,7 +19,7 @@ const FaqSec = () => {
               </h2>
               <p
                 data-aos="fade-right"
-                data-aos-duration="2000"
+                data-aos-duration="3000"
                 data-aos-offset="0"
               >
                 At My Virtual PI, we empower individuals and businesses to

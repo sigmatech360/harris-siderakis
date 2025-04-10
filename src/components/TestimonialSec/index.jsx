@@ -15,7 +15,7 @@ const TestimonialSec = () => {
           <div
             className="col-xl-3 col-lg-4 col-md-6 testimonial-col-1 mb-lg-0 mb-4"
             data-aos="fade-right"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard
@@ -31,7 +31,7 @@ const TestimonialSec = () => {
           <div
             className="col-xl-5 col-lg-4 col-md-6 testimonial-col-2 mb-lg-0 mb-4"
             data-aos="fade-down"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard
@@ -49,7 +49,7 @@ const TestimonialSec = () => {
           <div
             className="col-xl-3 col-lg-4 col-md-6 testimonial-col-3 mb-lg-0 mb-4"
             data-aos="fade-left"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard
@@ -67,7 +67,7 @@ const TestimonialSec = () => {
             <div
               className="sec-head"
               data-aos="fade-up"
-              data-aos-duration="1000"
+              data-aos-duration="3000"
               data-aos-offset="0"
             >
               <p className="sec-tag">Testimonials</p>
@@ -81,7 +81,7 @@ const TestimonialSec = () => {
           <div
             className="col-lg-4 col-md-6 testimonial-col-4 mb-lg-0 mb-4"
             data-aos="fade-right"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard
@@ -99,7 +99,7 @@ const TestimonialSec = () => {
           <div
             className="col-xl-3 col-lg-4 col-md-6 testimonial-col-5 mb-lg-0 mb-4"
             data-aos="fade-up"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard
@@ -115,7 +115,7 @@ const TestimonialSec = () => {
           <div
             className="col-lg-4 col-md-6 testimonial-col-6 mb-lg-0 mb-4"
             data-aos="fade-left"
-            data-aos-duration="2000"
+            data-aos-duration="3000"
             data-aos-offset="0"
           >
             <TestimonialCard

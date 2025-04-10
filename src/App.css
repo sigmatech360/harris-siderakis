@@ -154,6 +154,7 @@ p {
 /* Search Smarter */
 .search-smarter-sec {
   padding: 60px 0;
+  overflow: hidden;
 }
 
 .search-smarter-sec .sec-head {
@@ -1250,6 +1251,7 @@ label.form-check-label {
 
 .official-public-records {
   margin: 60px 0 0;
+  overflow: hidden;
 }
 .official-public-records .sec-head {
   text-align: center;
@@ -1415,6 +1417,19 @@ label.form-check-label {
   opacity: 1 !important;
 }
 
+.reviews-sec .swiper-slide-active .testimonial-card-img {
+  height: 245.859px;
+}
+.reviews-sec .swiper-slide-active .testimonial-card-img img {
+  object-fit: cover;
+  object-position: top;
+  width: 100% !important;
+  height: 100%;
+}
+.reviews-sec .swiper-slide .testimonial-card-content h4 {
+  -webkit-line-clamp: 5;
+}
+
 .transparent-reviews {
   background-image: url(assets/transparent-reviews-bg.png);
   background-size: cover;
@@ -1435,14 +1450,14 @@ label.form-check-label {
 }
 
 .transparent-reviews-boxes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
+  /* gap: 12px; */
   max-width: 940px;
   margin: 0 auto;
-  gap: 12px;
   position: relative;
   background-image: url(assets/transparent-reviews-mobile-img.png);
-  padding: 90px 0 66px;
+  padding: 90px 1px 66px;
   background-repeat: no-repeat;
   background-size: 34% 100%;
   background-position: center;
@@ -1455,6 +1470,7 @@ label.form-check-label {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   border-radius: 9px;
+  min-height: 202px;
 }
 .transparent-reviews-box ul {
   margin: 0;
@@ -1487,10 +1503,14 @@ label.form-check-label {
   line-height: 1.3;
 }
 
-.transparent-reviews-box:nth-of-type(2) {
+.transparent-reviews-boxes .swiper-slide-active .transparent-reviews-box {
   background-color: #0252c9;
 }
-.transparent-reviews-box:nth-of-type(2) ul li:before {
+.transparent-reviews-boxes
+  .swiper-slide-active
+  .transparent-reviews-box
+  ul
+  li:before {
   background: #44c454;
 }
 
@@ -1552,6 +1572,7 @@ label.form-check-label {
 }
 .legitimate-img-content {
   position: relative;
+  margin-bottom: -140px;
 }
 .legitimate-img-content img {
   width: 100%;
@@ -1581,7 +1602,79 @@ label.form-check-label {
   right: 6%;
   top: 27.5%;
 }
+
+.login-sign-up-sec {
+  padding: 40px 0;
+}
+.login-sign-up-sec .contactForm-form .btn:hover {
+  background-color: #0252c9;
+  color: #fff;
+}
+.login-sign-up-sec .contactForm-form .btn {
+  color: #0252c9;
+}
+.login-sign-up-sec .contactForm-form-input-fields .form-control:focus {
+  border: 1px solid #0252c9;
+}
+.login-sign-up-sec .contactForm-form h3 {
+  color: #0252c9;
+}
+.register-login-div {
+  background-image: url(assets/transparent-reviews-bg.png);
+  background-size: cover;
+  background-position: right top;
+}
 /* Inner Pages  End*/
+
+/* Special Effect Start */
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.reviewContentBox-1,
+.reviewContentBox-2,
+.reviewContentBox-3,
+.reviewContentBox-4,
+.reviewContentBox-5 {
+  animation: floatDiagonal 4s ease-in-out infinite;
+}
+
+.reviewContentBox-1 {
+  animation-delay: 0s;
+}
+.reviewContentBox-2 {
+  animation-delay: 0.5s;
+}
+.reviewContentBox-3 {
+  animation-delay: 1s;
+}
+.reviewContentBox-4 {
+  animation-delay: 1.5s;
+}
+.reviewContentBox-5 {
+  animation-delay: 2s;
+}
+
+@keyframes floatDiagonal {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Special Effect End */
 
 /* Media Quries */
 @media (max-width: 1399px) {
@@ -1887,6 +1980,10 @@ label.form-check-label {
 }
 
 @media (max-width: 991px) {
+  .reviews-sec-slider-content {
+    max-width: 360px;
+    margin: 0 auto;
+  }
   .main-navbar .navbar-nav .nav-link.active:after {
     content: unset;
   }
@@ -1913,6 +2010,7 @@ label.form-check-label {
   }
   .legitimate-img-content {
     padding-top: 30px;
+    margin-bottom: -70px;
   }
 
   .reviewRightContent {
@@ -2080,6 +2178,7 @@ label.form-check-label {
   }
   .transparent-reviews-box {
     padding: 16px 11px;
+    min-height: 210px;
   }
   .transparent-reviews-box h4 {
     font-size: 16px;
@@ -2115,6 +2214,9 @@ label.form-check-label {
 }
 
 @media (max-width: 767px) {
+  .reviews-sec {
+    margin: 40px 0;
+  }
   .legitimate-img-content img {
     display: none;
   }
@@ -2131,6 +2233,7 @@ label.form-check-label {
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
+    margin-bottom: 0;
   }
 
   .official-public-records .sec-head {
@@ -2167,14 +2270,17 @@ label.form-check-label {
     max-width: unset;
   }
 
-  .transparent-reviews-boxes {
-    background-image: url();
-    padding: 0;
-    grid-template-columns: repeat(1, 1fr);
-  }
-
   .transparent-reviews {
-    padding: 40px 0;
+    padding: 40px 0 0;
+  }
+  .transparent-reviews-boxes {
+    max-width: 340px;
+    background-size: 100% 100%;
+  }
+  .transparent-reviews-box {
+    padding: 16px 11px;
+    min-height: 224px;
+    margin: 0 9px;
   }
   .transparent-reviews-box h4 {
     font-size: 20px;
@@ -2348,7 +2454,7 @@ label.form-check-label {
 
   .reviewContentBox-5 {
     bottom: 0;
-    left: 50%;
+    left: 36%;
     transform: translate(-50%, 0);
   }
   .reviews-sec .sec-head h2 {
