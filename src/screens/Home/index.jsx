@@ -211,13 +211,14 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="swiper-container">
+              <div
+                className="swiper-container"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-offset="0"
+              >
                 <div className="sec-head">
-                  <h2
-                    data-aos="fade-up"
-                    data-aos-duration="2000"
-                    data-aos-offset="0"
-                  >
+                  <h2>
                     Why Choose My <span className="fw-bold">Virtual PI?</span>
                   </h2>
                   <div className="why-choose-slide-btns">
@@ -301,8 +302,8 @@ const Home = () => {
                       index + 1
                     }`}
                     key={index}
-                    data-aos="fade-up"
-                    data-aos-duration="3000"
+                    data-aos={index < 2 ? "fade-right" : "fade-left"}
+                    data-aos-duration={index % 2 === 0 ? "2000" : "3000"}
                     data-aos-offset="0"
                   >
                     <div className="make-different-content-box-img">

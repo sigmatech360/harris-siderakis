@@ -185,7 +185,7 @@ const Footer = () => {
               <div className="col-lg-7">
                 <div className="copyright-content">
                   <p className="copyright-content-f-20">
-                    © 2025 Virtual PI,. All Rights Reserved. Designed by NY Web
+                    © 2025 Virtual PI. All Rights Reserved. Designed by NY Web
                     Experts
                   </p>
                   <p>

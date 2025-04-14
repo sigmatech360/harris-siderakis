@@ -46,7 +46,7 @@ p {
 .main-navbar .navbar-brand img {
   width: 100%;
 }
-.main-navbar .navbar-nav .nav-link {
+/* .main-navbar .navbar-nav .nav-link {
   color: #aaaaaa;
   position: relative;
 }
@@ -63,7 +63,45 @@ p {
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
+} */
+.main-navbar .navbar-nav .nav-link {
+  color: #aaaaaa;
+  position: relative;
+  /* padding: 0.5rem 1rem; */
+  transition: color 0.3s ease;
 }
+
+.main-navbar .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+/* underline on hover */
+.main-navbar .navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #0252c9;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  transition: width 0.3s ease;
+}
+
+.main-navbar .navbar-nav .nav-link:hover::after {
+  width: 70%;
+}
+
+/* underline on active */
+.main-navbar .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
+.main-navbar .navbar-nav .nav-link.active::after {
+  width: 70%;
+}
+
 .btn-login-signup {
   border: 1px solid;
   color: #fff;
@@ -768,10 +806,39 @@ p {
   flex-direction: column;
   gap: 10px;
 }
+/* .main-footer-links a {
+  color: #aaaaaa;
+  text-decoration: none;
+  font-size: 16px;
+} */
+
 .main-footer-links a {
   color: #aaaaaa;
   text-decoration: none;
   font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.main-footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.main-footer-links a:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.main-footer-links a:hover::after {
+  width: 100%;
 }
 
 .ssl-div h3 {
@@ -1569,6 +1636,7 @@ label.form-check-label {
   line-height: 1;
   font-size: 16px;
   border-radius: 12px;
+  z-index: 2;
 }
 .legitimate-img-content {
   position: relative;
@@ -1582,8 +1650,8 @@ label.form-check-label {
   position: absolute;
 }
 .legitimate-img-content-label-1 {
-  left: 50%;
-  transform: translate(-50%, 0);
+  left: 43.3%;
+  /* transform: translate(-55%, 0); */
   top: 0;
 }
 .legitimate-img-content-label-2 {

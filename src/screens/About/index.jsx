@@ -161,7 +161,7 @@ const About = () => {
                   <div
                     className="secured-data-box"
                     data-aos="fade-up"
-                    data-aos-duration="3000"
+                    data-aos-duration={`${index + 1}000`}
                     data-aos-offset="0"
                   >
                     <div className="secured-data-box-icon">

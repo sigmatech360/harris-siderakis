@@ -62,13 +62,8 @@ const VirtualPILegit = () => {
               </div>
             </div>
             <div className="col-md-12">
-              <div
-                className="legitimate-img-content"
-                data-aos="fade-up"
-                data-aos-duration="3000"
-                data-aos-offset="0"
-              >
-                {[
+              <div className="legitimate-img-content">
+                {/* {[
                   "State registries",
                   "Publicly available contact details",
                   "Government database",
@@ -82,11 +77,54 @@ const VirtualPILegit = () => {
                   >
                     {item}
                   </p>
-                ))}
+                ))} */}
+                <p
+                  className={`legitimate-img-content-label legitimate-img-content-label-1`}
+                  data-aos="fade-down"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
+                  State registries
+                </p>
+                <p
+                  className={`legitimate-img-content-label legitimate-img-content-label-2`}
+                  data-aos="fade-right"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
+                  Publicly available contact details
+                </p>
+                <p
+                  className={`legitimate-img-content-label legitimate-img-content-label-3`}
+                  data-aos="fade-left"
+                  data-aos-duration="2000"
+                  data-aos-offset="0"
+                >
+                  Government database
+                </p>
+                <p
+                  className={`legitimate-img-content-label legitimate-img-content-label-4`}
+                  data-aos="fade-right"
+                  data-aos-duration="3000"
+                  data-aos-offset="0"
+                >
+                  Social media platforms
+                </p>
+                <p
+                  className={`legitimate-img-content-label legitimate-img-content-label-5`}
+                  data-aos="fade-left"
+                  data-aos-duration="3000"
+                  data-aos-offset="0"
+                >
+                  Court records
+                </p>
                 <img
                   src={officialpublicrecordsbg}
                   className="img-fluid"
-                  alt=""
+                  alt="official public records Image"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
                 />
               </div>
             </div>

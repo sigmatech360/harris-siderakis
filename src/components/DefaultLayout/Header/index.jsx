@@ -19,18 +19,6 @@ const Header = () => {
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className="mx-auto">
-            {/* <Nav.Link as={Link} to="/about-my-virtual-PI">
-              About My Virtual PI
-            </Nav.Link>
-            <Nav.Link as={Link} to="/pricing">
-              Pricing
-            </Nav.Link>
-            <Nav.Link as={Link} to="/is-my-virtual-pi-legit">
-              Is My Virtual PI Legit?
-            </Nav.Link>
-            <Nav.Link as={Link} to="/reviews">
-              Reviews
-            </Nav.Link> */}
             <Nav.Link
               as={Link}
               to="/about-my-virtual-PI"
