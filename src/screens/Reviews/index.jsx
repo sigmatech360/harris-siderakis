@@ -82,27 +82,27 @@ const transparencyCards = [
       "This ensures you're reading real experiences, not fake marketing gimmicks.",
     ],
   },
-  {
-    title: "Every opinion matters, but honesty comes first.",
-    points: [
-      "We do not edit or alter reviews, except for removing offensive language.",
-      "Users can report suspicious or false reviews, and we act immediately.",
-    ],
-  },
-  {
-    title: "Your trust is our priority we take action fast!",
-    points: [
-      "If you spot a suspicious review, click the ‘Report’ button.",
-      "Our moderation team investigates within 24 hours.",
-    ],
-  },
-  {
-    title: "Know which reviews you can trust at a glance.",
-    points: [
-      "Users who have completed a real search or purchase get this badge.",
-      "This ensures you're reading real experiences, not fake marketing gimmicks.",
-    ],
-  },
+  // {
+  //   title: "Every opinion matters, but honesty comes first.",
+  //   points: [
+  //     "We do not edit or alter reviews, except for removing offensive language.",
+  //     "Users can report suspicious or false reviews, and we act immediately.",
+  //   ],
+  // },
+  // {
+  //   title: "Your trust is our priority we take action fast!",
+  //   points: [
+  //     "If you spot a suspicious review, click the ‘Report’ button.",
+  //     "Our moderation team investigates within 24 hours.",
+  //   ],
+  // },
+  // {
+  //   title: "Know which reviews you can trust at a glance.",
+  //   points: [
+  //     "Users who have completed a real search or purchase get this badge.",
+  //     "This ensures you're reading real experiences, not fake marketing gimmicks.",
+  //   ],
+  // },
 ];
 
 const Reviews = () => {
@@ -233,7 +233,59 @@ const Reviews = () => {
 
             <div className="col-md-12">
               <div className="transparent-reviews-boxes">
-                <Swiper
+                <div
+                  className="transparent-reviews-box"
+                  data-aos="fade-left"
+                  data-aos-duration="3000"
+                  data-aos-offset="0"
+                >
+                  <h4>Every opinion matters, but honesty comes first.</h4>
+                  <ul>
+                    <li>
+                      We do not edit or alter reviews, except for removing
+                      offensive language.
+                    </li>
+                    <li>
+                      Users can report suspicious or false reviews, and we act
+                      immediately.
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="transparent-reviews-box"
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-offset="0"
+                >
+                  <h4>Your trust is our priority we take action fast!</h4>
+                  <ul>
+                    <li>
+                      If you spot a suspicious review, click the ‘Report’
+                      button.
+                    </li>
+                    <li>Our moderation team investigates within 24 hours.</li>
+                  </ul>
+                </div>
+                <div
+                  className="transparent-reviews-box"
+                  data-aos="fade-right"
+                  data-aos-duration="3000"
+                  data-aos-offset="0"
+                >
+                  <h4>Know which reviews you can trust at a glance.</h4>
+                  <ul>
+                    <li>
+                      Users who have completed a real search or purchase get
+                      this badge.
+                    </li>
+                    <li>
+                      This ensures you're reading real experiences, not fake
+                      marketing gimmicks.
+                    </li>
+                  </ul>
+                </div>
+
+                {/* <Swiper
                   modules={[Autoplay]}
                   spaceBetween={10}
                   slidesPerView={1}
@@ -260,7 +312,7 @@ const Reviews = () => {
                       </div>
                     </SwiperSlide>
                   ))}
-                </Swiper>
+                </Swiper> */}
               </div>
             </div>
           </div>

@@ -103,7 +103,8 @@ p {
 }
 
 .btn-login-signup {
-  border: 1px solid;
+  border: 1px solid #0252c9;
+  background-color: #0252c9;
   color: #fff;
   padding: 13px 16px;
   display: flex;
@@ -112,19 +113,41 @@ p {
   line-height: 1;
   border-radius: 30px;
   text-decoration: none;
+  animation: blinkEffect 2s infinite ease-in-out;
 }
+
+/* Blinking animation */
+@keyframes blinkEffect {
+  0%,
+  100% {
+    background-color: #0252c9;
+    border-color: #0252c9;
+    color: #fff;
+  }
+  50% {
+    background-color: transparent;
+    border-color: #0252c9;
+    color: #fff;
+  }
+}
+
 .btn-login-signup svg {
   font-size: 20px;
 }
 
+.authNavBar .navbar-nav {
+  margin-left: auto !important;
+  margin-right: unset !important;
+}
+
 .main-banner {
-  /* background-image: url(assets/main-banner-bg.png); */
+  background-image: url(assets/main-banner-bg-gif.mp4);
   position: relative;
   color: #fff;
-  padding: 60px 0;
+  padding: 250px 0 200px;
   background-position: center center;
   background-size: cover;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   align-items: center;
   background-color: #000000;
@@ -133,12 +156,22 @@ p {
 .main-banner .container {
   z-index: 2;
 }
-.main-banner video {
+/* .main-banner video {
   position: absolute;
   top: 55%;
   left: 50%;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  transform: translate(-50.1%, -50%);
+  z-index: 1;
+} */
+.main-banner video {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 460px;
+  height: auto;
   object-fit: cover;
   transform: translate(-50.1%, -50%);
   z-index: 1;
@@ -434,9 +467,9 @@ p {
   font-size: 15px;
   font-weight: 400;
   color: #cbcbcb;
-  min-height: 63px;
+  min-height: 85px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -745,10 +778,10 @@ p {
 .testimonial-card-content h4 {
   font-size: 26px;
   line-height: 1.2;
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow: hidden; */
 }
 .testimonial-rating-stars {
   max-width: 90px;
@@ -1138,6 +1171,11 @@ label.form-check-label {
   box-shadow: unset;
 }
 
+.contactForm-btn-div .btn:hover {
+  background-color: #262626;
+  color: #fff;
+}
+
 .pricing-plan-card {
   background-image: url(assets/pricing-plan-card-bg.png);
   background-size: cover;
@@ -1405,6 +1443,27 @@ label.form-check-label {
   gap: 5px;
 }
 
+.comparisonTable-outer-div .table-responsive {
+    overflow-x: auto;
+    scrollbar-width: auto; /* For Firefox */
+    scrollbar-color: #0252c9 #0252c9; /* Optional: custom color for Firefox */
+}
+
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+.comparisonTable-outer-div .table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.comparisonTable-outer-div .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #0252c9;
+    border-radius: 4px;
+}
+
+.comparisonTable-outer-div .table-responsive::-webkit-scrollbar-track {
+    background-color: #0252c9;
+}
+
+
 .comparisonTable-outer-div {
   max-width: 1150px;
   margin: 0 auto;
@@ -1493,9 +1552,9 @@ label.form-check-label {
   width: 100% !important;
   height: 100%;
 }
-.reviews-sec .swiper-slide .testimonial-card-content h4 {
+/* .reviews-sec .swiper-slide .testimonial-card-content h4 {
   -webkit-line-clamp: 5;
-}
+} */
 
 .transparent-reviews {
   background-image: url(assets/transparent-reviews-bg.png);
@@ -1517,9 +1576,9 @@ label.form-check-label {
 }
 
 .transparent-reviews-boxes {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr); */
-  /* gap: 12px; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   max-width: 940px;
   margin: 0 auto;
   position: relative;
@@ -1580,6 +1639,15 @@ label.form-check-label {
   li:before {
   background: #44c454;
 }
+
+/* Active */
+.transparent-reviews-box:nth-child(2) {
+  background-color: #0252c9;
+}
+.transparent-reviews-box:nth-child(2) ul li:before {
+  background: #44c454;
+}
+/* Active */
 
 .reviewContentBox {
   display: flex;
@@ -1672,7 +1740,7 @@ label.form-check-label {
 }
 
 .login-sign-up-sec {
-  padding: 40px 0;
+  padding: 120px 0 40px;
 }
 .login-sign-up-sec .contactForm-form .btn:hover {
   background-color: #0252c9;
@@ -2339,11 +2407,14 @@ label.form-check-label {
   }
 
   .transparent-reviews {
-    padding: 40px 0 0;
+    padding: 40px 0;
   }
   .transparent-reviews-boxes {
     max-width: 340px;
     background-size: 100% 100%;
+    grid-template-columns: repeat(1, 1fr);
+    background-image: unset;
+    padding: 0px 1px 0;
   }
   .transparent-reviews-box {
     padding: 16px 11px;
@@ -2426,13 +2497,13 @@ label.form-check-label {
     order: unset;
   }
 
-  .main-banner video {
+  /* .main-banner video {
     top: 55%;
     width: 120%;
     height: unset;
-  }
+  } */
   .main-banner {
-    padding: 150px 0 90px;
+    padding: 200px 0 160px;
     height: unset;
   }
   .our-mission-sec .sec-head h2 {
@@ -2541,11 +2612,11 @@ label.form-check-label {
     max-width: 598px;
     margin: 0 auto;
   }
-  .main-banner video {
+  /* .main-banner video {
     top: 56%;
     width: 140%;
     height: unset;
-  }
+  } */
 
   .search-smarter-sec .sec-head h3 {
     font-size: 35px;
@@ -2723,5 +2794,275 @@ label.form-check-label {
   .investegate-sec .sec-head h4 {
     font-size: 28px;
     line-height: 1.1;
+  }
+}
+
+/* Main Banner Line Animations */
+/* Base layout */
+.line-animation-wrapper-outer {
+  position: absolute;
+  left: 50%;
+  z-index: 2;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.line-animation-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.line-animation-container {
+  position: absolute;
+  height: 100px;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.line-vertical,
+.line-horizontal,
+.animated-btn {
+  position: absolute;
+}
+
+/* Lines + Button */
+.line-vertical {
+  width: 2px;
+  background-color: #fff;
+  bottom: 0;
+  height: 0;
+}
+.line-horizontal {
+  height: 2px;
+  background-color: #fff;
+  top: 50px;
+  width: 0;
+}
+.animated-btn {
+  top: 32px;
+  opacity: 0;
+  transform: translateY(10px);
+  background: #0252c9;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* === Positioning === */
+#line1 {
+  top: 24%;
+  left: 66%;
+}
+#line2 {
+  top: 24%;
+  left: 33%;
+}
+#line3 {
+  top: 66%;
+  left: 35%;
+}
+#line4 {
+  top: 66%;
+  left: 65%;
+}
+
+/* === Alignment: Left / Right */
+#line1 .line-vertical,
+#line4 .line-vertical,
+#line1 .line-horizontal,
+#line4 .line-horizontal {
+  left: 0;
+}
+#line1 .animated-btn,
+#line4 .animated-btn {
+  left: 200px;
+}
+#line2 .line-vertical,
+#line3 .line-vertical,
+#line2 .line-horizontal,
+#line3 .line-horizontal {
+  right: 0;
+}
+#line2 .animated-btn,
+#line3 .animated-btn {
+  right: 200px;
+}
+
+/* === Animation per group === */
+:root {
+  --set-gap: 2.5s;
+}
+
+/* Utility Mixin */
+@keyframes growVertical {
+  0% {
+    height: 0;
+  }
+  20% {
+    height: 50px;
+  }
+  100% {
+    height: 50px;
+  }
+}
+@keyframes growHorizontal {
+  0%,
+  20% {
+    width: 0;
+  }
+  40% {
+    width: 200px;
+  }
+  100% {
+    width: 200px;
+  }
+}
+@keyframes fadeInBtn {
+  0%,
+  40% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Group Animations */
+#line1 .line-vertical {
+  animation: growVertical 20s linear infinite;
+  animation-delay: 0s;
+}
+#line1 .line-horizontal {
+  animation: growHorizontal 20s linear infinite;
+  animation-delay: 0.5s;
+}
+#line1 .animated-btn {
+  animation: fadeInBtn 20s linear infinite;
+  animation-delay: 1s;
+}
+
+#line2 .line-vertical {
+  animation: growVertical 20s linear infinite;
+  animation-delay: 5s;
+}
+#line2 .line-horizontal {
+  animation: growHorizontal 20s linear infinite;
+  animation-delay: 5.5s;
+}
+#line2 .animated-btn {
+  animation: fadeInBtn 20s linear infinite;
+  animation-delay: 6s;
+}
+
+#line3 .line-vertical {
+  animation: growVertical 20s linear infinite;
+  animation-delay: 10s;
+}
+#line3 .line-horizontal {
+  animation: growHorizontal 20s linear infinite;
+  animation-delay: 10.5s;
+}
+#line3 .animated-btn {
+  animation: fadeInBtn 20s linear infinite;
+  animation-delay: 11s;
+}
+
+#line4 .line-vertical {
+  animation: growVertical 20s linear infinite;
+  animation-delay: 15s;
+}
+#line4 .line-horizontal {
+  animation: growHorizontal 20s linear infinite;
+  animation-delay: 15.5s;
+}
+#line4 .animated-btn {
+  animation: fadeInBtn 20s linear infinite;
+  animation-delay: 16s;
+}
+
+@media (max-width: 1601px) {
+  #line2 {
+    left: 29%;
+  }
+  #line1 {
+    left: 70%;
+  }
+  #line3 {
+    left: 32%;
+  }
+  #line4 {
+    left: 68%;
+  }
+}
+
+@media (max-width: 1400px) {
+  #line3 {
+    left: 29%;
+  }
+  #line2 {
+    left: 26%;
+  }
+  #line1 {
+    left: 74%;
+  }
+  #line4 {
+    left: 71%;
+  }
+}
+
+@media (max-width: 767px) {
+  .line-animation-wrapper-outer {
+    position: unset;
+    transform: unset;
+    width: unset;
+    height: unset;
+  }
+  .line-animation-container {
+    position: unset;
+    height: unset;
+    width: unset;
+    transform: unset;
+  }
+  .line-vertical,
+  .line-horizontal {
+    display: none;
+  }
+  .line-vertical,
+  .line-horizontal,
+  .animated-btn {
+    position: unset !important;
+  }
+  .animated-btn {
+    animation: unset !important;
+    opacity: 1 !important;
+    transform: unset !important;
+  }
+
+  #line1,
+  #line2,
+  #line3,
+  #line4 {
+    position: unset !important;
+  }
+  .line-animation-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
   }
 }

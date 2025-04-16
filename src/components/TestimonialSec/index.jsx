@@ -20,7 +20,7 @@ const TestimonialSec = () => {
           >
             <TestimonialCard
               title={
-                "Saved me from a scam call—Reverse Phone Lookup workedperfectly!"
+                "Saved me from a scam call—Reverse Phone Lookup worked perfectly!"
               }
               ratingNumber="5/5"
               name="Sarah B"

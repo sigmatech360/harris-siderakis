@@ -5,11 +5,11 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { RiUserLine } from "react-icons/ri";
 
-const Header = () => {
+const Header = ({registerLogin = true, className}) => {
   const location = useLocation();
   const currentPath = location.pathname;
   return (
-    <Navbar expand="lg" className="main-navbar" variant="dark">
+    <Navbar expand="lg" className={`main-navbar ${className}`} variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img src={logo} alt="My Virtual PI" />
@@ -54,9 +54,11 @@ const Header = () => {
             </Nav.Link>
           </Nav>
 
-          <Link to={"/login"} className="btn-login-signup">
-            <RiUserLine className="me-2" /> Login/Sign Up
-          </Link>
+          {registerLogin && (
+            <Link to={"/login"} className="btn-login-signup">
+              <RiUserLine className="me-2" /> Login/Sign Up
+            </Link>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
