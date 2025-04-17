@@ -900,7 +900,7 @@ p {
   font-weight: 500;
 }
 
-.footer-social-links {
+/* .footer-social-links {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -909,7 +909,45 @@ p {
   line-height: 1;
   color: #fff;
   font-size: 25px;
+} */
+
+.footer-social-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
+
+.footer-social-link {
+  line-height: 1;
+  color: #fff;
+  font-size: 25px;
+  transition: color 0.3s ease;
+}
+
+/* Platform-specific hover colors */
+.footer-social-link.facebook:hover {
+  color: #1877f2;
+}
+
+.footer-social-link.instagram:hover {
+  color: #e1306c;
+}
+
+.footer-social-link.twitter:hover {
+  color: #1da1f2;
+}
+
+.footer-social-link.youtube:hover {
+  color: #ff0000;
+}
+
+.footer-social-link.linkedin:hover {
+  color: #0077b5;
+}
+.footer-social-link:hover {
+  transform: scale(1.1);
+}
+
 .footer-social h4 {
   color: #ffffff;
   font-size: 25px;
@@ -953,12 +991,21 @@ p {
 }
 
 .innerBanner-button {
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   background: transparent;
   color: #fff;
-  padding: 12px 20px;
-  line-height: 1;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 1.2;
   border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.innerBanner-button:hover {
+  background-color: #0252c9;
+  border-color: #0252c9;
+  color: #fff;
 }
 
 .our-mission-sec {
@@ -978,6 +1025,14 @@ p {
   font-size: 19px;
   font-weight: 500;
   margin-bottom: 16px;
+}
+/* .our-mission-sec .sec-head .btn {
+  transition: all 0.25s linear;
+} */
+
+.our-mission-sec .sec-head .btn:hover {
+  background-color: #262626;
+  color: #fff;
 }
 
 .btn {
@@ -1016,6 +1071,12 @@ p {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid #ffffff6b;
   font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.why-choose-services-content-lable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(2, 82, 201, 0.4);
 }
 .why-choose-services-content-lables {
   display: flex;
@@ -1215,6 +1276,14 @@ label.form-check-label {
   padding: 14px 10px;
   line-height: 1;
   border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.pricing-plan-card-btn:hover {
+  background-color: #013fa0; /* a slightly darker blue */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(2, 82, 201, 0.4);
 }
 
 .pricing-plan-card-list {
@@ -1336,10 +1405,18 @@ label.form-check-label {
 .one-report-card-btn {
   background-color: #0252c9;
   color: #fff;
-  border: unset;
-  padding: 14px 10px;
+  border: none;
+  padding: 14px 24px;
   line-height: 1;
   border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.one-report-card-btn:hover {
+  background-color: #013fa0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(2, 82, 201, 0.4);
 }
 
 .virtualPILegit-image {
@@ -1404,6 +1481,14 @@ label.form-check-label {
   padding: 14px 25px;
   line-height: 1;
   border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.try-search-btn:hover {
+  background-color: #013fa0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(2, 82, 201, 0.4);
 }
 .try-search-btns {
   display: flex;
@@ -1444,25 +1529,25 @@ label.form-check-label {
 }
 
 .comparisonTable-outer-div .table-responsive {
-    overflow-x: auto;
-    scrollbar-width: auto; /* For Firefox */
-    scrollbar-color: #0252c9 #0252c9; /* Optional: custom color for Firefox */
+  overflow-x: scroll !important;
+  scrollbar-width: auto; /* For Firefox */
+  scrollbar-color: #0252c9 #0252c9; /* Optional: custom color for Firefox */
 }
 
 /* For WebKit-based browsers (Chrome, Safari, Edge) */
 .comparisonTable-outer-div .table-responsive::-webkit-scrollbar {
-    height: 8px;
+  height: 8px;
+  background-color: #f5f5f5;
 }
 
 .comparisonTable-outer-div .table-responsive::-webkit-scrollbar-thumb {
-    background-color: #0252c9;
-    border-radius: 4px;
+  background-color: #0252c9;
+  border-radius: 4px;
 }
 
 .comparisonTable-outer-div .table-responsive::-webkit-scrollbar-track {
-    background-color: #0252c9;
+  background-color: #0252c9;
 }
-
 
 .comparisonTable-outer-div {
   max-width: 1150px;
@@ -2798,15 +2883,15 @@ label.form-check-label {
 }
 
 /* Main Banner Line Animations */
-/* Base layout */
+/* === Layout === */
 .line-animation-wrapper-outer {
   position: absolute;
   left: 50%;
-  z-index: 2;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  z-index: 2;
 }
 .line-animation-wrapper {
   position: relative;
@@ -2821,13 +2906,12 @@ label.form-check-label {
   transform: translateX(-50%);
 }
 
+/* === Shared Styling === */
 .line-vertical,
 .line-horizontal,
 .animated-btn {
   position: absolute;
 }
-
-/* Lines + Button */
 .line-vertical {
   width: 2px;
   background-color: #fff;
@@ -2871,7 +2955,7 @@ label.form-check-label {
   left: 65%;
 }
 
-/* === Alignment: Left / Right */
+/* === Left/Right Alignment === */
 #line1 .line-vertical,
 #line4 .line-vertical,
 #line1 .line-horizontal,
@@ -2893,103 +2977,90 @@ label.form-check-label {
   right: 200px;
 }
 
-/* === Animation per group === */
-:root {
-  --set-gap: 2.5s;
-}
-
-/* Utility Mixin */
+/* === Animations === */
 @keyframes growVertical {
   0% {
     height: 0;
+    opacity: 0;
   }
-  20% {
+  10% {
+    opacity: 1;
+    height: 50px;
+  }
+  80% {
+    opacity: 1;
     height: 50px;
   }
   100% {
-    height: 50px;
+    height: 0;
+    opacity: 0;
   }
 }
+
 @keyframes growHorizontal {
-  0%,
-  20% {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
     width: 0;
   }
-  40% {
+  20% {
     width: 200px;
+  }
+  80% {
+    width: 200px;
+    opacity: 1;
   }
   100% {
-    width: 200px;
+    width: 0;
+    opacity: 0;
   }
 }
+
 @keyframes fadeInBtn {
-  0%,
-  40% {
+  0% {
     opacity: 0;
     transform: translateY(10px);
   }
-  60% {
+  20% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
     opacity: 1;
     transform: translateY(0);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(10px);
   }
 }
 
-/* Group Animations */
-#line1 .line-vertical {
-  animation: growVertical 20s linear infinite;
+/* === Animation Application === */
+.line-vertical {
+  animation: growVertical 10s ease-in-out infinite;
   animation-delay: 0s;
-}
-#line1 .line-horizontal {
-  animation: growHorizontal 20s linear infinite;
-  animation-delay: 0.5s;
-}
-#line1 .animated-btn {
-  animation: fadeInBtn 20s linear infinite;
-  animation-delay: 1s;
+  animation-fill-mode: both;
 }
 
-#line2 .line-vertical {
-  animation: growVertical 20s linear infinite;
-  animation-delay: 5s;
-}
-#line2 .line-horizontal {
-  animation: growHorizontal 20s linear infinite;
-  animation-delay: 5.5s;
-}
-#line2 .animated-btn {
-  animation: fadeInBtn 20s linear infinite;
-  animation-delay: 6s;
+.line-horizontal {
+  animation: growHorizontal 10s ease-in-out infinite;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
 }
 
-#line3 .line-vertical {
-  animation: growVertical 20s linear infinite;
-  animation-delay: 10s;
-}
-#line3 .line-horizontal {
-  animation: growHorizontal 20s linear infinite;
-  animation-delay: 10.5s;
-}
-#line3 .animated-btn {
-  animation: fadeInBtn 20s linear infinite;
-  animation-delay: 11s;
+.animated-btn {
+  animation: fadeInBtn 10s ease-in-out infinite;
+  animation-delay: 0.8s;
+  animation-fill-mode: both;
 }
 
-#line4 .line-vertical {
-  animation: growVertical 20s linear infinite;
-  animation-delay: 15s;
-}
-#line4 .line-horizontal {
-  animation: growHorizontal 20s linear infinite;
-  animation-delay: 15.5s;
-}
-#line4 .animated-btn {
-  animation: fadeInBtn 20s linear infinite;
-  animation-delay: 16s;
-}
 
 @media (max-width: 1601px) {
   #line2 {

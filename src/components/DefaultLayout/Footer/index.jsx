@@ -163,7 +163,7 @@ const Footer = () => {
               <div className="col-lg-5">
                 <div className="footer-social">
                   <h4>Follow Us</h4>
-                  <div className="footer-social-links">
+                  {/* <div className="footer-social-links">
                     <a href="javascript:;" className="footer-social-link">
                       <FaFacebook />
                     </a>
@@ -177,6 +177,38 @@ const Footer = () => {
                       <FaYoutube />
                     </a>
                     <a href="javascript:;" className="footer-social-link">
+                      <FaLinkedinIn />
+                    </a>
+                  </div> */}
+                  <div className="footer-social-links">
+                    <a
+                      href="javascript:;"
+                      className="footer-social-link facebook"
+                    >
+                      <FaFacebook />
+                    </a>
+                    <a
+                      href="javascript:;"
+                      className="footer-social-link instagram"
+                    >
+                      <FaInstagram />
+                    </a>
+                    <a
+                      href="javascript:;"
+                      className="footer-social-link twitter"
+                    >
+                      <FaXTwitter />
+                    </a>
+                    <a
+                      href="javascript:;"
+                      className="footer-social-link youtube"
+                    >
+                      <FaYoutube />
+                    </a>
+                    <a
+                      href="javascript:;"
+                      className="footer-social-link linkedin"
+                    >
                       <FaLinkedinIn />
                     </a>
                   </div>
