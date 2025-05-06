@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DefaultLayout from "../../components/DefaultLayout";
+import DefaultLayout from "../../components/Layout/DefaultLayout";
 
 import pricingbgimage from "../../assets/pricing-bg-image.png";
 import sslencryption from "../../assets/ssl-encryption.png";

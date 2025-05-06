@@ -6,6 +6,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import "./App.css";
+import "./assets/style/common.css"
+import "./assets/style/forms.css"
 
 function App() {
   useEffect(() => {

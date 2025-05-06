@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultLayout from "../../components/DefaultLayout";
+import DefaultLayout from "../../components/Layout/DefaultLayout";
 import MainBanner from "../../components/MainBanner";
 
 import { RiSecurePaymentFill } from "react-icons/ri";

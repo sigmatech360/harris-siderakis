@@ -7,6 +7,8 @@ import VirtualPILegit from "../screens/VirtualPILegit";
 import Reviews from "../screens/Reviews";
 import Register from "../screens/Register";
 import Login from "../screens/Login";
+import Dashboard from "../screens/Dashboard";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const AppRouter = () => {
   return (
@@ -19,6 +21,8 @@ const AppRouter = () => {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
+
       </Routes>
     </Router>
   );

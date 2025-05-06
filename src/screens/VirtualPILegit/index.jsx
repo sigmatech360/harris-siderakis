@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultLayout from "../../components/DefaultLayout";
+import DefaultLayout from "../../components/Layout/DefaultLayout";
 import InnerBanner from "../../components/InnerBanner";
 import pricingbgimage from "../../assets/pricing-bg-image.png";
 

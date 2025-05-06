@@ -1211,7 +1211,7 @@ p {
   margin-bottom: 20px;
 }
 
-.contactForm-form-input-fields .form-control,
+/* .contactForm-form-input-fields .form-control, */
 .contactForm-form-input-fields .form-select {
   border: 1px solid #9e9e9e;
   background-color: transparent;

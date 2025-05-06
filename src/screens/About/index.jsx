@@ -1,7 +1,7 @@
 import React from "react";
 
 import aboutbannerbg from "../../assets/about-banner-bg.png";
-import DefaultLayout from "../../components/DefaultLayout";
+import DefaultLayout from "../../components/Layout/DefaultLayout";
 import InnerBanner from "../../components/InnerBanner";
 
 import whychooseservicesimg from "../../assets/why-choose-services-img.png";

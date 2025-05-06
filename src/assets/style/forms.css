@@ -1,0 +1,59 @@
+input,
+.custom-file,
+.custom-select,
+.form-select,
+.form-control {
+  color: #212529;
+  padding: 12px 15px;
+  border-color: #ced4da;
+  border-radius: 4px;
+}
+
+input.active,
+.custom-file.active,
+.custom-select.active,
+.form-select.active,
+.form-control.active,
+input.focus,
+.custom-file.focus,
+.custom-select.focus,
+.form-select.focus,
+.form-control.focus,
+input:active,
+.custom-file:active,
+.custom-select:active,
+.form-select:active,
+.form-control:active,
+input:focus,
+.custom-file:focus,
+.custom-select:focus,
+.form-select:focus,
+.form-control:focus {
+  outline: 0;
+  color: #212529;
+  border-color: #007bff !important;
+  box-shadow: none !important;
+}
+
+input::placeholder,
+.custom-file::placeholder,
+.custom-select::placeholder,
+.form-select::placeholder,
+.form-control::placeholder,
+input::-ms-placeholder,
+.custom-file::-ms-placeholder,
+.custom-select::-ms-placeholder,
+.form-select::-ms-placeholder,
+.form-control::-ms-placeholder,
+input::-moz-placeholder,
+.custom-file::-moz-placeholder,
+.custom-select::-moz-placeholder,
+.form-select::-moz-placeholder,
+.form-control::-moz-placeholder,
+input::-webkit-input-placeholder,
+.custom-file::-webkit-input-placeholder,
+.custom-select::-webkit-input-placeholder,
+.form-select::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder {
+  color: #adb5bd !important;
+}
