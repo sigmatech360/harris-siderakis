@@ -1194,11 +1194,11 @@ p {
   font-size: 16px;
 }
 
-.contactForm-form-input-fields {
+/* .contactForm-form-input-fields {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
+} */
 .contactForm-form {
   background-color: #ebefef;
   padding: 50px 30px;
@@ -1844,6 +1844,10 @@ label.form-check-label {
   background-image: url(assets/transparent-reviews-bg.png);
   background-size: cover;
   background-position: right top;
+}
+
+.otp-inputs input{
+  width: 100% !important;
 }
 /* Inner Pages  End*/
 

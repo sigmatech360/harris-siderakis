@@ -8,6 +8,9 @@ import "aos/dist/aos.css";
 import "./App.css";
 import "./assets/style/common.css"
 import "./assets/style/forms.css"
+import { Toaster } from "react-hot-toast";
+import { useDispatch } from "./store";
+import { initializeUser } from "./store/slices/user";
 
 function App() {
   useEffect(() => {
@@ -17,8 +20,15 @@ function App() {
     });
   }, []);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initializeUser());
+  }, [dispatch]);
+
   return (
     <>
+    <Toaster position={'top-right'} />
       <AppRouter />
     </>
   );

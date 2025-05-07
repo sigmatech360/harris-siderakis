@@ -5,10 +5,11 @@ import About from "../screens/About";
 import Pricing from "../screens/Pricing";
 import VirtualPILegit from "../screens/VirtualPILegit";
 import Reviews from "../screens/Reviews";
-import Register from "../screens/Register";
-import Login from "../screens/Login";
+import Register from "../screens/Auth/Register";
+import Login from "../screens/Auth/Login";
 import Dashboard from "../screens/Dashboard";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import ForgotPassword from "../screens/Auth/ForgotPassword";
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
 
       </Routes>

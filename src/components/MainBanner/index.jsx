@@ -30,26 +30,26 @@ const MainBanner = () => {
               </p>
             </div>
             <div className="line-animation-wrapper-outer">
-              <div class="line-animation-wrapper">
-                <div class="line-animation-container" id="line1">
-                  <div class="line-vertical"></div>
-                  <div class="line-horizontal"></div>
-                  <button class="animated-btn">Name</button>
+              <div className="line-animation-wrapper">
+                <div className="line-animation-container" id="line1">
+                  <div className="line-vertical"></div>
+                  <div className="line-horizontal"></div>
+                  <button className="animated-btn">Name</button>
                 </div>
-                <div class="line-animation-container" id="line2">
-                  <div class="line-vertical"></div>
-                  <div class="line-horizontal"></div>
-                  <button class="animated-btn">Email</button>
+                <div className="line-animation-container" id="line2">
+                  <div className="line-vertical"></div>
+                  <div className="line-horizontal"></div>
+                  <button className="animated-btn">Email</button>
                 </div>
-                <div class="line-animation-container" id="line3">
-                  <div class="line-vertical"></div>
-                  <div class="line-horizontal"></div>
-                  <button class="animated-btn">Phone</button>
+                <div className="line-animation-container" id="line3">
+                  <div className="line-vertical"></div>
+                  <div className="line-horizontal"></div>
+                  <button className="animated-btn">Phone</button>
                 </div>
-                <div class="line-animation-container" id="line4">
-                  <div class="line-vertical"></div>
-                  <div class="line-horizontal"></div>
-                  <button class="animated-btn">Address</button>
+                <div className="line-animation-container" id="line4">
+                  <div className="line-vertical"></div>
+                  <div className="line-horizontal"></div>
+                  <button className="animated-btn">Address</button>
                 </div>
               </div>
             </div>

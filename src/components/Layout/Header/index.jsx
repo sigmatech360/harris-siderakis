@@ -7,12 +7,24 @@ import { RiUserLine } from "react-icons/ri";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import './style.css'
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "../../../store";
+import { setLogout } from "../../../store/slices/user";
 
 const Header = ({registerLogin=true, className}) => {
+  const dispatch =  useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
   const [isLoggedIn, setIsLoggedIn ] = useState(false);
   const [userData, setUserData] = useState({});
+  const { isAuthenticated, user } = useSelector(({ user }) => user);
+  useEffect(()=>{
+    console.log('isAuthenticated', isAuthenticated);
+    console.log('user', user);
+    setUserData(user)
+
+  },[isAuthenticated])
+  
   useEffect(() => {
           let token = localStorage.getItem('token');
           if (token) {
@@ -38,6 +50,7 @@ const Header = ({registerLogin=true, className}) => {
         }
       );
       console.log('Logged Out:', response.data);
+      dispatch(setLogout());
       localStorage.removeItem('token')
       toast.success(response.data.message)
     }
@@ -116,7 +129,7 @@ const Header = ({registerLogin=true, className}) => {
           </Nav>
 
           {registerLogin && (
-            isLoggedIn ? (
+            isAuthenticated ? (
   
               // <Link to={"/dashboard"} className="btn btn-primary text-light border-0">
               //   <RiUserLine className="me-2" /> Dashboard
@@ -125,7 +138,7 @@ const Header = ({registerLogin=true, className}) => {
                 <Dropdown.Toggle  className="notButton toggleButton">
                 <div className="userImage">
                   {userData?.name ? (
-                    <span>{userData?.name}</span>
+                    <span className="text-capitalize">{userData?.name}</span>
 
                   ) : ( 
                   <>
@@ -141,6 +154,7 @@ const Header = ({registerLogin=true, className}) => {
                     Dashboard
                   </Link>
                   }
+                  <div className="menuDivider"><span></span></div>
                   <Link to="#" className="userMenuItem" onClick={handleLogout} >
                     <FaSignOutAlt/>{" "}
                     Logout

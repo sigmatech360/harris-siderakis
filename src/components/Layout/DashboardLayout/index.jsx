@@ -5,7 +5,7 @@ import './style.css'
 
 const DashboardLayout = () => {
   return (
-    <DefaultLayout registerLogin={false} headerClass=" bg-dark">
+    <DefaultLayout registerLogin={true} headerClass=" bg-dark">
         <div className='dashboard-content container'>
             <Sidebar/>
 
