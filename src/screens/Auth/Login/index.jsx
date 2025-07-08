@@ -11,6 +11,7 @@ import * as Yup from "yup";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -40,7 +41,7 @@ const Login = () => {
         const token = data?.data?.token;
         console.log("Success:", response?.data);
         // console.log("token:", token);
-        if (data.success) {
+        if (data.status) {
           const userResponse = await axios.get(`${baseURL}/edit-profile`, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,10 +55,8 @@ const Login = () => {
           navigate("/");
         }
         else{
-          if(response.data.message == 'Unauthorized User!'){
-
-            toast.error('Invalid Email or Password');
-          }
+          toast.error('Invalid Email or Password');
+          setLoginError('Invalid Email or Password');
           
         }
         // localStorage.setItem('token', response.data.data.token);
@@ -82,19 +81,24 @@ const Login = () => {
           <div className="container">
             <div className="login-sign-up-sec">
               <div className="row justify-content-center">
-                <div className="col-xxl-4 col-lg-5 col-md-7 col-sm-9">
+                <div className="col-lg-5 col-md-7 col-sm-9">
                   <div className="contactForm-form">
                     <h3 className="text-center">Login</h3>
                     <p className="text-muted text-center mb-3">
                       Login into your Account
                     </p>
+                    {loginError && (
+                      <div className="text-danger text-center mb-3">
+                        {loginError}
+                      </div>
+                    )}
                     <FormikProvider value={formik}>
                       <Form
                         autoComplete="off"
                         noValidate
                         onSubmit={handleSubmit}
                       >
-                        <div className="contactForm-form-input-fields">
+                        <div className="auth-forms">
                           <div className="mb-3">
                             <input
                               type="email"

@@ -45,7 +45,7 @@ const Register = () => {
         const response = await axios.post(`${baseURL}/user-register`, values);
         console.log("Success:", response.data);
         const data = response.data;
-        if(data.success){
+        if(data.status){
           toast.success(response.data.message);
           resetForm();
           navigate("/login");
@@ -74,7 +74,7 @@ const Register = () => {
           <div className="container">
             <div className="login-sign-up-sec">
               <div className="row justify-content-center">
-                <div className="col-xxl-4 col-lg-5 col-md-7 col-sm-9">
+                <div className="col-lg-5 col-md-7 col-sm-9">
                   <div className="contactForm-form">
                     <h3 className="text-center">Signup</h3>
                     <FormikProvider value={formik}>
@@ -83,7 +83,7 @@ const Register = () => {
                         noValidate
                         onSubmit={handleSubmit}
                       >
-                        <div className="contactForm-form-input-fields">
+                        <div className="auth-forms">
                           <div className="mb-3">
                             <input
                               type="name"
@@ -93,7 +93,7 @@ const Register = () => {
                               {...getFieldProps("name")}
                               
                             />
-                            {errors.name && (
+                            {touched.name && errors.name && (
                               <div className="text-danger">{errors.name}</div>
                             )}
 
@@ -109,7 +109,7 @@ const Register = () => {
                               // helperText={touched.email && errors.email}
                               required
                             />
-                            {errors.email && (
+                            {touched.email && errors.email && (
                               <div className="text-danger">{errors.email}</div>
                             )}
 
@@ -152,7 +152,7 @@ const Register = () => {
                                 )}
                               </div>
                             </div>
-                            {formik.errors.password && (
+                            {touched.password && formik.errors.password && (
                               <div className="text-danger">{formik.errors.password}</div>
                             )}
 
@@ -190,7 +190,7 @@ const Register = () => {
                                 )}
                               </div>
                             </div>
-                            {formik.errors.password_confirmation && (
+                            {touched.password_confirmation && formik.errors.password_confirmation && (
                               <div className="text-danger ">{formik.errors.password_confirmation}</div>
                             )}
 

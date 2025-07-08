@@ -1,13 +1,16 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
-import {FiAirplay} from "react-icons/fi";
+import { FiAirplay, FiMenu, FiUser } from "react-icons/fi";
 import "./style.css";
+import { useSelector } from "../../../store";
+import { useState } from "react";
+import { FaArrowLeft, FaArrowRight, FaCamera, FaHamburger } from "react-icons/fa";
 
 const sideBarNavlinks = [
-  { title: 'Dashboard', link: '/dashboard', icon: <FiAirplay size={16} /> },
-  { title: 'Volunteers Management', link: '/volunteer-management', icon: '' },
+  { title: "Profile", link: "/dashboard/profile", icon: <FiUser size={16} /> },
+  // { title: 'Dashboard', link: '/dashboard', icon: <FiAirplay size={16} /> },
+  // { title: 'Management', link: '/volunteer-management', icon: '' },
   // { title: 'Event Assign Management', link: '/interested-volunteer-management', icon: VolunteersManagement },
   // { title: 'Create Notification', link: '/create-notification', icon: VolunteersManagement },
   // { title: 'CMS Stats', link: '/stats', icon: EventManagement },
@@ -24,20 +27,79 @@ const sideBarNavlinks = [
 ];
 
 export const Sidebar = (props) => {
+  const location = useLocation();
+  const { user } = useSelector(({ user }) => user);
+  const [previewImage, setPreviewImage] = useState(null);
 
-  const location = useLocation()
+  const handleImageChange = (e) => {
+    const file = e.currentTarget.files[0];
+    if (file) {
+      // setFieldValue("image", file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+        
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
-    <div className={`sidebar ${props.sideClass}`} id="sidebar">
+    <div className={`sidebar  ${props.sideClass}`} id="sidebar">
+      {/* <div className="w-100 p-3">
+
+        {user?.image || previewImage ? (
+          <img
+            src={
+              previewImage ||
+              `${import.meta.env.VITE_BASE_IMAGE_URL}/${user?.image}`
+            }
+            className="img-fluid mt-2 w-100 rounded-circle"
+            alt="User Image"
+          />
+        ) : (
+          <FiUser
+            size={16}
+            className="rounded-circle  h-100 w-100"
+          />
+        )}
+      </div>
+      <label htmlFor="profileImage" className="profileImage w-100">
+        <input
+          type="file"
+          accept="img/*"
+          className="d-none"
+          id="profileImage"
+          // onChange={handleImageChange}
+          onChange={(e) => handleImageChange(e)}
+        />
+        <div className="position-absolute d-flex align-items-center justify-content-center c-pointer upload-button">
+          <i aria-hidden="true" className="camera-icon bg-primary">
+            <FaCamera size={16} className="text-light" />
+          </i>
+        </div>
+      </label> */}
+      <div className="d-flex d-lg-none justify-content-center">
+      {props.sideClass == 'collapsed' ? (
+
+        <FiMenu className="mob-menu-icon mb-3" onClick={()=>props.sidebarToggle()} size={16}/>
+      ): (
+        <FaArrowLeft className="mob-menu-icon mb-3" onClick={()=>props.sidebarToggle()} size={16}/>
+
+      )}
+
+      </div>
       <ul className="list-unstyled">
         {sideBarNavlinks.map((linkItem) => (
           <li className="sidebar-li" key={linkItem.link}>
             <Link
-              className={`sideLink ${location.pathname.includes(linkItem.link) ? 'active' : ''}`}
+              className={`sideLink ${
+                location.pathname.includes(linkItem.link) ? "active" : ""
+              }`}
               to={linkItem.link}
             >
-              {/* <span className="sideIcon">
+              <span className="sideIcon">
                 {linkItem.icon}
-              </span> */}
+              </span>
               <span className="sideLinkText">{linkItem.title}</span>
             </Link>
           </li>

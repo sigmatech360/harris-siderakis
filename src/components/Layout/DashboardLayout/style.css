@@ -1,5 +1,64 @@
-.dashboard-content {
+.dashboard-main {
     padding-top: 116px;
-    background: white;
+    background-image: url(/src/assets/footer-bg.png);
+    background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
     
+}
+
+.profileImage {
+  max-width: 200px !important;
+}
+
+.profileImage img {
+  width: 180px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  outline: 2px solid #bcbcbc;
+  outline-offset: 4px;
+}
+
+.profile .editableItem input{
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+
+.profile .edit {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.5s;
+  background-color: gray;
+}
+
+.profile .edit:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.profile strong {
+  padding: 5px;
+  font-weight: 500 !important;
+  letter-spacing: 1px;
+}
+
+.profile input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+
+.main-content{
+    flex: 1;
+    padding: 1rem 2rem;
+    /* border-left: 1px solid gray; */
+    margin-block: 1rem;
 }

@@ -1,8 +1,28 @@
 import React from "react";
 import videoBg from "../../assets/banner-bg-video.mp4";
 import mainbannerbggif from "../../assets/main-banner-bg-gif.mp4";
+import { useNavigate } from "react-router-dom";
 
-const MainBanner = () => {
+const MainBanner = ({setSearchBy, setShowModal}) => {
+  
+  const navigate = useNavigate();
+  // const handleNameModal = () =>{
+  //   setShowModal(true);
+  //   setSearchBy('name');
+  //   navigate('/search?searchby=name')
+  // }
+  // const handlePhoneModal = () =>{
+  //   setShowModal(true);
+  //   setSearchBy('phone');
+  // }
+  // const handleEmailModal = () =>{
+  //   setShowModal(true);
+  //   setSearchBy('email');
+  // }
+  // const handleAddressModal = () =>{
+  //   setShowModal(true);
+  //   setSearchBy('address');
+  // }
   return (
     <section className="main-banner">
       <video autoPlay loop muted playsInline>
@@ -34,22 +54,22 @@ const MainBanner = () => {
                 <div className="line-animation-container" id="line1">
                   <div className="line-vertical"></div>
                   <div className="line-horizontal"></div>
-                  <button className="animated-btn">Name</button>
+                  <button className="animated-btn" onClick={()=>navigate('/search?searchby=name')}>Name</button>
                 </div>
                 <div className="line-animation-container" id="line2">
                   <div className="line-vertical"></div>
                   <div className="line-horizontal"></div>
-                  <button className="animated-btn">Email</button>
+                  <button className="animated-btn" onClick={()=>navigate('/search?searchby=email') }>Email</button>
                 </div>
                 <div className="line-animation-container" id="line3">
                   <div className="line-vertical"></div>
                   <div className="line-horizontal"></div>
-                  <button className="animated-btn">Phone</button>
+                  <button className="animated-btn" onClick={()=>navigate('/search?searchby=phone')}>Phone</button>
                 </div>
                 <div className="line-animation-container" id="line4">
                   <div className="line-vertical"></div>
                   <div className="line-horizontal"></div>
-                  <button className="animated-btn">Address</button>
+                  <button className="animated-btn" onClick={()=>navigate('/search?searchby=address')}>Address</button>
                 </div>
               </div>
             </div>

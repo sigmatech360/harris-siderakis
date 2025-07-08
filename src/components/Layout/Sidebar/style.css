@@ -6,7 +6,10 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: auto;
-    border-right: 1px solid gray;
+    background: rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    height: 35rem;
+    border-radius: 10px;
     margin-block: 1rem;
 }
 
@@ -14,12 +17,16 @@
     display: none;
 }
 
+.sidebar-li {
+    margin-bottom: .5rem;
+}
+
 .sideLink {
     font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
     display: block;
     padding: 0.8rem 1rem;
     position: relative;
@@ -28,6 +35,9 @@
     overflow: hidden;
     margin-inline: 10px;
     border-radius: 7px;
+    background: #fff;
+    line-height: 100%;
+    /* color: #0252c9; */
 }
 
 
@@ -39,7 +49,7 @@
 }
 
 .sideIcon {
-    font-size: 16px;
+    /* font-size: 16px; */
     margin-right: 0.5rem;
     vertical-align: text-bottom;
 }
@@ -51,6 +61,9 @@
     width: 60px;
     text-align: center;
 }
+.sidebar.collapsed .sideLink{
+        padding: 0.8rem 0rem;
+    } 
 
 .sidebar.collapsed .sideLinkText {
     display: none;
@@ -81,16 +94,23 @@
     filter: brightness(0) invert(1);
 }
 
+
+
+
+
 /*----- Sidebar Collapsed End -----*/
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
+    /* .sideLink{
+        padding: 0.8rem 0rem;
+    } */
 
-    .sidebar.collapsed {
+    /* .sidebar.collapsed {
         width: 0;
     }
 
     .sidebar.collapsed .sideLink {
         display: none;
-    }
+    } */
 }

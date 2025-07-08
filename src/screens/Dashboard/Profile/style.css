@@ -1,0 +1,53 @@
+/* .profileImage {
+    display: inline-block;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 8px;
+} */
+
+.imageUploadButton {
+    font-size: 14px;
+    background: var(--primaryColor);
+    border-radius: 99px;
+    width: 30px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -15px;
+    right: -5px;
+    cursor: pointer;
+}
+
+.imageUploadButton .camera-icon {
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover{
+    background-color: #0252c9 !important;
+    color: white !important;
+}
+
+/* .camera-icon svg{
+        color: gray !important;
+    
+} */
+/* .upload-button {
+	opacity: 0.5;
+	transition: all 0.3s ease;
+    background-color: rgb(235.736, 236.94, 244.164);
+}
+
+.upload-button:hover {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+    background-color: rgb(235.736, 236.94, 244.164);
+} */

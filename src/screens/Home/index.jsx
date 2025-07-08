@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
 import MainBanner from "../../components/MainBanner";
 
@@ -37,11 +37,18 @@ import {
 import PlanCard from "../../components/PlanCard";
 import TestimonialSec from "../../components/TestimonialSec";
 import FaqSec from "../../components/FaqSec";
+import SearchForm from "../../components/SearchForm";
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [searchBy, setSearchBy] = useState('');
+  // useEffect(()=>{console.log('modal is open', showModal);
+  // },[showModal])
+  
   return (
     <DefaultLayout>
-      <MainBanner />
+      <MainBanner showModal={showModal} setShowModal={setShowModal} setSearchBy={setSearchBy} />
+      {/* <SearchForm showModal={showModal} handleClose={()=>setShowModal(false)} searchBy={searchBy} /> */}
 
       <section className="virtual-pi-sec">
         <div className="container">

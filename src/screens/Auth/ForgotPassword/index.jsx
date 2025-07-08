@@ -212,7 +212,7 @@ const ForgotPassword = () => {
           <div className="container">
             <div className="login-sign-up-sec">
               <div className="row justify-content-center">
-                <div className="col-xxl-4 col-lg-5 col-md-7 col-sm-9">
+                <div className="col-lg-5 col-md-7 col-sm-9">
                   <div className="contactForm-form">
                     <h4 className="text-center text-primary mb-3 fw-bold">
                       Recover your Account
@@ -224,7 +224,7 @@ const ForgotPassword = () => {
                         noValidate
                         onSubmit={handleSubmit}
                       >
-                        <div className="contactForm-form-input-fields">
+                        <div className="auth-forms">
                             {steps == "forgot-password" && (
                                 <div className="mb-3">
                                     <label htmlFor="email" className="mb-2 text-muted">

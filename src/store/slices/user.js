@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 
 
@@ -12,12 +13,21 @@ const initialState = {
     'user/initialize',
     async (_, { dispatch }) => {
       const token = localStorage.getItem('token');
-      const user = localStorage.getItem('user');
+      // const user = localStorage.getItem('user');
       
-      const parsedUser = JSON.parse(user); 
+      const userResponse = await axios.get(`${import.meta.env.VITE_BASE_URL}/edit-profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const user = userResponse.data;
+      console.log('Fetching user' , user);
+      
+      // const parsedUser = JSON.parse(user); 
+      
   
       if (token && user) {
-        dispatch(setLogin({ token, user: parsedUser }));
+        dispatch(setLogin({ token, user: user.data }));
         // dispatch(setLogin(token));
       } else {
         dispatch(setLogout());

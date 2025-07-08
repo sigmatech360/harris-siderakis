@@ -10,6 +10,9 @@ import Login from "../screens/Auth/Login";
 import Dashboard from "../screens/Dashboard";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import ForgotPassword from "../screens/Auth/ForgotPassword";
+import EditProfile from "../screens/Dashboard/Profile/editProfile";
+import Profile from "../screens/Dashboard/Profile";
+import Search from "../screens/Search";
 
 const AppRouter = () => {
   return (
@@ -20,11 +23,27 @@ const AppRouter = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/is-my-virtual-pi-legit" element={<VirtualPILegit />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/search" element={<ProtectedRoutes Components={Search} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
-
+        {/* <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} >
+        <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} />
+        <Route path="/profile/editProfile" element={<ProtectedRoutes Components={EditProfile} />} />
+        </Route> */}
+        <Route
+          path="/dashboard"
+          // element={<ProtectedRoutes Components={Dashboard} />}
+        >
+          <Route
+            path="profile"
+            element={<ProtectedRoutes Components={Profile} />}
+          />
+          <Route
+            path="editProfile"
+            element={<ProtectedRoutes Components={EditProfile} />}
+          />
+        </Route>
       </Routes>
     </Router>
   );

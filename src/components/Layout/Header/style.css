@@ -7,14 +7,13 @@
     transform: translateY(0);
     transition: all 0.5s !important;
 }
-.toggleButton:hover{
+
+.toggleButton:hover {
     transform: translateY(-2px);
 }
 
 .userMenu {
-    backdrop-filter: blur(44px);
-    -webkit-backdrop-filter: blur(25px);
-    background: rgb(255 255 255 / 10%) !important;
+    background: #1C1C1C !important;
     padding: 0 !important;
     border: none !important;
     border-radius: 0.5rem !important;
@@ -34,16 +33,22 @@
     /* border-bottom: 1px solid #ccc; */
 }
 
-.userMenuItem:hover{
+.userImage {
+    width: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userMenuItem:hover {
     background-color: #0252c9;
 }
 
-.menuDivider{
+.menuDivider {
     display: flex;
     justify-content: center;
 }
 
-.menuDivider span{
+.menuDivider span {
     width: 80%;
     height: 1px;
     background: gray;

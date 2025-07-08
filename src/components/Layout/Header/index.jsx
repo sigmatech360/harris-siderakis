@@ -1,86 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { Container, Navbar, Nav, Button, Dropdown } from "react-bootstrap";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/logo.png";
 import { RiUserLine } from "react-icons/ri";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
-import './style.css'
+import "./style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "../../../store";
 import { setLogout } from "../../../store/slices/user";
+import { FiAirplay } from "react-icons/fi";
 
-const Header = ({registerLogin=true, className}) => {
-  const dispatch =  useDispatch();
+const Header = ({ registerLogin = true, className }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
-  const [isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
   const { isAuthenticated, user } = useSelector(({ user }) => user);
-  useEffect(()=>{
-    console.log('isAuthenticated', isAuthenticated);
-    console.log('user', user);
-    setUserData(user)
 
-  },[isAuthenticated])
-  
   useEffect(() => {
-          let token = localStorage.getItem('token');
-          if (token) {
-            setIsLoggedIn(true);
-          }
-          
-          if(currentPath.includes('/dashboard')){
-            console.log(currentPath);
-            
-          }
-      },[])
+    let token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+
+    if (currentPath.includes("/dashboard")) {
+      console.log(currentPath);
+    }
+  }, []);
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       // console.log('token', token);
-      
+
       const baseURL = `${import.meta.env.VITE_BASE_URL}`;
-      const response = await axios.post(`${baseURL}/logout`,{}, {
+      const response = await axios.post(
+        `${baseURL}/logout`,
+        {},
+        {
           headers: {
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log('Logged Out:', response.data);
+      console.log("Logged Out:", response.data);
       dispatch(setLogout());
-      localStorage.removeItem('token')
-      toast.success(response.data.message)
+      localStorage.removeItem("token");
+      toast.success(response.data.message);
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
     }
-
-    catch(error) {
-      console.error('Error:', error);
-    }
-
-
-    // fetch(`https://custom.mystagingserver.site/Tim-WDLLC/public/api/logout`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Bearer ${LogoutData}`
-    //     },
-    //   },
-    // )
-      // .then((response) => {
-      //   return response.json()
-      // })
-      // .then((data) => {
-      //   console.log(data)
-      //   localStorage.removeItem('login');
-      //   navigate('/');
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // })
   };
   return (
     <Navbar expand="lg" className={`main-navbar ${className}`} variant="dark">
@@ -128,51 +102,65 @@ const Header = ({registerLogin=true, className}) => {
             </Nav.Link>
           </Nav>
 
-          {registerLogin && (
-            isAuthenticated ? (
-  
-              // <Link to={"/dashboard"} className="btn btn-primary text-light border-0">
-              //   <RiUserLine className="me-2" /> Dashboard
-              // </Link>
-              <Dropdown>
-                <Dropdown.Toggle  className="notButton toggleButton">
-                <div className="userImage">
-                  {userData?.name ? (
-                    <span className="text-capitalize">{userData?.name}</span>
+          {registerLogin &&
+            (isAuthenticated ? (
+              <>
+                <Nav>
+                  <Nav.Link
+                    as={Link}
+                    to="/search"
+                    className={currentPath === "/search" ? "active" : ""}
+                  >
+                    Start Searching
+                  </Nav.Link>
+                </Nav>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    className={`notButton ${
+                      user?.image ? "p-2 bg-transparent" : ""
+                    } toggleButton`}
+                  >
+                    {user?.image !== null ? (
+                      <div className="userImage">
+                        <img
+                          src={`${import.meta.env.VITE_BASE_IMAGE_URL}/${
+                            user?.image
+                          }`}
+                          alt="user-image"
+                          className="img-fluid user-avtar"
+                        />
+                      </div>
+                    ) : (
+                      <span className=" user-name text-capitalize">
+                        {user?.name.slice(0, 1)}
+                      </span>
+                    )}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="userMenu" align="end">
+                    {!currentPath.includes("/dashboard") && (
+                      <Link className="userMenuItem" to={"/dashboard/profile"}>
+                        <FiAirplay size={16} className="me-2" /> Dashboard
+                      </Link>
+                    )}
 
-                  ) : ( 
-                  <>
-                  <span>Name</span>
-                  </> 
-                )}
-                </div>
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="userMenu" align="end">
-                  {!currentPath.includes('/dashboard') && 
-                  <Link className="userMenuItem" to={'/dashboard'}>
-                    <FaUser size={16}/>{" "}
-                    Dashboard
-                  </Link>
-                  }
-                  <div className="menuDivider"><span></span></div>
-                  <Link to="#" className="userMenuItem" onClick={handleLogout} >
-                    <FaSignOutAlt/>{" "}
-                    Logout
-                  </Link>
-                </Dropdown.Menu>
-
-              </Dropdown>
-            ) 
-            : (
+                    <div className="menuDivider">
+                      <span></span>
+                    </div>
+                    <Link
+                      to="#"
+                      className="userMenuItem"
+                      onClick={handleLogout}
+                    >
+                      <FaSignOutAlt className="me-2" /> Logout
+                    </Link>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>
+            ) : (
               <Link to={"/login"} className="btn-login-signup">
                 <RiUserLine className="me-2" /> Login/Sign Up
               </Link>
-            )
-          )
-          
-
-          
-          }
+            ))}
         </Navbar.Collapse>
       </Container>
     </Navbar>
