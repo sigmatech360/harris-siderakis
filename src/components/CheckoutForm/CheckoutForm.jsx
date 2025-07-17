@@ -9,12 +9,22 @@ import {
   CardCvcElement,
 } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 // import Swal from "sweetalert2";
 
-const CheckoutForm = ({ setPaymentDone, amount, setStep, isComprehensive, selectedIndicators }) => {
+const CheckoutForm = ({
+  setPaymentDone,
+  closeModal,
+  amount,
+  setStep,
+  isComprehensive,
+  selectedIndicators,
+  selectedPersonData,
+  isSocialReport,
+}) => {
   const [userEmail, setUserEmail] = useState("");
-//   const [termsAndCondition, setTermsAndCondition] = useState(false);
-//   const [additionalNotes, setAdditionalNotes] = useState(false);
+  //   const [termsAndCondition, setTermsAndCondition] = useState(false);
+  //   const [additionalNotes, setAdditionalNotes] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -34,46 +44,63 @@ const CheckoutForm = ({ setPaymentDone, amount, setStep, isComprehensive, select
       setErrorMessage(submitError.message);
       return;
     }
+    document.querySelector(".loaderBox").classList.remove("d-none");
 
     const { token, error } = await stripe.createToken(
       elements.getElement(CardNumberElement)
     );
     if (token) {
       console.log("Received Stripe token:", token);
-      console.log(`Payment token created: ${token.id}, the amount to be paid is ${amount}`);
-      const payload ={
-        token: token.id,
+      console.log(
+        `Payment token created: ${token.id}, the amount to be paid is ${amount}`
+      );
+      const payload = {
+        ...selectedPersonData,
+        stripe_token: token.id,
         email: userEmail,
         amount,
-        isComprehensive,
-        selectedIndicators
-      }
-      console.log('Pay submitted', payload);
-      
+        is_mob: 0,
+        'social_media_report':isSocialReport ? 1 : 0,
 
-    //   const response = await fetch(
-    //     `${import.meta.env.VITE_BASE_URL}/api/payment/process`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         token: token.id, // Stripe token
-    //         email: userEmail, // From an input field or logged-in user
-    //         amount: amount,    
-    //       }),
-    //     }
-    //   );
-    //   const result = await response.json();
+        types: !isComprehensive
+          ? selectedIndicators
+          : [
+              {
+                label: "Comprehensive Report",
+                key: "haComprehensiveReport",
+                price: 20,
+              },
+            ],
+        // isComprehensive,
+        // selectedIndicators
+      };
+      console.log("Pay submitted", payload);
+      const authToken = localStorage.getItem("token");
 
-    //   if (result.status) {
-    //     console.log("Payment successful!");
-    //     // toast.success("Payment successful!")
-            
-    //   } else {
-    //     console.log("Payment failed:", result.message);
-    //   }
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/generate-report`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${authToken}`,
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+        const result = await response.json();
+
+        if (result.status) {
+          document.querySelector(".loaderBox").classList.add("d-none");
+          console.log(result.message);
+          toast.success(result.message || "Payment successful!")
+          
+        } else {
+          document.querySelector(".loaderBox").classList.add("d-none");
+          toast.error("Payment failed!")
+          console.log("Payment failed:", result);
+        }
+        closeModal()
 
       // You can send the token to your server for further processing
       // For example, you might want to create a charge or save the token for future use
@@ -170,23 +197,24 @@ const CheckoutForm = ({ setPaymentDone, amount, setStep, isComprehensive, select
         </label>
       </div> */}
       <div className="my-4 d-flex justify-content-end flex-column gap-3">
-        <h5 className="d-flex justify-content-between mb-4 ">Total Amount <span className="text-success">${amount}</span></h5>
+        <h5 className="d-flex justify-content-between mb-4 ">
+          Total Amount <span className="text-success">${amount}</span>
+        </h5>
         <div className="d-flex justify-content-between">
-
-        <button
-          className="btn "
-          // type="submit"
-          onClick={()=>setStep('order confirmation')}
-        >
-          Back
-        </button>
-        <button
-          className="btn "
-          type="submit"
-          disabled={!stripe || !elements}
-        >
-          Pay
-        </button>
+          <button
+            className="btn "
+            // type="submit"
+            onClick={() => setStep("order confirmation")}
+          >
+            Back
+          </button>
+          <button
+            className="btn "
+            type="submit"
+            disabled={!stripe || !elements}
+          >
+            Pay
+          </button>
         </div>
       </div>
       {/* Show error message to your customers */}

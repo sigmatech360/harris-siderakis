@@ -13,6 +13,7 @@ const Search = () => {
   const searchByParam = queryParams.get("searchby");
 
   const [personsData, setPersonsData] = useState([]);
+  const [selectedPersonData, setSelectedPersonData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -133,9 +134,6 @@ const Search = () => {
       const data = response.data;
       const persons = data.persons;
       const pages = data.pagination.totalPages;
-      console.log("Success:", response?.data);
-      console.log("persons:", persons);
-      console.log("pages:", pages);
       if (persons.length > 0) {
         setPersonsData(persons);
       }
@@ -283,7 +281,8 @@ const Search = () => {
   const handleGenerateModal = (id) => {
     // personsData.find(person=>person.tahoeId == id).indicators.
     const matchedPerson = personsData.find((person) => person.tahoeId === id);
-
+    console.log('matchedPerson', matchedPerson);
+    
     if (matchedPerson && matchedPerson.indicators) {
       const activeIndicators = indicatorKeysToCheck
         .filter(
@@ -291,12 +290,20 @@ const Search = () => {
             matchedPerson.indicators[key] && matchedPerson.indicators[key] > 0
         )
         .map((key) => ({
-          indicatorName: indicatorLabels[key].label,
-          indicatorPrice: indicatorLabels[key].price,
-          value: matchedPerson.indicators[key],
+           label: indicatorLabels[key].label,
+          price: indicatorLabels[key].price,
+          count: matchedPerson.indicators[key],
+          key: key,
         }));
       setPersonIndicators(activeIndicators);
       setIndicatorModalShow(true);
+      setSelectedPersonData({
+        'email': matchedPerson.emailAddresses[0].emailAddress,
+        'first_name':matchedPerson.name.firstName,
+        'last_name': matchedPerson.name.lastName,
+        'age': `${matchedPerson.age}`,
+        'tahoe_id': matchedPerson.tahoeId,
+      })
       console.log("Available indicators with count > 0:", activeIndicators);
     } else {
       console.log("Person not found or indicators missing.");
@@ -560,42 +567,44 @@ const Search = () => {
                 </div>
               </div>
             ))}
-            <div className="pagination-box">
-              <span>
-                Page {currentPage} of {totalPages}
-              </span>
-              <ul className="pagination-list">
-                <li>
-                  <button
-                    onClick={() => goToPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    Previous
-                  </button>
-                </li>
-                {getPageNumbers().map((pageNumber, ind) => (
-                  <li key={ind}>
+            {totalPages > 1 && 
+              <div className="pagination-box">
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <ul className="pagination-list">
+                  <li>
                     <button
-                      className={`${
-                        currentPage === pageNumber ? "active" : ""
-                      }`}
-                      onClick={() => goToPage(pageNumber)}
+                      onClick={() => goToPage(currentPage - 1)}
+                      disabled={currentPage === 1}
                     >
-                      {pageNumber}
+                      Previous
                     </button>
                   </li>
-                ))}
+                  {getPageNumbers().map((pageNumber, ind) => (
+                    <li key={ind}>
+                      <button
+                        className={`${
+                          currentPage === pageNumber ? "active" : ""
+                        }`}
+                        onClick={() => goToPage(pageNumber)}
+                      >
+                        {pageNumber}
+                      </button>
+                    </li>
+                  ))}
 
-                <li>
-                  <button
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    Next
-                  </button>
-                </li>
-              </ul>
-            </div>
+                  <li>
+                    <button
+                      onClick={() => goToPage(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            }
           </div>
         </div>
       )}
@@ -604,6 +613,7 @@ const Search = () => {
         showModal={indicatorModalShow}
         handleClose={() => setIndicatorModalShow(false)}
         personIndicators={personIndicators}
+        selectedPersonData={selectedPersonData}
       />
 
       <SearchModal

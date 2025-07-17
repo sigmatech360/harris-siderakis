@@ -15,7 +15,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../CheckOutForm/CheckoutForm";
 
-const IndicatorModal = ({ handleClose, showModal, personIndicators }) => {
+const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPersonData }) => {
   const [step, setStep] = useState("full report");
   const [selectedIndicators, setSelectedIndicators] = useState([]);
   const [isComprehensive, setIsComprehensive] = useState(false);
@@ -27,11 +27,11 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators }) => {
     
     setSelectedIndicators((prevSelected) => {
       const exists = prevSelected.find(
-        (item) => item.indicatorName === indicator.indicatorName
+        (item) => item.label === indicator.label
       );
       if (exists) {
         return prevSelected.filter(
-          (item) => item.indicatorName !== indicator.indicatorName
+          (item) => item.label !== indicator.label
         );
       } else {
         return [...prevSelected, indicator];
@@ -54,7 +54,7 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators }) => {
       setSubTotal(20);
     } else {
       const total_price = selectedIndicators.reduce(
-        (total, item) => total + (item.indicatorPrice || 0),
+        (total, item) => total + (item.price || 0),
         0
       );
       setSubTotal(total_price);
@@ -84,7 +84,10 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators }) => {
       setStep("summary");
     }
   };
-  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
+  const [stripePromise,setStripePromise]  = useState();
+  useEffect(()=>{
+    setStripePromise(loadStripe(import.meta.env.VITE_STRIPE_KEY));
+  },[])
   // console.log("stripe key", import.meta.env.VITE_STRIPE_KEY);
 
   const options = {
@@ -104,8 +107,9 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators }) => {
     setSubTotal(0);
     setTotalPrice(0);
     handleClose();
+    setIsComprehensive(false);
+    setIsSocialReport(false)
   };
-console.log('selectedIndicators', selectedIndicators);
 
   return (
     <>
@@ -133,21 +137,21 @@ console.log('selectedIndicators', selectedIndicators);
                 <label
                   key={i}
                   className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
-                  htmlFor={indicator.indicatorName}
+                  htmlFor={indicator.label}
                 >
                   <input
                     type="checkbox"
-                    id={indicator.indicatorName}
-                    name={indicator.indicatorName}
+                    id={indicator.label}
+                    name={indicator.label}
                     checked={selectedIndicators.some(
-                      (item) => item.indicatorName === indicator.indicatorName
+                      (item) => item.label === indicator.label
                     )}
                     onChange={() => handleCheckboxChange(indicator)}
                   />
                   <p className="m-0">
-                    {indicator.indicatorName}: {indicator.value}
+                    {indicator.label}: {indicator.count}
                   </p>
-                  <p className="m-0">${indicator.indicatorPrice}</p>
+                  <p className="m-0">${indicator.price}</p>
                 </label>
               ))}
             </div>
@@ -162,12 +166,12 @@ console.log('selectedIndicators', selectedIndicators);
                   className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
                 >
                   <div className="d-flex flex-column">
-                    <p className="m-0">{indicator.indicatorName}</p>
+                    <p className="m-0">{indicator.label}</p>
                     <span className="text-muted" style={{ fontSize: "12px" }}>
-                      {indicator.value} record{indicator.value > 1 ? "s" : ""}
+                      {indicator.count} record{indicator.count > 1 ? "s" : ""}
                     </span>
                   </div>
-                  <p className="m-0">${indicator.indicatorPrice}</p>
+                  <p className="m-0">${indicator.price}</p>
                 </div>
               ))}
               <div className="d-flex justify-content-between mt-5 border-top border-bottom p-2 pt-3">
@@ -187,9 +191,9 @@ console.log('selectedIndicators', selectedIndicators);
                         key={i}
                         className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
                       >
-                        <p className="m-0">{indicator.indicatorName}</p>
+                        <p className="m-0">{indicator.label}</p>
                         <p className="m-0 text-success">
-                          ${indicator.indicatorPrice}
+                          ${indicator.price}
                         </p>
                       </div>
                     ))}
@@ -220,6 +224,7 @@ console.log('selectedIndicators', selectedIndicators);
                     name="comprehensiveReport"
                     id="comprehensiveReport"
                     onChange={(e) => setIsComprehensive(e.target.checked)}
+                    checked={isComprehensive}
                   />
                 </label>
                 <label
@@ -245,6 +250,7 @@ console.log('selectedIndicators', selectedIndicators);
                         setTotalPrice(totalPrice - 20);
                       }
                     }}
+                    checked={isSocialReport}
                   />
                 </label>
                 <div className=" p-3 border-bottom ">
@@ -278,7 +284,7 @@ console.log('selectedIndicators', selectedIndicators);
             <>
               <div className="mt-3">
                 <Elements stripe={stripePromise} options={options}>
-                  <CheckoutForm amount={totalPrice} setStep={setStep} isComprehensive={isComprehensive} selectedIndicators={selectedIndicators} />
+                  <CheckoutForm amount={totalPrice} closeModal={closeModal} isSocialReport={isSocialReport} selectedPersonData={selectedPersonData} setStep={setStep} isComprehensive={isComprehensive} selectedIndicators={selectedIndicators} />
                 </Elements>
               </div>
             </>
