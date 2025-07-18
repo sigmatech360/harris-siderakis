@@ -201,7 +201,7 @@ const Profile = () => {
                     onChange={handleProfileChange}
                   />
                   <label htmlFor="profileImage" className="imageUploadButton">
-                    <i aria-hidden="true" className="camera-icon bg-primary">
+                    <i aria-hidden="true" className="camera-icon btn bg-primary">
                       <FaCamera size={16} />
                     </i>
                   </label>

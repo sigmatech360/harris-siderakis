@@ -6,10 +6,11 @@ import "./style.css";
 import { useSelector } from "../../../store";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaCamera, FaHamburger } from "react-icons/fa";
+import { RiFileHistoryLine } from "react-icons/ri";
 
 const sideBarNavlinks = [
-  { title: "Profile", link: "/dashboard/profile", icon: <FiUser size={16} /> },
-  // { title: 'Dashboard', link: '/dashboard', icon: <FiAirplay size={16} /> },
+  { title: "Profile", link: "/profile", icon: <FiUser size={16} /> },
+  { title: 'Order History', link: '/order-history', icon: <RiFileHistoryLine size={16} /> },
   // { title: 'Management', link: '/volunteer-management', icon: '' },
   // { title: 'Event Assign Management', link: '/interested-volunteer-management', icon: VolunteersManagement },
   // { title: 'Create Notification', link: '/create-notification', icon: VolunteersManagement },

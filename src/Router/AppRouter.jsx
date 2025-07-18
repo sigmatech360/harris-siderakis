@@ -13,6 +13,7 @@ import ForgotPassword from "../screens/Auth/ForgotPassword";
 import EditProfile from "../screens/Dashboard/Profile/editProfile";
 import Profile from "../screens/Dashboard/Profile";
 import Search from "../screens/Search";
+import OrderHistory from "../screens/Dashboard/OrderHistory";
 
 const AppRouter = () => {
   return (
@@ -31,19 +32,23 @@ const AppRouter = () => {
         <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} />
         <Route path="/profile/editProfile" element={<ProtectedRoutes Components={EditProfile} />} />
         </Route> */}
-        <Route
+        {/* <Route
           path="/dashboard"
           // element={<ProtectedRoutes Components={Dashboard} />}
         >
+        </Route> */}
           <Route
-            path="profile"
+            path="/profile"
             element={<ProtectedRoutes Components={Profile} />}
+          />
+          <Route
+            path="/order-history"
+            element={<ProtectedRoutes Components={OrderHistory} />}
           />
           <Route
             path="editProfile"
             element={<ProtectedRoutes Components={EditProfile} />}
           />
-        </Route>
       </Routes>
     </Router>
   );

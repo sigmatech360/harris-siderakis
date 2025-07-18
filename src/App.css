@@ -2081,7 +2081,7 @@ label.form-check-label {
   color: white;
 }
 
-.person-results .get-report-button {
+.get-report-button {
   padding: 7px 11px;
   border: none;
   border-radius: 4px;
@@ -2090,7 +2090,7 @@ label.form-check-label {
   transition: all 0.3s;
 }
 
-.person-results .get-report-button:hover {
+.get-report-button:hover {
   background-color: #013f9c;
 }
 

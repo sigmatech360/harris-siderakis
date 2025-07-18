@@ -80,7 +80,7 @@ const EditProfile = () => {
             dispatch(setLogin({ token: token, user: user.data }));
           }
           toast.success(response.data.message);
-          navigate("/dashboard/profile");
+          navigate("/profile");
         } else {
           if (response.data.message == "Unauthorized User!") {
             toast.error("Invalid Email or Password");

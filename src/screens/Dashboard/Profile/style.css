@@ -23,7 +23,8 @@
 .imageUploadButton .camera-icon {
     padding: 10px;
     border-radius: 50%;
-    border: 2px solid #ffffff;
+    border: 1px solid #ffffff;
+    color: white;
     line-height: 100%;
     display: flex;
     justify-content: center;

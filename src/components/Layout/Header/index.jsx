@@ -138,7 +138,7 @@ const Header = ({ registerLogin = true, className }) => {
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="userMenu" align="end">
                     {!currentPath.includes("/dashboard") && (
-                      <Link className="userMenuItem" to={"/dashboard/profile"}>
+                      <Link className="userMenuItem" to={"/profile"}>
                         <FiAirplay size={16} className="me-2" /> Dashboard
                       </Link>
                     )}
