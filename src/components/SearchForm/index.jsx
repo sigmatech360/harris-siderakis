@@ -5,9 +5,7 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
 
 const SearchForm = ({ showModal, handleClose, searchType, searchBy }) => {
-  useEffect(() => {
-    console.log("modal is open", showModal);
-  }, [showModal]);
+  
 
   const formik = useFormik({
     initialValues: {

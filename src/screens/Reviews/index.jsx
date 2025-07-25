@@ -151,7 +151,7 @@ const Reviews = () => {
               </div>
             </div>
             <div className="col-md-12">
-              <Tabs
+              {/* <Tabs
                 defaultActiveKey="peopleSearch"
                 className="reviews-tabs"
                 data-aos="fade-up"
@@ -209,7 +209,47 @@ const Reviews = () => {
                 <Tab eventKey="reversePhoneLookup" title="Reverse Phone Lookup">
                   Reverse Phone Lookup
                 </Tab>
-              </Tabs>
+              </Tabs> */}
+              <div className="reviews-sec-slider-content">
+                    <Swiper
+                      modules={[Pagination, Autoplay]}
+                      spaceBetween={20}
+                      slidesPerView={1}
+                      loop={true}
+                      centeredSlides={true}
+                      speed={1000}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                      }}
+                      onSlideChange={(swiper) =>
+                        setActiveIndex(swiper.realIndex)
+                      }
+                      breakpoints={{
+                        // 768: { slidesPerView: 2 },
+                        992: { slidesPerView: 3 },
+                      }}
+                      pagination={{ clickable: true }}
+                    >
+                      {reviewsData.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <TestimonialCard
+                            // flexVariant={item.flexVariant}
+                            // bgColor={item.bgColor}
+                            {...(index !== activeIndex && {
+                              flexVariant: "row",
+                              bgColor: "lightGray",
+                            })}
+                            title={item.title}
+                            ratingNumber={item.ratingNumber}
+                            name={item.name}
+                            state={item.state}
+                            userImg={item.userImg}
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
             </div>
           </div>
         </div>

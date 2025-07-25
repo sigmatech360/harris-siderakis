@@ -43,3 +43,21 @@
     gap: 1rem;
     z-index: 10000;
   }
+
+  .backButton{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #0d6efd;
+    transition: all 0.3s;
+  }
+  .backButton:hover {
+    background-color: #0252c9;
+
+  }

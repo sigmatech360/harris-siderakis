@@ -15,7 +15,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../CheckOutForm/CheckoutForm";
 
-const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPersonData }) => {
+const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPersonData, comprehensivePrice, socialMediaReportPrice }) => {
   const [step, setStep] = useState("full report");
   const [selectedIndicators, setSelectedIndicators] = useState([]);
   const [isComprehensive, setIsComprehensive] = useState(false);
@@ -44,35 +44,19 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     if (isComprehensive) {
-      // if(isSocialReport){
-
-      //   setTotalPrice(40)
-      // }
-      // else{
-      //   setTotalPrice(20)
-      // }
-      setSubTotal(20);
+      setSubTotal(comprehensivePrice);
     } else {
       const total_price = selectedIndicators.reduce(
         (total, item) => total + (item.price || 0),
         0
       );
       setSubTotal(total_price);
-      // if(isSocialReport){
-
-      //   // setTotalPrice(40)
-      //   setTotalPrice(total_price+20)
-      // }
-      // else{
-
-      //   setTotalPrice(total_price)
-      // }
     }
   }, [selectedIndicators, isComprehensive]);
 
   useEffect(() => {
     if (isSocialReport) {
-      setTotalPrice(subTotal + 20);
+      setTotalPrice(subTotal + socialMediaReportPrice);
     } else {
       setTotalPrice(subTotal);
     }
@@ -201,7 +185,7 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                 ) : (
                   <div className="d-flex align-items-center justify-content-between shadow-sm p-2 py-3 mt-2">
                     <p>Comprehensive Report</p>
-                    <p className="text-success">$20</p>
+                    <p className="text-success">${comprehensivePrice}</p>
                   </div>
                 )}
                 <div className="d-flex justify-content-between mt-5 border-top border-bottom p-2 pt-3">
@@ -235,7 +219,7 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                   <div className="d-flex flex-column">
                     <p>Social Media Report</p>
                     <p className="text-muted" style={{ fontSize: "12px" }}>
-                      $20 - Shared within 24 hours
+                      ${socialMediaReportPrice} - Shared within 24 hours
                     </p>
                   </div>
                   <input
@@ -245,9 +229,9 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                     onChange={(e) => {
                       setIsSocialReport(e.target.checked);
                       if (e.target.checked) {
-                        setTotalPrice(subTotal + 20);
+                        setTotalPrice(subTotal + socialMediaReportPrice);
                       } else {
-                        setTotalPrice(totalPrice - 20);
+                        setTotalPrice(totalPrice - socialMediaReportPrice);
                       }
                     }}
                     checked={isSocialReport}
@@ -268,7 +252,7 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                       style={{ fontSize: "14px" }}
                     >
                       <p>Social Media Cost</p>
-                      <p>${20}</p>
+                      <p>${socialMediaReportPrice}</p>
                     </div>
                   )}
                 </div>

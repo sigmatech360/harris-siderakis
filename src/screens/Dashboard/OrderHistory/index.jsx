@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import DashboardLayout from "../../../components/Layout/DashboardLayout";
 import axios from "axios";
 import { formatDate } from "../../../utills/dateFormatter";
+import { Link, useNavigate } from "react-router-dom";
 
 const OrderHistory = () => {
   const [ordersData, setOrdersData] = useState();
+  const navigate = useNavigate();
 
   const [tableData, setTableData] = useState();
   const [currentItems, setCurrentItems] = useState([]);
@@ -13,7 +15,7 @@ const OrderHistory = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    setCurrentItems(tableData?.slice(0, 8));
+    setCurrentItems(tableData?.slice(0, 5));
   }, [tableData]);
 
   const goToPage = (pageNum) => {
@@ -21,6 +23,18 @@ const OrderHistory = () => {
       setCurrentPage(pageNum);
     }
   };
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  };
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * 5;
+    const endIndex = startIndex + 5;
+    setCurrentItems(tableData?.slice(startIndex, endIndex));
+  },[currentPage]);
 
   const baseUrl = `${import.meta.env.VITE_BASE_URL}`;
   const fetchHistory = async () => {
@@ -37,7 +51,7 @@ const OrderHistory = () => {
         console.log("records fetched successfully", data);
         setOrdersData(data?.data);
         setTableData(data?.data);
-        const pages = Math.ceil(data?.data.length / 10);
+        const pages = Math.ceil(data?.data.length / 5);
         setTotalPages(pages);
       }
       document.querySelector(".loaderBox").classList.add("d-none");
@@ -73,7 +87,11 @@ const OrderHistory = () => {
   useEffect(() => {
     fetchHistory();
   }, []);
-  const handleReport = (reportLink) =>{
+  const handleReport = (item) =>{
+    
+    localStorage.setItem(`OrderReport${item.id}`, JSON.stringify(item));
+    navigate(`/order-history/${item.id}`)
+    
 
   }
 
@@ -89,7 +107,7 @@ const OrderHistory = () => {
             Update
           </button> */}
         </div>
-        {ordersData?.length > 0 && (
+        {currentItems?.length > 0 && (
           <>
             <div className="border border-2 border-light p-3 mt-3 rounded-2">
               <div className="row">
@@ -109,11 +127,11 @@ const OrderHistory = () => {
                   <h5>Generated Date</h5>
                 </div>
                 <div className="col-lg-2">
-                  <h5>Get Report</h5>
+                  <h5>Actions</h5>
                 </div>
               </div>
             </div>
-            {ordersData.map((item, index) => (
+            {currentItems.map((item, index) => (
               <div className="border border-2 border-light p-3 mt-3 rounded-2">
                 <div className="row align-items-center">
                   <div className="col-lg-1">
@@ -139,18 +157,19 @@ const OrderHistory = () => {
                   <div className="col-lg-2">
                     <button
                       className="get-report-button"
-                        onClick={() => handleReport(item.report_links[0])}
+                      onClick={() => handleReport(item)}
                     >
-                      Get Full Report
+                      View All Reports
                     </button>
                   </div>
                 </div>
               </div>
             ))}
-            {/* {totalPages > 1 && (
+            {totalPages > 1 && (
           <div className="pagination-box">
             <span>
-              Page {currentPage} of {totalPages}
+              {/* Page {currentPage} of {totalPages} */}
+              {/* Showing {currentItems.length} of {tableData?.length} records */}
             </span>
             <ul className="pagination-list">
               <li>
@@ -182,7 +201,7 @@ const OrderHistory = () => {
               </li>
             </ul>
           </div>
-        )} */}
+        )}
           </>
         )}
       </div>

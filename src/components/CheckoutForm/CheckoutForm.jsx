@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -10,6 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useSelector } from "../../store";
 // import Swal from "sweetalert2";
 
 const CheckoutForm = ({
@@ -22,7 +23,11 @@ const CheckoutForm = ({
   selectedPersonData,
   isSocialReport,
 }) => {
-  const [userEmail, setUserEmail] = useState("");
+  const { user } = useSelector(({ user }) => user);
+  const [userEmail, setUserEmail] = useState('');
+  useEffect(()=>{
+    setUserEmail(user?.email);
+  },[user])
   //   const [termsAndCondition, setTermsAndCondition] = useState(false);
   //   const [additionalNotes, setAdditionalNotes] = useState(false);
   const stripe = useStripe();
@@ -57,7 +62,8 @@ const CheckoutForm = ({
       const payload = {
         ...selectedPersonData,
         stripe_token: token.id,
-        email: userEmail,
+        // email: selectedPersonData.email,
+        user_email: userEmail,
         amount,
         is_mob: 0,
         'social_media_report':isSocialReport ? 1 : 0,
@@ -135,7 +141,7 @@ const CheckoutForm = ({
       {/* <CardElement options={CARD_OPTIONS} /> */}
 
       <label className="mt-3">
-        Email
+        Email &nbsp; <span className="text-muted" style={{fontSize:'14px'}}> (All reports will be sent to this email)</span>
         <input
           className="p-2 rounded border d-block w-100"
           type="email"

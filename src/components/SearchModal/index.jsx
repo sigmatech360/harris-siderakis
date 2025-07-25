@@ -17,9 +17,6 @@ const SearchModal = ({
   step,
   formData,
 }) => {
-  useEffect(() => {
-    console.log("modal is open", showModal);
-  }, [showModal]);
 
   const nextStep = () => {
     if (step < 5) {

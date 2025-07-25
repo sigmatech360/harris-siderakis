@@ -14,6 +14,7 @@ import EditProfile from "../screens/Dashboard/Profile/editProfile";
 import Profile from "../screens/Dashboard/Profile";
 import Search from "../screens/Search";
 import OrderHistory from "../screens/Dashboard/OrderHistory";
+import PdfReportList from "../screens/Dashboard/OrderHistory/PdfReportList";
 
 const AppRouter = () => {
   return (
@@ -44,6 +45,10 @@ const AppRouter = () => {
           <Route
             path="/order-history"
             element={<ProtectedRoutes Components={OrderHistory} />}
+          />
+          <Route
+            path="/order-history/:id"
+            element={<ProtectedRoutes Components={PdfReportList} />}
           />
           <Route
             path="editProfile"

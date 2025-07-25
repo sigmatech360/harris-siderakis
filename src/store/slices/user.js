@@ -21,7 +21,6 @@ const initialState = {
         },
       });
       const user = userResponse.data;
-      console.log('Fetching user' , user);
       
       // const parsedUser = JSON.parse(user); 
       

@@ -1693,10 +1693,10 @@ label.form-check-label {
 }
 
 .comparisonTable-outer-div .table-responsive {
-  overflow-x: scroll !important;
-  scrollbar-width: auto;
+  overflow-x: auto !important;
+  /* scrollbar-width: auto; */
   /* For Firefox */
-  scrollbar-color: #0252c9 #0252c9;
+  /* scrollbar-color: #0252c9 #0252c9; */
   /* Optional: custom color for Firefox */
 }
 
@@ -1707,12 +1707,12 @@ label.form-check-label {
 }
 
 .comparisonTable-outer-div .table-responsive::-webkit-scrollbar-thumb {
-  background-color: #0252c9;
+  background-color: #212121;
   border-radius: 4px;
 }
 
 .comparisonTable-outer-div .table-responsive::-webkit-scrollbar-track {
-  background-color: #0252c9;
+  background-color: #d3d3d3;
 }
 
 .comparisonTable-outer-div {
@@ -2094,6 +2094,8 @@ label.form-check-label {
   background-color: #013f9c;
 }
 
+
+
 .person-results .person-address {
   width: 50%;
   white-space: nowrap;
@@ -2143,6 +2145,77 @@ label.form-check-label {
   border-radius: 5px;
   padding: 10px;
 }
+
+.pdf-download-card{
+  font-size: 12px;
+}
+.pdf-download-card .pdfcard{
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+
+.pdf-card-left{
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+.pdf-card-left .pdf-search-image{
+  height: 75px;
+}
+.pdf-card-left .pdf-search-image img{ 
+  height: 100%;
+}
+
+.pdf-card-left p{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pdf-card-right{
+  background-color: #1C1C1C;
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex: 1;
+}
+.pdf-card-right span{
+  padding: 1rem;
+  background-color: #0252c9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pdf-card-right p{
+  text-align: center;
+}
+
+.pdf-download-card button {
+  background-color: #0252c9;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  transition: all 0.3s;
+}
+
+.pdf-download-card button:hover {
+  background-color: #014bbb;
+}
+
+
 
 
 /* Inner Pages  End*/

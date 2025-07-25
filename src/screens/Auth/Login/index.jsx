@@ -107,7 +107,7 @@ const Login = () => {
                               id="email"
                               {...getFieldProps("email")}
                             />
-                            {errors.email && (
+                            {touched.email && errors.email && (
                               <div className="text-danger">{errors.email}</div>
                             )}
                           </div>
@@ -154,7 +154,7 @@ const Login = () => {
                                 Forgot Password?
                               </Link>
                             </div>
-                            {errors.password && (
+                            {touched.password && errors.password && (
                               <div className="text-danger">
                                 {errors.password}
                               </div>

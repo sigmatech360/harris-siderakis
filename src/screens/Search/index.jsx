@@ -6,6 +6,7 @@ import SearchModal from "../../components/SearchModal";
 import axios from "axios";
 import IndicatorModal from "../../components/IndicatorModal";
 import { useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Search = () => {
   const location = useLocation();
@@ -32,12 +33,14 @@ const Search = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if(name === 'address'){
-      setFormData({'Addresses':[{'AddressLine2':value}]})
-    }
-    else{
-      setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "address") {
+      setFormData({ Addresses: [{ AddressLine2: value }] });
+    } else if (name === "phone") {
+      const numericValue = value.replace(/\D/g, "");
 
+      setFormData((prev) => ({ ...prev, [name]: numericValue }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -70,7 +73,7 @@ const Search = () => {
     } else if (step == 1) {
       setModalTitle("Did you know Age?");
       setInputPlaceholder("Age (Optional)");
-      setInputName("Age");
+      setInputName("age");
     } else if (step == 2) {
       setModalTitle("Did you know Address?");
       setInputPlaceholder("Address (Optional)");
@@ -102,9 +105,9 @@ const Search = () => {
   };
 
   const handleSearch = async (e) => {
-    if (searchBy !== "name") {
-      e.preventDefault();
-    }
+    // if (searchBy !== "name") {
+    //   e.preventDefault();
+    // }
     document.querySelector(".loaderBox").classList.remove("d-none");
     document.querySelector(".custom-loader-text").classList.remove("d-none");
     console.log("form data : ", formData);
@@ -136,6 +139,16 @@ const Search = () => {
       const pages = data.pagination.totalPages;
       if (persons.length > 0) {
         setPersonsData(persons);
+      } else {
+        if (data.isError) {
+          toast.error(data.error.inputErrors);
+        } else {
+          toast.error(
+            data.error.warnings[0] ||
+              "No results found for the given search criteria."
+          );
+        }
+        setPersonsData([]);
       }
       if (pages > 1) {
         setTotalPages(pages);
@@ -146,6 +159,9 @@ const Search = () => {
       document.querySelector(".custom-loader-text").classList.add("d-none");
     } catch (error) {
       console.error("Error:", error);
+      if (error.response && error.response.data.isError) {
+        toast.error(error.response.data.error.inputErrors[0]);
+      }
       document.querySelector(".loaderBox").classList.add("d-none");
       document.querySelector(".custom-loader-text").classList.add("d-none");
     }
@@ -199,81 +215,49 @@ const Search = () => {
     fetchUsers();
   }, [currentPage]);
 
-  // const indicatorKeysToCheck = [
-  //   "hasBusinessRecords",
-  //   "hasDivorceRecords",
-  //   "hasDomainsRecords",
-  //   "hasEvictionsRecords",
-  //   "hasFeinRecords",
-  //   "hasForeclosuresRecords",
-  //   "hasJudgmentRecords",
-  //   "hasLienRecords",
-  //   "hasMarriageRecords",
-  //   "hasProfessionalLicenseRecords",
-  //   "hasPropertyRecords",
-  //   "hasVehicleRegistrationsRecords",
-  //   "hasWorkplaceRecords",
-  //   "hasDeaRecords",
-  // ];
-  const indicatorLabels = {
-  hasBusinessRecords: {
-    label: "Business Records",
-    price: 5
-  },
-  hasDivorceRecords: {
-    label: "Divorce Records",
-    price: 4
-  },
-  hasDomainsRecords: {
-    label: "Domains Records",
-    price: 3
-  },
-  hasEvictionsRecords: {
-    label: "Evictions Records",
-    price: 6
-  },
-  hasFeinRecords: {
-    label: "FEIN Records",
-    price: 2
-  },
-  hasForeclosuresRecords: {
-    label: "Foreclosures Records",
-    price: 7
-  },
-  hasJudgmentRecords: {
-    label: "Judgment Records",
-    price: 4
-  },
-  hasLienRecords: {
-    label: "Lien Records",
-    price: 3
-  },
-  hasMarriageRecords: {
-    label: "Marriage Records",
-    price: 2
-  },
-  hasProfessionalLicenseRecords: {
-    label: "Professional License Records",
-    price: 5
-  },
-  hasPropertyRecords: {
-    label: "Property Records",
-    price: 6
-  },
-  hasVehicleRegistrationsRecords: {
-    label: "Vehicle Registrations Records",
-    price: 4
-  },
-  hasWorkplaceRecords: {
-    label: "Workplace Records",
-    price: 5
-  },
-  hasDeaRecords: {
-    label: "DEA Records",
-    price: 3
-  }
-};
+  const [indicatorLabels, setIndicatorLabels] = useState({});
+  const [comprehensivePrice, setComprehensivePrice] = useState(0);
+  const [socialMediaReportPrice, setSocialMediaReportPrice] = useState(0);
+  useEffect(() => {
+    const fetchIndicators = async () => {
+      const baseUrl = `${import.meta.env.VITE_BASE_URL}`;
+      const token = localStorage.getItem("token");
+      try {
+        document.querySelector(".loaderBox").classList.remove("d-none");
 
+        const response = await axios.get(`${baseUrl}/pricing`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = response.data;
+        let updatedIndicators = {};
+        data.data.types.forEach((item, index) => {
+          updatedIndicators = {
+            ...updatedIndicators,
+            [item.key]: {
+              label: item.label,
+              price: item.price,
+            },
+          };
+          if (item.key == "haComprehensiveReport") {
+            setComprehensivePrice(item.price);
+          }
+          if (item.key == "haSocialMediaReport") {
+            setSocialMediaReportPrice(item.price);
+          }
+        });
+
+        setIndicatorLabels(updatedIndicators);
+
+        document.querySelector(".loaderBox").classList.add("d-none");
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        document.querySelector(".loaderBox").classList.add("d-none");
+      }
+    };
+    fetchIndicators();
+  }, []);
 
   const indicatorKeysToCheck = Object.keys(indicatorLabels);
   const [personIndicators, setPersonIndicators] = useState([]);
@@ -281,8 +265,8 @@ const Search = () => {
   const handleGenerateModal = (id) => {
     // personsData.find(person=>person.tahoeId == id).indicators.
     const matchedPerson = personsData.find((person) => person.tahoeId === id);
-    console.log('matchedPerson', matchedPerson);
-    
+    console.log("matchedPerson", matchedPerson);
+
     if (matchedPerson && matchedPerson.indicators) {
       const activeIndicators = indicatorKeysToCheck
         .filter(
@@ -290,7 +274,7 @@ const Search = () => {
             matchedPerson.indicators[key] && matchedPerson.indicators[key] > 0
         )
         .map((key) => ({
-           label: indicatorLabels[key].label,
+          label: indicatorLabels[key].label,
           price: indicatorLabels[key].price,
           count: matchedPerson.indicators[key],
           key: key,
@@ -298,12 +282,12 @@ const Search = () => {
       setPersonIndicators(activeIndicators);
       setIndicatorModalShow(true);
       setSelectedPersonData({
-        'email': matchedPerson.emailAddresses[0].emailAddress,
-        'first_name':matchedPerson.name.firstName,
-        'last_name': matchedPerson.name.lastName,
-        'age': `${matchedPerson.age}`,
-        'tahoe_id': matchedPerson.tahoeId,
-      })
+        email: matchedPerson.emailAddresses[0]?.emailAddress,
+        first_name: matchedPerson.name.firstName,
+        last_name: matchedPerson.name.lastName,
+        age: `${matchedPerson.age}`,
+        tahoe_id: matchedPerson.tahoeId,
+      });
       console.log("Available indicators with count > 0:", activeIndicators);
     } else {
       console.log("Person not found or indicators missing.");
@@ -367,7 +351,10 @@ const Search = () => {
                     className={`fw-bold c-pointer ${
                       searchBy == "name" ? "active" : ""
                     }`}
-                    onClick={() => setSearchBy("name")}
+                    onClick={() => {
+                      setSearchBy("name");
+                      setFormData({});
+                    }}
                   >
                     Name
                   </span>
@@ -375,7 +362,10 @@ const Search = () => {
                     className={`fw-bold c-pointer ${
                       searchBy == "email" ? "active" : ""
                     }`}
-                    onClick={() => setSearchBy("email")}
+                    onClick={() => {
+                      setSearchBy("email");
+                      setFormData({});
+                    }}
                   >
                     Email
                   </span>
@@ -383,7 +373,10 @@ const Search = () => {
                     className={`fw-bold c-pointer ${
                       searchBy == "phone" ? "active" : ""
                     }`}
-                    onClick={() => setSearchBy("phone")}
+                    onClick={() => {
+                      setSearchBy("phone");
+                      setFormData({});
+                    }}
                   >
                     Phone
                   </span>
@@ -391,7 +384,10 @@ const Search = () => {
                     className={`fw-bold c-pointer ${
                       searchBy == "address" ? "active" : ""
                     }`}
-                    onClick={() => setSearchBy("address")}
+                    onClick={() => {
+                      setSearchBy("address");
+                      setFormData({});
+                    }}
                   >
                     Address
                   </span>
@@ -434,70 +430,76 @@ const Search = () => {
                   </form>
                 )}
                 {searchBy == "email" && (
-                  <div className="search-form row px-3">
-                    <form onSubmit={handleSearch}>
-                      <div className="d-flex   gap-2">
-                        <input
-                          type="email"
-                          className="form-control"
-                          placeholder="Email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="d-flex mt-3 ">
-                        <button className="btn bg-light" type="submit">
-                          Search
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                  // <form onSubmit={handleSearchModal}>
+                  // </form>
+                    <div className="search-form row px-3">
+                      <form onSubmit={handleSearchModal}>
+                        <div className="d-flex   gap-2">
+                          <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                        <div className="d-flex mt-3 ">
+                          <button className="btn bg-light" type="submit">
+                            Search
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                 )}
                 {searchBy == "phone" && (
-                  <div className="search-form row px-3">
-                    <form onSubmit={handleSearch}>
-                      <div className="d-flex  gap-2">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="d-flex mt-3 ">
-                        <button className="btn bg-light" type="submit">
-                          Search
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                  // <form onSubmit={handleSearchModal}>
+                  // </form>
+                    <div className="search-form row px-3">
+                      <form onSubmit={handleSearchModal}>
+                        <div className="d-flex  gap-2">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                        <div className="d-flex mt-3 ">
+                          <button className="btn bg-light" type="submit">
+                            Search
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                 )}
                 {searchBy == "address" && (
-                  <div className="search-form row px-3">
-                    <form onSubmit={handleSearch}>
-                      <div className="d-flex  gap-2">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Address"
-                          name="address"
-                          value={formData?.Addresses?.[0]?.AddressLine2 || ""}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="d-flex mt-3 ">
-                        <button className="btn bg-light" type="submit">
-                          Search
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                    <div className="search-form row px-3">
+                      <form onSubmit={handleSearchModal}>
+                        <div className="d-flex  gap-2">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Address"
+                            name="address"
+                            value={formData?.Addresses?.[0]?.AddressLine2 || ""}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                        <div className="d-flex mt-3 ">
+                          <button className="btn bg-light" type="submit">
+                            Search
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  // <form onSubmit={handleSearchModal}>
+                  // </form>
                 )}
               </div>
             </div>
@@ -546,7 +548,7 @@ const Search = () => {
                     <h5>{person.fullName}</h5>
                   </div>
                   <div className="col-lg-3">
-                    <p>{person.emailAddresses[0].emailAddress}</p>
+                    <p>{person.emailAddresses[0]?.emailAddress}</p>
                   </div>
                   <div className="col-lg-1">
                     <p>{person.age}</p>
@@ -567,7 +569,7 @@ const Search = () => {
                 </div>
               </div>
             ))}
-            {totalPages > 1 && 
+            {totalPages > 1 && (
               <div className="pagination-box">
                 <span>
                   Page {currentPage} of {totalPages}
@@ -604,7 +606,7 @@ const Search = () => {
                   </li>
                 </ul>
               </div>
-            }
+            )}
           </div>
         </div>
       )}
@@ -613,6 +615,8 @@ const Search = () => {
         showModal={indicatorModalShow}
         handleClose={() => setIndicatorModalShow(false)}
         personIndicators={personIndicators}
+        comprehensivePrice={comprehensivePrice}
+        socialMediaReportPrice={socialMediaReportPrice}
         selectedPersonData={selectedPersonData}
       />
 
