@@ -21,7 +21,8 @@ const TestimonialCard = ({
             <div className="testimonial-rating-stars">
               <img src={ratingimg} alt="" />
             </div>
-            <p>{ratingNumber}</p>
+            {/* <p>{ratingNumber}</p> */}
+            <p>5/5</p>
           </div>
           <div className="testimonial-user">
             <h5>{name}</h5>
@@ -29,9 +30,12 @@ const TestimonialCard = ({
           </div>
         </div>
       </div>
+      {userImg && (
       <div className="testimonial-card-img">
         <img src={userImg} className="img-fluid" alt="" />
       </div>
+
+      )}
     </div>
   );
 };

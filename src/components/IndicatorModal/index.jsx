@@ -16,7 +16,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../CheckOutForm/CheckoutForm";
 
 const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPersonData, comprehensivePrice, socialMediaReportPrice }) => {
-  const [step, setStep] = useState("full report");
+  const [step, setStep] = useState(personIndicators.length > 0 ? "full report" : "order confirmation");
   const [selectedIndicators, setSelectedIndicators] = useState([]);
   const [isComprehensive, setIsComprehensive] = useState(false);
   const [isSocialReport, setIsSocialReport] = useState(false);
@@ -115,9 +115,10 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
           </div>
 
           {/* Step 1: Show all indicators */}
-          {step === "full report" && personIndicators.length > 0 && (
+          {step === "full report" &&  (
             <div className="mb-5">
-              {personIndicators.map((indicator, i) => (
+              { personIndicators.length > 0 ? (
+                personIndicators.map((indicator, i) => (
                 <label
                   key={i}
                   className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
@@ -137,7 +138,10 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                   </p>
                   <p className="m-0">${indicator.price}</p>
                 </label>
-              ))}
+              )))
+            :(
+              <p className="text-center">No indicators available</p>
+            )}
             </div>
           )}
 
@@ -170,17 +174,22 @@ const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPers
                 {!isComprehensive ? (
                   <div>
                     <h6 className="text-center">Selected Indicators</h6>
-                    {selectedIndicators.map((indicator, i) => (
-                      <div
-                        key={i}
-                        className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
-                      >
-                        <p className="m-0">{indicator.label}</p>
-                        <p className="m-0 text-success">
-                          ${indicator.price}
-                        </p>
-                      </div>
-                    ))}
+                    {selectedIndicators.length > 0 ? (
+                      selectedIndicators.map((indicator, i) => (
+                        <div
+                          key={i}
+                          className="d-flex align-items-center justify-content-between p-2 py-3 mt-2 shadow-sm rounded-2"
+                        >
+                          <p className="m-0">{indicator.label}</p>
+                          <p className="m-0 text-success">
+                            ${indicator.price}
+                          </p>
+                        </div>
+                      ))
+
+                    ):(
+                      <p className="text-center">No indicators selected</p>
+                    )}
                   </div>
                 ) : (
                   <div className="d-flex align-items-center justify-content-between shadow-sm p-2 py-3 mt-2">

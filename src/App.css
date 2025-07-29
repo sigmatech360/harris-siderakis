@@ -2215,6 +2215,14 @@ label.form-check-label {
   background-color: #014bbb;
 }
 
+.reviews-sec-slider-content .testimonial-card-content h4 {
+  font-size: 16px;
+  /* color: #2053cc; */
+}
+
+.reviews-sec-slider-content .swiper-wrapper{
+  align-items: center !important;
+}
 
 
 

@@ -159,8 +159,11 @@ const Search = () => {
       document.querySelector(".custom-loader-text").classList.add("d-none");
     } catch (error) {
       console.error("Error:", error);
-      if (error.response && error.response.data.isError) {
+      if (error.response && error.response.data.isError && error.response.data.error.inputErrors.length > 0) {
         toast.error(error.response.data.error.inputErrors[0]);
+      }
+      else if (error.response.data.error.message == 'Rate Limit Exceeded') {
+        toast.error('Currently, we are experiencing high traffic. Please try again later.');
       }
       document.querySelector(".loaderBox").classList.add("d-none");
       document.querySelector(".custom-loader-text").classList.add("d-none");
