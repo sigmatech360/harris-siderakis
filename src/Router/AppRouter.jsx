@@ -15,8 +15,10 @@ import Profile from "../screens/Dashboard/Profile";
 import Search from "../screens/Search";
 import OrderHistory from "../screens/Dashboard/OrderHistory";
 import PdfReportList from "../screens/Dashboard/OrderHistory/PdfReportList";
+import useFirebaseMessaging from "../useFirebaseMessaging";
 
 const AppRouter = () => {
+  useFirebaseMessaging();
   return (
     <Router basename="/harris-siderakis">
       <Routes>

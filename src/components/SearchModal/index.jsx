@@ -16,15 +16,17 @@ const SearchModal = ({
   prevSearch,
   step,
   formData,
+  children
+
 }) => {
 
-  const nextStep = () => {
-    if (step < 5) {
-      nextSearch();
-    } else {
-      handleSearch();
-    }
-  };
+  // const nextStep = () => {
+  //   if (step < 5) {
+  //     nextSearch();
+  //   } else {
+  //     handleSearch();
+  //   }
+  // };
 
   return (
     <Modal show={showModal} centered onHide={handleClose}>
@@ -32,7 +34,8 @@ const SearchModal = ({
         <FaTimes />
       </button>
       <ModalBody>
-        <div className="search-forms px-3">
+        {children}
+        {/* <div className="search-forms px-3">
           <h5 className="fw-bold text-center mb-3">{title}</h5>
           <div className="mb-4">
             <input
@@ -52,7 +55,7 @@ const SearchModal = ({
               {step < 5 ? "Next" : "Submit"}
             </button>
           </div>
-        </div>
+        </div> */}
         {/* </Form>
         </FormikProvider> */}
       </ModalBody>

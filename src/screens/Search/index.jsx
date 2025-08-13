@@ -5,15 +5,19 @@ import pricingbgimage from "../../assets/pricing-bg-image.png";
 import SearchModal from "../../components/SearchModal";
 import axios from "axios";
 import IndicatorModal from "../../components/IndicatorModal";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import StateCityDropdown from "../../components/StateCityDropdown";
 
 const Search = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchByParam = queryParams.get("searchby");
 
+  const navigate = useNavigate();
+
   const [personsData, setPersonsData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [selectedPersonData, setSelectedPersonData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -30,6 +34,12 @@ const Search = () => {
     "Middle name (Optional)"
   );
   const [inputName, setInputName] = useState("middleName");
+
+  const [selectedStateId, setSelectedStateId] = useState();
+  const [selectedStateValue, setSelectedStateValue] = useState("");
+  const [selectedCityValue, setSelectedCityValue] = useState("");
+
+  let itemsPerPage = 10;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,20 +59,35 @@ const Search = () => {
 
     if (step < 5) {
       setStep(step + 1);
-      console.log("step updated next", step + 1);
     }
   };
   const prevSearch = () => {
-    console.log("step prev", step);
     if (step > 0) {
-      console.log("step updated prev", step - 1);
-      setStep(step - 1);
+      // setStep(step - 1);
+      if (step == 4 && !selectedStateId) {
+        setStep(step - 2);
+      } else {
+        setStep(step - 1);
+      }
     }
   };
 
   const handleClose = () => {
     setStep(0);
     setShowModal(false);
+  };
+
+  const nextStep = () => {
+    if (step < 4) {
+      // nextSearch();
+      if (step == 2 && !selectedStateId) {
+        setStep(step + 2);
+      } else {
+        setStep(step + 1);
+      }
+    } else {
+      handleSearch();
+    }
   };
 
   useEffect(() => {
@@ -75,21 +100,21 @@ const Search = () => {
       setInputPlaceholder("Age (Optional)");
       setInputName("age");
     } else if (step == 2) {
-      setModalTitle("Did you know Address?");
-      setInputPlaceholder("Address (Optional)");
-      setInputName("Address");
-    } else if (step == 3) {
+      //   setModalTitle("Did you know Address?");
+      //   setInputPlaceholder("Address (Optional)");
+      //   setInputName("Address");
+      // } else if (step == 3) {
       setModalTitle("Did you know State?");
       setInputPlaceholder("State (Optional)");
       setInputName("State");
+    } else if (step == 3) {
+      setModalTitle("Did you know City?");
+      setInputPlaceholder("City (Optional)");
+      setInputName("City");
     } else if (step == 4) {
       setModalTitle("Did you know Date of Birth?");
       setInputPlaceholder("Date of Birth format(1/1/1980) (Optional)");
       setInputName("Dob");
-    } else if (step == 5) {
-      setModalTitle("Did you know City?");
-      setInputPlaceholder("City (Optional)");
-      setInputName("City");
     }
   }, [step]);
 
@@ -120,103 +145,142 @@ const Search = () => {
 
     try {
       const baseURL = `${import.meta.env.VITE_BASE_URL}`;
+      const token = localStorage.getItem("token");
 
-      const response = await axios.post(
-        `https://api.galaxysearchapi.com/PersonSearch`,
-        formData,
-        {
-          headers: {
-            accept: "application/json",
-            "galaxy-ap-name": `${import.meta.env.VITE_GALAXY_APP_NAME}`,
-            "galaxy-ap-password": `${import.meta.env.VITE_GALAXY_APP_PASSWORD}`,
-            "galaxy-search-type": "Person",
-            "content-type": "application/json",
-          },
-        }
-      );
-      const data = response.data;
-      const persons = data.persons;
-      const pages = data.pagination.totalPages;
-      if (persons.length > 0) {
-        setPersonsData(persons);
-      } else {
-        if (data.isError) {
-          toast.error(data.error.inputErrors);
-        } else {
-          toast.error(
-            data.error.warnings[0] ||
-              "No results found for the given search criteria."
-          );
-        }
-        setPersonsData([]);
-      }
-      if (pages > 1) {
-        setTotalPages(pages);
-      }
+      // const response = await axios.post(
+      //   `https://api.galaxysearchapi.com/PersonSearch`,
+      //   formData,
+      //   {
+      //     headers: {
+      //       accept: "application/json",
+      //       "galaxy-ap-name": `${import.meta.env.VITE_GALAXY_APP_NAME}`,
+      //       "galaxy-ap-password": `${import.meta.env.VITE_GALAXY_APP_PASSWORD}`,
+      //       "galaxy-search-type": "Person",
+      //       "content-type": "application/json",
+      //     },
+      //   }
+      // );
+      // const data = response.data;
+      // const persons = data.persons;
+      // const pages = data.pagination.totalPages;
+      // if (persons.length > 0) {
+      //   setPersonsData(persons);
+      // } else {
+      //   if (data.isError) {
+      //     toast.error(data.error.inputErrors);
+      //   } else {
+      //     toast.error(
+      //       data.error.warnings[0] ||
+      //         "No results found for the given search criteria."
+      //     );
+      //   }
+      //   setPersonsData([]);
+      // }
+      // if (pages > 1) {
+      //   console.log('total pages', pages);
+
+      //   setTotalPages(pages);
+      // }
       // console.log("token:", token);
       // localStorage.setItem('token', response.data.data.token);
+
+      const response = await axios.post(`${baseURL}/search-records`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
+      if (data.status) {
+        const persons = data.persons;
+        if (persons.length > 0) {
+          setPersonsData(persons);
+          console.log('persons data', persons);
+          
+          setTableData(persons.slice(0, itemsPerPage));
+          const pages = Math.ceil(persons.length / itemsPerPage);
+          setTotalPages(pages);
+        } else {
+          toast.error(data.message);
+
+          setPersonsData([]);
+          setTableData([]);
+        }
+      }
+
       document.querySelector(".loaderBox").classList.add("d-none");
       document.querySelector(".custom-loader-text").classList.add("d-none");
     } catch (error) {
-      console.error("Error:", error);
-      if (error.response && error.response.data.isError && error.response.data.error.inputErrors.length > 0) {
-        toast.error(error.response.data.error.inputErrors[0]);
+      console.error("Error:", error.response.data.message);
+      if (error.response.data.message == "Unauthenticated.") {
+        toast.error("User unauthorized, please login again!");
+        navigate("/login");
       }
-      else if (error.response.data.error.message == 'Rate Limit Exceeded') {
-        toast.error('Currently, we are experiencing high traffic. Please try again later.');
-      }
+      // if (
+      //   error.response &&
+      //   error.response.data.isError &&
+      //   error.response.data.error.inputErrors.length > 0
+      // ) {
+      //   toast.error(error.response.data.error.inputErrors[0]);
+      // } else if (error.response.data.error.message == "Rate Limit Exceeded") {
+      //   toast.error(
+      //     "Currently, we are experiencing high traffic. Please try again later."
+      //   );
+      // }
       document.querySelector(".loaderBox").classList.add("d-none");
       document.querySelector(".custom-loader-text").classList.add("d-none");
     }
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      if (
-        formData.firstName ||
-        formData.email ||
-        formData.phone ||
-        formData.address
-      ) {
-        try {
-          document.querySelector(".loaderBox").classList.remove("d-none");
-          document
-            .querySelector(".custom-loader-text")
-            .classList.remove("d-none");
-          let formValues = { ...formData, Page: currentPage };
-          const response = await axios.post(
-            `https://api.galaxysearchapi.com/PersonSearch`,
-            formValues,
-            {
-              headers: {
-                accept: "application/json",
-                "galaxy-ap-name": `${import.meta.env.VITE_GALAXY_APP_NAME}`,
-                "galaxy-ap-password": `${
-                  import.meta.env.VITE_GALAXY_APP_PASSWORD
-                }`,
-                "galaxy-search-type": "Person",
-                "content-type": "application/json",
-              },
-            }
-          );
-          const data = response.data;
-          const persons = data.persons;
-          if (persons.length > 0) {
-            setPersonsData(persons);
-          }
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          document.querySelector(".loaderBox").classList.add("d-none");
-          document.querySelector(".custom-loader-text").classList.add("d-none");
-        } catch (error) {
-          console.error("Error fetching users:", error);
-          document.querySelector(".loaderBox").classList.add("d-none");
-          document.querySelector(".custom-loader-text").classList.add("d-none");
-        }
-      }
-    };
+    // const fetchUsers = async () => {
+    //   if (
+    //     formData.firstName ||
+    //     formData.email ||
+    //     formData.phone ||
+    //     formData.address
+    //   ) {
+    //     try {
+    //       document.querySelector(".loaderBox").classList.remove("d-none");
+    //       document
+    //         .querySelector(".custom-loader-text")
+    //         .classList.remove("d-none");
+    //       let formValues = { ...formData, Page: currentPage };
+    //       const response = await axios.post(
+    //         `https://api.galaxysearchapi.com/PersonSearch`,
+    //         formValues,
+    //         {
+    //           headers: {
+    //             accept: "application/json",
+    //             "galaxy-ap-name": `${import.meta.env.VITE_GALAXY_APP_NAME}`,
+    //             "galaxy-ap-password": `${
+    //               import.meta.env.VITE_GALAXY_APP_PASSWORD
+    //             }`,
+    //             "galaxy-search-type": "Person",
+    //             "content-type": "application/json",
+    //           },
+    //         }
+    //       );
+    //       const data = response.data;
+    //       const persons = data.persons;
+    //       if (persons.length > 0) {
+    //         setPersonsData(persons);
+    //       }
+    //       window.scrollTo({ top: 0, behavior: "smooth" });
+    //       document.querySelector(".loaderBox").classList.add("d-none");
+    //       document.querySelector(".custom-loader-text").classList.add("d-none");
+    //     } catch (error) {
+    //       console.error("Error fetching users:", error);
+    //       document.querySelector(".loaderBox").classList.add("d-none");
+    //       document.querySelector(".custom-loader-text").classList.add("d-none");
+    //     }
+    //   }
+    // };
 
-    fetchUsers();
-  }, [currentPage]);
+    // fetchUsers();
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setTableData(personsData.slice(startIndex, endIndex));
+  }, [currentPage, personsData]);
 
   const [indicatorLabels, setIndicatorLabels] = useState({});
   const [comprehensivePrice, setComprehensivePrice] = useState(0);
@@ -283,7 +347,7 @@ const Search = () => {
           key: key,
         }));
       setPersonIndicators(activeIndicators);
-      setIndicatorModalShow(true);
+      
       setSelectedPersonData({
         email: matchedPerson.emailAddresses[0]?.emailAddress,
         first_name: matchedPerson.name.firstName,
@@ -292,6 +356,7 @@ const Search = () => {
         tahoe_id: matchedPerson.tahoeId,
       });
       console.log("Available indicators with count > 0:", activeIndicators);
+      setIndicatorModalShow(true);
     } else {
       console.log("Person not found or indicators missing.");
     }
@@ -435,72 +500,87 @@ const Search = () => {
                 {searchBy == "email" && (
                   // <form onSubmit={handleSearchModal}>
                   // </form>
-                    <div className="search-form row px-3">
-                      <form onSubmit={handleSearchModal}>
-                        <div className="d-flex   gap-2">
-                          <input
-                            type="email"
-                            className="form-control"
-                            placeholder="Email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div className="d-flex mt-3 ">
-                          <button className="btn bg-light" type="submit">
-                            Search
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                  <div className="search-form row px-3">
+                    <form onSubmit={handleSearchModal}>
+                      <div className="d-flex   gap-2">
+                        <input
+                          type="email"
+                          className="form-control"
+                          placeholder="Email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="d-flex mt-3 ">
+                        <button className="btn bg-light" type="submit">
+                          Search
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 )}
                 {searchBy == "phone" && (
                   // <form onSubmit={handleSearchModal}>
                   // </form>
-                    <div className="search-form row px-3">
-                      <form onSubmit={handleSearchModal}>
-                        <div className="d-flex  gap-2">
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div className="d-flex mt-3 ">
-                          <button className="btn bg-light" type="submit">
-                            Search
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                  <div className="search-form row px-3">
+                    <form onSubmit={handleSearchModal}>
+                      <div className="d-flex  gap-2">
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="d-flex mt-3 ">
+                        <button className="btn bg-light" type="submit">
+                          Search
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 )}
                 {searchBy == "address" && (
-                    <div className="search-form row px-3">
-                      <form onSubmit={handleSearchModal}>
-                        <div className="d-flex  gap-2">
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Address"
-                            name="address"
-                            value={formData?.Addresses?.[0]?.AddressLine2 || ""}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div className="d-flex mt-3 ">
-                          <button className="btn bg-light" type="submit">
-                            Search
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                  <div className="search-form row px-3">
+                    <form onSubmit={(e)=>{
+                      e.preventDefault();
+                      handleSearch()
+                    }}>
+                      <div className="d-flex  gap-2">
+                        {/* <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Address"
+                          name="address"
+                          value={formData?.Addresses?.[0]?.AddressLine2 || ""}
+                          onChange={handleChange}
+                          required
+                        /> */}
+                        <StateCityDropdown
+                          step={step}
+                          selectedStateId={selectedStateId}
+                          setSelectedStateId={setSelectedStateId}
+                          formData={formData}
+                          setFormData={setFormData}
+                          selectedStateValue={selectedStateValue}
+                          setSelectedStateValue={setSelectedStateValue}
+                          selectedCityValue={selectedCityValue}
+                          setSelectedCityValue={setSelectedCityValue}
+                          searchBy={searchBy}
+                        />
+                      </div>
+                      <div className="d-flex mt-3 ">
+                        <button className="btn bg-light" type="submit">
+                          Search
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                   // <form onSubmit={handleSearchModal}>
                   // </form>
                 )}
@@ -514,10 +594,11 @@ const Search = () => {
         <div className="person-results">
           <div className="container">
             <h2 className="mb-4">
-              Search Results for{" "}
+              Search Results 
+              {/* for{" "}
               <strong className="text-capitalize">
                 {formData.firstName} {formData.lastName}
-              </strong>
+              </strong> */}
             </h2>
             <div className="border border-2 border-light p-3 mt-3 rounded-2">
               <div className="row">
@@ -541,7 +622,7 @@ const Search = () => {
                 </div>
               </div>
             </div>
-            {personsData.map((person, index) => (
+            {tableData.map((person, index) => (
               <div className="border border-2 border-light p-3 mt-3 rounded-2">
                 <div className="row align-items-center">
                   <div className="col-lg-1">
@@ -632,10 +713,51 @@ const Search = () => {
         handleChange={handleChange}
         handleClose={handleClose}
         handleSearch={handleSearch}
-        nextSearch={nextSearch}
+        // nextSearch={nextSearch}
         prevSearch={prevSearch}
         step={step}
-      />
+      >
+        <div className="search-forms px-3">
+          <h5 className="fw-bold text-center mb-3">{modalTitle}</h5>
+          {step == 2 || step == 3 ? (
+            <div className="mb-4">
+              <StateCityDropdown
+                step={step}
+                selectedStateId={selectedStateId}
+                setSelectedStateId={setSelectedStateId}
+                formData={formData}
+                setFormData={setFormData}
+                selectedStateValue={selectedStateValue}
+                setSelectedStateValue={setSelectedStateValue}
+                selectedCityValue={selectedCityValue}
+                setSelectedCityValue={setSelectedCityValue}
+              />
+            </div>
+          ) : (
+            <div className="mb-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder={inputPlaceholder}
+                name={inputName}
+                onChange={handleChange}
+                value={formData[inputName] || ""}
+              />
+            </div>
+          )}
+          <div className="d-flex justify-content-between ">
+            <button
+              onClick={prevSearch}
+              className={`${step > 0 ? "" : "opacity-0"} btn mb-3`}
+            >
+              Back
+            </button>
+            <button onClick={nextStep} className={`btn  mb-3`}>
+              {step < 4 ? "Next" : "Submit"}
+            </button>
+          </div>
+        </div>
+      </SearchModal>
     </DefaultLayout>
   );
 };

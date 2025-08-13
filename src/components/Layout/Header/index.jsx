@@ -4,27 +4,102 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/logo.png";
 import { RiUserLine } from "react-icons/ri";
-import { FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaBell, FaCheck, FaSignOutAlt, FaUser } from "react-icons/fa";
 import "./style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "../../../store";
 import { setLogout } from "../../../store/slices/user";
 import { FiAirplay } from "react-icons/fi";
+import { useNotifications } from "../../../context/NotificationContext";
 
 const Header = ({ registerLogin = true, className }) => {
+  const { notifications, updateNotifications, totalUnreadNotifications,setTotalUnreadNNotifications } = useNotifications();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [notifications, setNotifications] = useState([]);
+  // const [totalUnreadNotifications, setTotalUnreadNNotifications] = useState(0);
   const [userData, setUserData] = useState({});
   const { isAuthenticated, user } = useSelector(({ user }) => user);
+  // const fetchNotifications = async () => {
+  //   try {
+  //     const baseURL = `${import.meta.env.VITE_BASE_URL}`;
+  //     const token = localStorage.getItem("token");
+      
+  //     const response = await axios.get(
+  //       `${baseURL}/notifications`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     const data = response.data;
+  //     if (data.status) {
+  //       updateNotifications(data?.data)
+  //       console.log('notifications', data?.data);
+  //       let unreadNotifications = 0;
+  //       data?.data.forEach((item)=>{
+  //         if(!item.read_at){
+  //           unreadNotifications += 1;
+  //         }
+  //       })
+  //       // console.log('total unread', unreadNotifications);
+  //       setTotalUnreadNNotifications(unreadNotifications);
+        
+        
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching notifications :', error);
+      
+  //   }
+  // };
+
+  const markAllAsRead = async (isOpen) => {
+    if(isOpen && totalUnreadNotifications > 0){
+      try {
+        const baseURL = `${import.meta.env.VITE_BASE_URL}`;
+        const token = localStorage.getItem("token");
+        
+        const response = await axios.get(
+          `${baseURL}/notifications/mark-all-as-read`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = response.data;
+        if (data.status) {
+          // setNotifications(data?.data)
+          console.log('notifications marked', data.message);
+          // let unreadNotifications = 0;
+          // data?.data.forEach((item)=>{
+          //   if(!item.read_at){
+          //     unreadNotifications += 1;
+          //   }
+          // })
+          // console.log('total unread', unreadNotifications);
+          setTotalUnreadNNotifications(0);
+          
+          
+        }
+      } catch (error) {
+        console.error('Error fetching notifications :', error);
+        
+      }
+    
+    }
+  }
 
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+      updateNotifications();
     }
 
     if (currentPath.includes("/dashboard")) {
@@ -56,6 +131,8 @@ const Header = ({ registerLogin = true, className }) => {
       console.error("Error:", error);
     }
   };
+ 
+  
   return (
     <Navbar expand="lg" className={`main-navbar ${className}`} variant="dark">
       <Container>
@@ -114,6 +191,46 @@ const Header = ({ registerLogin = true, className }) => {
                     Start Searching
                   </Nav.Link>
                 </Nav>
+                {/* Notifications */}
+                <Dropdown onToggle={markAllAsRead}>
+                  <Dropdown.Toggle
+                    className={`notButton  toggleButton noAfter bg-transparent`}
+                    // onClick={markAllAsRead}
+                  >
+                    <div className="position-relative">
+                      <FaBell size={20} />
+                      <span className="notification-count">{totalUnreadNotifications}</span>
+                    </div>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="notificationMenu" align="end">
+                    <div className="notificationList">
+                      <p className="notificationTitle mb-2">All Notifications</p>
+
+                      {notifications.map((notification, i) => {
+                        return (
+                          <>
+                            <Link className="notificationItem" to={`/order-history/${notification?.data?.order_id}`}>
+                              <span>
+                                <FaCheck className="notiBell text-primary" />
+                              </span>
+                              <div>
+                              <p className="fw-bold">{notification?.data?.title}</p>
+                              <p className="notiBody">{notification?.data.body}</p>
+
+                              </div>
+                            </Link>
+                            {i + 1 < notifications.length && (
+                              <div className="menuDivider ">
+                                <span className="w-100"></span>
+                              </div>
+                            )}
+                          </>
+                        );
+                      })}
+                    </div>
+                  </Dropdown.Menu>
+                </Dropdown>
+                {/* Profile */}
                 <Dropdown>
                   <Dropdown.Toggle
                     className={`notButton ${

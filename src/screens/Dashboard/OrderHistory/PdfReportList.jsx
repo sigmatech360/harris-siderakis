@@ -5,7 +5,8 @@ import searchResultimage from "../../../assets/searchResult.svg";
 import { FaCalendar, FaCheck, FaClock } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 import { formatDate } from "../../../utills/dateFormatter";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
+import axios from "axios";
 
 const PdfReportList = () => {
   const { id } = useParams();
@@ -14,11 +15,33 @@ const PdfReportList = () => {
   const [reports, setReports] = useState([]);
   const [reportsLinks, setReportsLinks] = useState();
 
+  const fetchOrder = async (id) => {
+    const baseUrl = `${import.meta.env.VITE_BASE_URL}`;
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get(`${baseUrl}/order-history/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
+      if (data.status) {
+        console.log("records fetched successfully", data);
+        const report = data?.data;
+        setItem(report);
+        setReports(report?.reports);
+        setReportsLinks(report?.report_links);
+      }
+      document.querySelector(".loaderBox").classList.add("d-none");
+    } catch (error) {
+      document.querySelector(".loaderBox").classList.add("d-none");
+      console.error("Error:", error);
+    }
+  };
+
   useEffect(() => {
-    const report = JSON.parse(localStorage.getItem(`OrderReport${id}`));
-    setItem(report);
-    setReports(report?.reports);
-    setReportsLinks(report?.report_links);
+    fetchOrder(id);
   }, []);
 
   const handleDownload = async (pdflink) => {
@@ -33,9 +56,12 @@ const PdfReportList = () => {
     // document.body.removeChild(link);
   };
   const downloadPDF = (pdflink) => {
-    console.log('url', `${import.meta.env.VITE_BASE_STORAGE_URL}/${pdflink}`);
-    
-    saveAs(`${import.meta.env.VITE_BASE_STORAGE_URL}/${pdflink}`, "downloaded.pdf");
+    console.log("url", `${import.meta.env.VITE_BASE_STORAGE_URL}/${pdflink}`);
+
+    saveAs(
+      `${import.meta.env.VITE_BASE_STORAGE_URL}/${pdflink}`,
+      "downloaded.pdf"
+    );
   };
 
   return (

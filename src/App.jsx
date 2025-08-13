@@ -11,6 +11,7 @@ import "./assets/style/forms.css"
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "./store";
 import { initializeUser } from "./store/slices/user";
+import { NotificationProvider } from "./context/NotificationContext";
 
 function App() {
   useEffect(() => {
@@ -25,11 +26,15 @@ function App() {
   useEffect(() => {
     dispatch(initializeUser());
   }, [dispatch]);
+  
 
   return (
     <>
+    <NotificationProvider>
     <Toaster position={'top-right'} />
       <AppRouter />
+
+    </NotificationProvider>
     </>
   );
 }

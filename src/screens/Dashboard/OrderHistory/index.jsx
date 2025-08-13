@@ -89,7 +89,7 @@ const OrderHistory = () => {
   }, []);
   const handleReport = (item) =>{
     
-    localStorage.setItem(`OrderReport${item.id}`, JSON.stringify(item));
+    // localStorage.setItem(`OrderReport${item.id}`, JSON.stringify(item));
     navigate(`/order-history/${item.id}`)
     
 

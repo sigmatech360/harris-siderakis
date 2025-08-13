@@ -8,10 +8,16 @@ import toast from "react-hot-toast";
 import { useDispatch } from "../../../store";
 import { setLogin } from "../../../store/slices/user";
 import * as Yup from "yup";
+import { signInWithPopup } from "firebase/auth";
+import { auth, facebookProvider, googleProvider } from "../../../firebase";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
+import useFirebaseMessaging from "../../../useFirebaseMessaging";
+import { requestPermission } from "../../../permissionRequest";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState('');
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,18 +31,25 @@ const Login = () => {
     remember: Yup.boolean(),
   });
 
+  const baseURL = `${import.meta.env.VITE_BASE_URL}`;
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      remember: true,
+      // remember: true,
     },
     validationSchema: LoginSchema,
 
     onSubmit: async (values) => {
+      let messagingData = await requestPermission();
+      console.log('messagingData',messagingData);
+      let payLoad = {...values, ...messagingData }
+      console.log('payload', payLoad);
+      
+      
       try {
-        const baseURL = `${import.meta.env.VITE_BASE_URL}`;
-        const response = await axios.post(`${baseURL}/user-login`, values);
+        const response = await axios.post(`${baseURL}/user-login`, payLoad);
         const data = response.data;
         const token = data?.data?.token;
         console.log("Success:", response?.data);
@@ -53,11 +66,10 @@ const Login = () => {
           }
           toast.success(response.data.message);
           navigate("/");
-        }
-        else{
-          toast.error('Invalid Email or Password');
-          setLoginError('Invalid Email or Password');
           
+        } else {
+          toast.error("Invalid Email or Password");
+          setLoginError("Invalid Email or Password");
         }
         // localStorage.setItem('token', response.data.data.token);
         resetForm();
@@ -70,6 +82,64 @@ const Login = () => {
   });
   const { errors, touched, values, handleSubmit, resetForm, getFieldProps } =
     formik;
+
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const user = result.user;
+  //     console.log("Google User:", user);
+  //   } catch (error) {
+  //     console.error("Google Login Error", error);
+  //   }
+  // };
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // 🔥 Get Firebase ID Token (JWT)
+      const token = await user.getIdToken();
+      const response = await axios.post(`${baseURL}/social-login`, {
+        token: token,
+        provider: "google.com",
+      });
+
+      const data = await response.data;
+      console.log(" Response data:", data);
+      if (data.status) {
+        dispatch(setLogin({ token: data.token, user: data.user }));
+
+        toast.success(data.message);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Facebook Login Error", error.response?.data || error.message);
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      const user = result.user;
+
+      const token = await user.getIdToken();
+      const response = await axios.post(`${baseURL}/social-login`, {
+        token: token,
+        provider: "facebook.com",
+      });
+      const data = await response.data;
+      console.log(" Response data:", data);
+      if (data.status) {
+        dispatch(setLogin({ token: data.token, user: data.user }));
+
+        toast.success(data.message);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Facebook Login Error", error.response?.data || error.message);
+    }
+  };
+
   return (
     <>
       <Header registerLogin={false} className="authNavBar" />
@@ -172,6 +242,30 @@ const Login = () => {
                         </div>
                       </Form>
                     </FormikProvider>
+                    <hr />
+                    <div className="social-login-container d-flex flex-column align-items-center mt-3 gap-3">
+                      <button
+                        type="button"
+                        className="btn btn-light d-flex align-items-center justify-content-center border"
+                        onClick={handleGoogleLogin}
+                        style={{ height: "45px" }}
+                      >
+                        <FcGoogle size={22} className="me-2" />
+                        <span>Login with Google</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="btn  d-flex align-items-center justify-content-center"
+                        onClick={handleFacebookLogin}
+                        style={{
+                          height: "45px",
+                          borderColor: "#1877F2",
+                        }}
+                      >
+                        <FaFacebookF size={20} className="me-2" />
+                        <span>Login with Facebook</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

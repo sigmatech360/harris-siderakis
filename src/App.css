@@ -4,6 +4,39 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+/* Custom scrollbar for the entire document */
+::-webkit-scrollbar {
+  width: 4px; /* width of the scrollbar */
+  height: 12px; /* height of the scrollbar for horizontal scrolling */
+}
+
+/* Track of the scrollbar (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: #242424; /* track background color */
+  border-radius: 10px; /* optional, gives the track rounded corners */
+}
+
+/* Handle of the scrollbar (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #0152C9; /* color of the scrollbar handle */
+  border-radius: 10px; /* optional, gives the handle rounded corners */
+  transition: background 0.3s ease;
+}
+
+/* Handle on hover (when the user hovers over the scrollbar) */
+::-webkit-scrollbar-thumb:hover {
+  background: #000000; /* change color when hovering */
+}
+
+/* Optional: Customize scrollbar for horizontal scrolling */
+::-webkit-scrollbar-horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-vertical {
+  width: 4px;
+}
+
 h1,
 h2,
 h3,

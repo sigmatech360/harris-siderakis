@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useSelector } from "../../store";
+import { useNotifications } from "../../context/NotificationContext";
 // import Swal from "sweetalert2";
 
 const CheckoutForm = ({
@@ -24,6 +25,7 @@ const CheckoutForm = ({
   isSocialReport,
 }) => {
   const { user } = useSelector(({ user }) => user);
+  const { updateNotifications } = useNotifications();
   const [userEmail, setUserEmail] = useState('');
   useEffect(()=>{
     setUserEmail(user?.email);
@@ -99,7 +101,8 @@ const CheckoutForm = ({
         if (result.status) {
           document.querySelector(".loaderBox").classList.add("d-none");
           console.log(result.message);
-          toast.success(result.message || "Payment successful!")
+          // toast.success(result.message || "Payment successful!");
+          updateNotifications();
           
         } else {
           document.querySelector(".loaderBox").classList.add("d-none");

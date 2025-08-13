@@ -16,10 +16,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../CheckOutForm/CheckoutForm";
 
 const IndicatorModal = ({ handleClose, showModal, personIndicators, selectedPersonData, comprehensivePrice, socialMediaReportPrice }) => {
-  const [step, setStep] = useState(personIndicators.length > 0 ? "full report" : "order confirmation");
+  const [step, setStep] = useState();
   const [selectedIndicators, setSelectedIndicators] = useState([]);
   const [isComprehensive, setIsComprehensive] = useState(false);
   const [isSocialReport, setIsSocialReport] = useState(false);
+
+  useEffect(()=>{
+    if(showModal){
+      setStep(personIndicators?.length > 0 ? "full report" : "order confirmation")
+    }
+  },[showModal])
 
   // Handle checkbox toggle
   const handleCheckboxChange = (indicator) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../../components/Layout/DashboardLayout";
-import { useSelector } from "../../../store";
+import { useDispatch, useSelector } from "../../../store";
 import { FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaPencil } from "react-icons/fa6";
@@ -8,11 +8,14 @@ import { MdDone } from "react-icons/md";
 import { FaCamera } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { setLogin } from "../../../store/slices/user";
 
 const Profile = () => {
   const { user } = useSelector(({ user }) => user);
   const [editName, setEditName] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({});
   useEffect(() => {
@@ -37,19 +40,6 @@ const Profile = () => {
     const token = localStorage.getItem("token");
     const formDataMethod = new FormData();
     console.log("formdata", formData);
-
-    // for (const key in formData) {
-    //   if (key == "zip_code") {
-    //     formDataMethod.append(key, "test");
-    //   } else if (key === "image") {
-    //     if (value instanceof File) {
-    //       formDataMethod.append("profile_image", value);
-    //     }
-    //     // else skip appending image
-    //   } else {
-    //     formDataMethod.append(key, formData[key]);
-    //   }
-    // }
     for (const key in formData) {
       const value = formData[key];
 
@@ -79,28 +69,12 @@ const Profile = () => {
       );
       const data = response.data;
       if (data.status) {
-        const userResponse = await axios.get(`${baseUrl}/edit-profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (userResponse.status) {
-          const user = userResponse.data;
-          dispatch(setLogin({ token: token, user: user.data }));
-        }
+          dispatch(setLogin({ token: token, user: data.data }));
         toast.success(response.data.message);
+        
         document.querySelector(".loaderBox").classList.add("d-none");
         // navigate("/dashboard/profile");
       }
-
-      // console.log("response", responseData);
-      // if (responseData.status) {
-      //   document.querySelector(".loaderBox").classList.add("d-none");
-      //   toast.success("Profile Updated Successfully");
-      //   const user = responseData.data;
-      //   dispatch(setLogin({ token: token, user: user }));
-      //   // navigate('/login');
-      // }
     } catch (error) {
       document.querySelector(".loaderBox").classList.add("d-none");
       console.error("Error:", error);
